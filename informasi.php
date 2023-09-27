@@ -71,7 +71,7 @@
   <!-- makanan -->
   <section id="makanan.php"> 
     <div>
-      <h1>makanan</h1>
+      <h1>informasi</h1>
     </div>
   </section>
 

@@ -58,8 +58,8 @@
               <li><a href="jasa.php">Jasa</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#informasi">Informasi</a></li>
-          <li><a class="getstarted scrollto" href="#masuk">Masuk</a></li>
+          <li><a class="nav-link scrollto" href="informasi.php">Informasi</a></li>
+          <li><a class="getstarted scrollto" href="login.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -72,7 +72,6 @@
   <section id="jasa.php"> 
     <div>
       <h1>jasa</h1>
-      <div></div>
     </div>
   </section>
 

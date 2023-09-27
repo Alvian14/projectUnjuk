@@ -54,8 +54,8 @@
               <li><a href="jasa.php">Jasa</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#informasi">Informasi</a></li>
-          <li><a class="getstarted scrollto" href="#masuk">Masuk</a></li>
+          <li><a class="nav-link scrollto" href="informasi.php">Informasi</a></li>
+          <li><a class="getstarted scrollto" href="login.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -77,19 +77,6 @@
    
 <footer id="footer">
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="footer-top">
       <div class="container">
@@ -98,11 +85,11 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h3>M-fast</h3>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              Nganjuk no 90 <br>
+              Nganjuk, kauman<br>
+              Indonesia <br><br>
+              <strong>Phone:</strong> 081559769075<br>
+              <strong>Email:</strong> cidukgaming03@gmail.com<br>
             </p>
           </div>
 
@@ -134,7 +121,7 @@
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://www.instagram.com/alvian_cik/ " target="_blank"    class="instagram"><i class="bx bxl-instagram"></i></a>
               <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
               <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
@@ -153,7 +140,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
       </div>
     </div>
   </footer><!-- End Footer -->
