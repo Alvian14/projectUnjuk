@@ -26,12 +26,11 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
 
   <!-- bootstrap css -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
-
 </head>
 
 <body>
@@ -76,14 +75,11 @@
 
    
 <footer id="footer">
-
-
     <div class="footer-top">
       <div class="container">
         <div class="row">
-
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>M-fast</h3>
+            <h3>UNjuk</h3>
             <p>
               Nganjuk no 90 <br>
               Nganjuk, kauman<br>
@@ -91,17 +87,6 @@
               <strong>Phone:</strong> 081559769075<br>
               <strong>Email:</strong> cidukgaming03@gmail.com<br>
             </p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
@@ -129,11 +114,11 @@
 
         </div>
       </div>
-    </div>
+    </div>  
 
     <div class="container footer-bottom clearfix">
-      <div class="copyright">
-        &copy; Copyright <strong><span>M-fast</span></strong>. All Rights Reserved
+      <div class="copyright" id="copyright">
+       Copyright &copy; 2023 <strong><span>M-fast</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
