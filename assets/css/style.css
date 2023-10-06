@@ -278,9 +278,66 @@ h6 {
 # Beranda
 --------------------------------------------------------------*/
 #wrapper{
-  width: 100%;
-  height: 400px;
+  margin-top: 3%;
+  margin-left: 5%;
+  width: 90%;
+  height: 50px;
   background-color: #235088;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+#wrapper .kotak{
+  position: relative;
+  top: 10px;
+}
+
+
+.input{
+  width: 100%;
+  height: 700px;
+}
+
+#gambar{
+  width: 112%;
+}
+
+.produk{
+  display: flex;
+}
+
+.ul-produk{
+  list-style-type:none;
+  position: relative;
+  right: 11%;
+  width: 20%;
+  height: 70%;
+  background-color:white;
+  position: relative;
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px;
+  left: 5%;
+  box-shadow:
+  5px 5px 5px rgba(0, 0, 0, 0.2) /* Bayangan di sebelah kanan dan bawah */,
+  -5px -5px 5px rgba(0, 0, 0, 0.2) ;
+  margin-right: 3%;
+}
+
+.li-produk{
+  font-family:  "Jost", sans-serif;
+
+}
+
+/*--------------------------------------------------------------
+# Makanan
+--------------------------------------------------------------*/
+
+section input{
+  position:relative;
+  top: -40px;
+  left: 70%;
+  width: 20%;
+  border-radius: 5px;
 }
 
 
@@ -316,18 +373,13 @@ h6 {
 
 
 
+/*--------------------------------------------------------------
+# informasi
+--------------------------------------------------------------*/
 
-
-
-
-
-
-
-
-
-
-
-
+.informasi{
+  height: 500px;
+}
 
 
 
@@ -1560,10 +1612,9 @@ section {
   color: #444444;
 }
 
-#footer .col-lg-3{
-  position: relative;
-  left: 16%;
-  top: -40px
+#footer .h4-footer{
+  font-family: "Jost", sans-serif;
+  font-size: 28px;
 }
 
 #footer .footer-newsletter h4 {
@@ -1613,7 +1664,7 @@ section {
 
 #footer .footer-top {
   padding: 60px 0 30px 0;
-  background: #fff;
+  background: #D9D9D9;
 }
 
 #footer .footer-top .footer-contact {

@@ -58,7 +58,7 @@
               <li><a href="jasa.php">Jasa</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#informasi">Informasi</a></li>
+          <li><a class="nav-link scrollto" href="informasi.php">Informasi</a></li>
           <li><a class="getstarted scrollto" href="login.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -69,11 +69,74 @@
 
 
   <!-- makanan -->
-  <section id="minuman.php"> 
-    <div>
-      <h1>minuman</h1>
+  <section id="minuman.php">
+    <div id="wrapper" >
+      <div class="kotak">
+          <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
+          Minuman</h1>
+          <input type="search" id="searchInput" name="search" placeholder="   Cari Minuman...">
+      </div>
     </div>
-  </section>
+
+ </section>
+ 
+
+ <div class="input">
+  <div class="produk">
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
+        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
+        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
+        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
+        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+   
+
+    
+
+    </div>
+  </div>
+ </div>
 
   <!-- end makanan -->
 

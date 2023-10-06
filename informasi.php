@@ -69,13 +69,64 @@
 
 
   <!-- makanan -->
-  <section id="makanan.php"> 
-    <div>
+  <section id="informasi.php"> 
+    <div class="informasi">
       <h1>informasi</h1>
     </div>
   </section>
 
+
   <!-- end makanan -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-contact mx-auto ml-auto">
+            <h3 class= "deskripsi" style="position: relative; top: 1px; font-weight:bold;">UNjuk</h3>
+            <p style="font-size: 15px; position: relative; top: 12px;" >
+              UNjuk merupakan wadah bagi para UMKM <br>
+              makanan, minuman, dan jasa di seluruh kabupaten
+              Nganjuk untuk menjual produk-produk mereka secara online.
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links " style="margin-right: 10%; ">
+            <h4 class="h4-footer" style="font-size: 27px; font-weight: 20px;">HUBUNGI KAMI</h4>
+            <ul>
+              <li><i class='bx bxs-map' style='color:#47b2e4'  ></i> <a href="https://www.google.com/maps/place/Dinas+Koperasi+dan+Usaha+Mikro/@-7.6049351,111.901719,18z/data=!4m10!1m2!2m1!1sdinas+umkm+nganjuk!3m6!1s0x2e784be46b1960a5:0x58cb6e8a299f3789!8m2!3d-7.605574!4d111.9044225!15sChJkaW5hcyB1bWttIG5nYW5qdWvgAQA!16s%2Fg%2F11s7x1mw73?entry=ttu" target="_blank"> 
+                Jl. Dipojegoro No.77, Nganjuk, Ganung Kidul <br>
+              </a></li>
+              <li><i class='bx bxs-envelope' style='color:#47b2e4' ></i> <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzDQzBpZKMkfcCQnLhscHZwHbMLVLBrMJpTctQqCCBscGhTQRmqkQTLZLsRDQWstRGbMJNr" target="_blank">
+                diskopumnganjuk@gmail.com</a></li>
+              <li><i class='bx bxs-phone' style='color:#47b2e4' ></i> <a href=""> Toll Free: 0-832-1-512-555</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links" >
+            <h4 style="font-size: 27px;">IKUTI KAMI</h4>
+            <div class="social-links mt-3" style=" position:relative; top: -14px; right:13px;  ">
+              <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <p style=" position:relative; top: -29px; left: 40px; ">@diskopum_kab.nganjuk</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright" id="copyright">
+       Copyright &copy; 2023 <strong><span>M-fast</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+      </div>
+    </div>
+  </footer><!-- End Footer -->
 
 
   <div id="preloader"></div>

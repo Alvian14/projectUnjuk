@@ -69,11 +69,67 @@
 
 
   <!-- makanan -->
-  <section id="jasa.php"> 
-    <div>
-      <h1>jasa</h1>
+  <section id="jasa.php">
+    <div id="wrapper" >
+      <div class="kotak">
+          <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 12px;">
+          Jasa</h1>
+          <input type="search" id="searchInput" name="search" placeholder="   Cari jasa...">
+      </div>
     </div>
-  </section>
+
+ </section>
+ 
+
+ <div class="input">
+  <div class="produk">
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    </div>
+  </div>
+ </div>
 
   <!-- end makanan -->
 

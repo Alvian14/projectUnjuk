@@ -65,10 +65,67 @@
 
  <section id="index.php">
     <div id="wrapper" >
-
+      <div class="kotak">
+          <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
+          Produk Terbaru</h1>
+      </div>
     </div>
 
  </section>
+ 
+
+ <div class="input">
+  <div class="produk">
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    <ul class="ul-produk">
+      <li class="li-produk">
+        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
+        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
+        <p style="margin-left: -8%; ">Bu Diyah <br>
+          081559769075 <br>
+        </p>
+        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
+      </li>
+    </ul>
+
+    </div>
+  </div>
+ </div>
+
+
+
   
 
     
@@ -78,43 +135,38 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>UNjuk</h3>
-            <p>
-              Nganjuk no 90 <br>
-              Nganjuk, kauman<br>
-              Indonesia <br><br>
-              <strong>Phone:</strong> 081559769075<br>
-              <strong>Email:</strong> cidukgaming03@gmail.com<br>
+          <div class="col-lg-3 col-md-6 footer-contact mx-auto ml-auto">
+            <h3 class= "deskripsi" style="position: relative; top: 1px; font-weight:bold;">UNjuk</h3>
+            <p style="font-size: 15px; position: relative; top: 12px;" >
+              UNjuk merupakan wadah bagi para UMKM <br>
+              makanan, minuman, dan jasa di seluruh kabupaten
+              Nganjuk untuk menjual produk-produk mereka secara online.
             </p>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
+          <div class="col-lg-3 col-md-6 footer-links " style="margin-right: 10%; ">
+            <h4 class="h4-footer" style="font-size: 27px; font-weight: 20px;">HUBUNGI KAMI</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class='bx bxs-map' style='color:#47b2e4'  ></i> <a href="https://www.google.com/maps/place/Dinas+Koperasi+dan+Usaha+Mikro/@-7.6049351,111.901719,18z/data=!4m10!1m2!2m1!1sdinas+umkm+nganjuk!3m6!1s0x2e784be46b1960a5:0x58cb6e8a299f3789!8m2!3d-7.605574!4d111.9044225!15sChJkaW5hcyB1bWttIG5nYW5qdWvgAQA!16s%2Fg%2F11s7x1mw73?entry=ttu" target="_blank"> 
+                Jl. Dipojegoro No.77, Nganjuk, Ganung Kidul <br>
+              </a></li>
+              <li><i class='bx bxs-envelope' style='color:#47b2e4' ></i> <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzDQzBpZKMkfcCQnLhscHZwHbMLVLBrMJpTctQqCCBscGhTQRmqkQTLZLsRDQWstRGbMJNr" target="_blank">
+                diskopumnganjuk@gmail.com</a></li>
+              <li><i class='bx bxs-phone' style='color:#47b2e4' ></i> <a href=""> Toll Free: 0-832-1-512-555</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/alvian_cik/ " target="_blank"    class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <div class="col-lg-3 col-md-6 footer-links" >
+            <h4 style="font-size: 27px;">IKUTI KAMI</h4>
+            <div class="social-links mt-3" style=" position:relative; top: -14px; right:13px;  ">
+              <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <p style=" position:relative; top: -29px; left: 40px; ">@diskopum_kab.nganjuk</p>
             </div>
           </div>
 
         </div>
       </div>
-    </div>  
+    </div>
 
     <div class="container footer-bottom clearfix">
       <div class="copyright" id="copyright">

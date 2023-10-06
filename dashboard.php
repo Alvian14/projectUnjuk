@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>umkm mikro</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="website icon" href="assets/img/logoUnjuk.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+    </style>
 </head>
 <body>
     <div class="wrapper">
