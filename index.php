@@ -158,9 +158,13 @@
 
           <div class="col-lg-3 col-md-6 footer-links" >
             <h4 style="font-size: 27px;">IKUTI KAMI</h4>
-            <div class="social-links mt-3" style=" position:relative; top: -14px; right:13px;  ">
-              <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <p style=" position:relative; top: -29px; left: 40px; ">@diskopum_kab.nganjuk</p>
+            <div class="social-links mt-3" style=" position:relative; top: -9px; left:2px;  ">
+              <!-- <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank" class="instagram"><i class='bx bxl-instagram-alt'></i></a> -->
+              <ul>
+              <li><i class='bx bxl-instagram-alt' style='color:#47b2e4'  ></i> <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank"> 
+                diskopum_kab.nganjuk <br>
+              </a></li>
+              <!-- <p style=" position:relative; top: -29px; left: 40px; ">@diskopum_kab.nganjuk</p> -->
             </div>
           </div>
 

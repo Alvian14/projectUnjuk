@@ -1736,7 +1736,7 @@ section {
   color: #47b2e4;
 }
 
-#footer .footer-top .social-links a {
+/* #footer .footer-top .social-links a {
   font-size: 18px;
   display: inline-block;
   background: #47b2e4;
@@ -1749,13 +1749,13 @@ section {
   width: 36px;
   height: 36px;
   transition: 0.3s;
-}
+} */
 
-#footer .footer-top .social-links a:hover {
+/* #footer .footer-top .social-links a:hover {
   background: #209dd8;
   color: #fff;
   text-decoration: none;
-}
+} */
 
 #footer .footer-bottom {
   padding-top: 30px;
