@@ -1,0 +1,58 @@
+
+  form{
+    width: 448px;
+    height: 454px;
+    background-color: white;
+    position: relative;
+    left: 560px;
+    top: 160px;
+    border-radius: 30px;
+  }
+
+  div{
+    position: relative;
+    top: 100px;
+    justify-content: center;
+    align-items: center;
+    left: 15%
+  }
+
+  input{
+    width :70%;
+    height: 40px;
+    border-radius: 15px;
+  }
+
+  #masuk{
+    background-color: #235088;
+    color: white;
+  }
+
+  img{
+    position: relative;
+    left: 30%;
+    top: 45px;
+    width: 170px;
+    height: 160px;
+  }
+
+  #kembali{
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    position: relative;
+    top: 450%;
+    right: 900%;
+  }
+
+  .notifikasi {
+    background-color: #ff0000; /* Warna merah */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    top: -245%; /* Mengatur jarak dari atas ke 0 */
+    right: 0; /* Mengatur jarak dari kanan ke 0 */
+    border-radius: 5px;
+  }
+  

@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>umkm mikro</title>
+  <title>Umkm mikro</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -74,9 +74,12 @@
       <h1>informasi</h1>
     </div>
   </section>
+ <!-- end makanan -->
 
 
-  <!-- end makanan -->
+
+
+ <!-- footer -->
   <footer id="footer">
     <div class="footer-top">
       <div class="container">

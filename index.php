@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>umkm mikro</title>
+  <title>Umkm mikro</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,7 +39,7 @@
   <header id="header" class="fixed-top  " style="background-color: #235088;">
     <div class="container d-flex align-items-center">
       <!-- <img src="assets/img/logoUnjuk.png" width="80px"> -->
-      <h1 class="logo me-auto "><a href="index.php">UNjuk</a></h1>
+      <h1 class="logo me-auto "><a href="windex.php">UNjuk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -161,7 +161,7 @@
             <div class="social-links mt-3" style=" position:relative; top: -9px; left:2px;  ">
               <!-- <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank" class="instagram"><i class='bx bxl-instagram-alt'></i></a> -->
               <ul>
-              <li><i class='bx bxl-instagram-alt' style='color:#47b2e4'  ></i> <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank"> 
+              <li><i class='bx bxl-instagram-alt bx-sm' style='color:#47b2e4'  ></i> <a href="https://www.instagram.com/diskopum_kab.nganjuk/" target="_blank"> 
                 diskopum_kab.nganjuk <br>
               </a></li>
               <!-- <p style=" position:relative; top: -29px; left: 40px; ">@diskopum_kab.nganjuk</p> -->
