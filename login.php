@@ -34,6 +34,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         background-color: #235088;
       }
     </style>
+
+
+<script type="text/javascript">
+    // Mendeteksi perangkat seluler
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // Redirect pengguna seluler ke halaman lain (misalnya, halaman seluler.html)
+        window.location.href = "halaman-seluler.html";
+    }
+</script>
+
    
   </head>
   <body>
