@@ -3,4 +3,6 @@ setTimeout(function() {
     if (notifikasi) {
         notifikasi.style.display = 'none';
     }
-}, 3500); // 5000 m
+}, 3000); // 5000 m
+
+
