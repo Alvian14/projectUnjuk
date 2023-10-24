@@ -43,7 +43,9 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/dashboard.css" rel="stylesheet">
+  <!-- <link href="assets/css/dashboard.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="assets/css/dashboard.css?v=<?php echo time(); ?>">
+
 
 </head>
 
@@ -73,10 +75,18 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center align-items-center"> 
-    <div class="hero-container">
-      <h1>aku cinta kamu</h1>
-    </div>
+  <section id="hero" class="d-flex flex-column align-items-center" > 
+    <div class="hero-container mt-5">
+      <!-- <div class="row">
+        <div class="col">
+          <div class="box">coba</div>
+        </div> -->
+        <h1 class="col " style="margin-left: 100px">
+          hallo
+        </h1>
+
+      </div>
+      
     </div>
   </section><!-- End Hero -->
 
