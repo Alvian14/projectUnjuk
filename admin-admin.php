@@ -65,8 +65,9 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i><span>Dashboard</span></a></li>
-          <li><a href="#nor" class="nav-link scrollto"><i class='bx bx-bell' ></i><span>Notifikasi</span></a></li>
+          <li><a href="admin-dashboard.php" class="nav-link scrollto "><i class="bx bx-home"></i><span>Dashboard</span></a></li>
+          <li><a href="admin-notifikasi.php" class="nav-link scrollto"><i class='bx bx-bell' ></i><span>Notifikasi</span></a></li>
+          <li><a href="admin-admin.php" class="nav-link scrollto active"><i class='bx bx-user-circle'></i><span>Admin</span></a></li>
           <li><a href="?logout=true" id="logout-link" class="nav-link scrollto"><i class='bx bx-log-out' ></i> <span>Keluar</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -75,8 +76,8 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center"> 
-    <div class="hero-container" data-aos="fade-in">
-      
+    <div class="hero-container">
+      <h1>aku disini admin</h1>
     </div>
     </div>
   </section><!-- End Hero -->

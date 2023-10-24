@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
-        header("Location: ../dashboard-admin.php");
+        header("Location: ../admin-dashboard.php");
         exit();
     } else {
         $queryUsername = "SELECT * FROM akun WHERE email = '$username'";
@@ -72,20 +72,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		      		<img src="../assets/img/logoUnjuk.png">
 		      	</div>
 		      	
-						<form action="#" class="login-form">
-		      		<div class="form-group">
-		      			<input type="text" name="username" class="form-control rounded-left" placeholder="Username" required>
-		      		</div>
+			<form action="#" class="login-form">
+		      	<div class="form-group">
+		      		<input type="text" name="username" class="form-control rounded-left" placeholder="Username" required>
+		      	</div>
 	            <div class="form-group d-flex">
 	              <input type="password" name="password" class="form-control rounded-left" placeholder="Password" required>
 	            </div>
 	            <div class="form-group" >
-	            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
+	            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Masuk</button>
 	            </div>
 	           
-	          </form>
+	        </form>
 	        </div>
-				</div>
+			</div>
 			</div>
 		</div>
 	</section>
