@@ -388,3 +388,26 @@ section {
 # mulai pembuatan disini
 --------------------------------------------------------------*/
 
+#hero .row{
+  padding: 30px;
+  background-color: white;
+  margin: 10px 0px;
+  border-radius: 5px;
+  margin-right: 20%;
+  height: 50;
+  
+}
+
+#hero .card-text{
+  position: relative;
+  top: 70%;
+}
+
+/* 
+#hero .box{
+  padding: 30px;
+  background-color: white;
+  margin: 10px 0px;
+  border-radius: 10px;
+  text-align: center;
+} */

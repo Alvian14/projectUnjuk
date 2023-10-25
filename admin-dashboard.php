@@ -16,6 +16,8 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,9 +45,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <!-- <link href="assets/css/dashboard.css" rel="stylesheet"> -->
-  <link rel="stylesheet" href="assets/css/dashboard.css?v=<?php echo time(); ?>">
-
+  <link href="assets/css/dashboard.css" rel="stylesheet">
 
 </head>
 
@@ -65,9 +65,9 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i><span>Dashboard</span></a></li>
-          <li><a href="admin-notifikasi.php" class="nav-link scrollto"><i class='bx bx-bell' ></i><span>Notifikasi</span></a></li>
-          <li><a href="admin-admin.php" class="nav-link scrollto "><i class='bx bx-user-circle'></i><span>Admin</span></a></li>
+          <li><a href="admin-dashboard.php" class="nav-link scrollto active"><i class="bx bx-home"></i><span>Dashboard</span></a></li>
+          <li><a href="admin-notifikasi.php" class="nav-link scrollto"><i class='bx bx-bell ' ></i><span>Update Warkop Umi</span></a></li>
+          <li><a href="admin-admin.php" class="nav-link scrollto "><i class='bx bx-user-circle'></i><span>Update Layanan</span></a></li>
           <li><a href="?logout=true" id="logout-link" class="nav-link scrollto"><i class='bx bx-log-out' ></i> <span>Keluar</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -75,27 +75,27 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column align-items-center" > 
-    <div class="hero-container mt-5">
-      <!-- <div class="row">
-        <div class="col">
-          <div class="box">coba</div>
-        </div> -->
-        <h1 class="col " style="margin-left: 100px">
-          hallo
-        </h1>
+  <section id="hero"> 
+    <div class="hero-container mt-5 d-flex justify-content-center">
+      <div class="row">
+        <div class="col" style="width: 20rem;  ">
+          <h5 class="card-title" style="color: black; font-weight: bold;">
+          UMKM</h5>
+          
+          <p class="card-text " style="color: black; font-size: 15px;" >
+            Total UMKM Terdaftar</p>
 
-      </div>
-      
+      </div> 
     </div>
+    
+
   </section><!-- End Hero -->
 
   <main id="main">
 
-    
+  
 
-    
-    
+  
     
 
   <!-- ======= Footer ======= -->

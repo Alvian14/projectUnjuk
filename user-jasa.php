@@ -44,22 +44,24 @@
   <header id="header" class="fixed-top  " style="background-color: #235088;">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index-user.php">UNjuk</a></h1>
+      <h1 class="logo me-auto"><a href="index.php">UNjuk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="index-user.php">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="index.php">Warkop Umi</a></li>
+          <li><a class="nav-link scrollto" href="user-layanan.php">Layanan</a></li>
           <li class="dropdown"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="makanan-user.php">Makanan</a></li>
-              <li><a href="minuman-user.php">Minuman</a></li>
-              <li><a href="jasa-user.php">Jasa</a></li>
+              <li><a href="user-makanan.php">Makanan</a></li>
+              <li><a href="user-minuman.php">Minuman</a></li>
+              <li><a href="user-jasa.php">Jasa</a></li>
+              <li><a href="user-kerajinan.php">Kerajinan</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="informasi-user.php">Informasi</a></li>
-          <li><a class="getstarted scrollto" href="login-user.php">Masuk</a></li>
+          <li><a class="nav-link scrollto" href="user-TentangKami.php">Tentang Kami</a></li>
+          <li><a class="getstarted scrollto" href="tem-login/tem-login-admin.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -69,12 +71,12 @@
 
 
   <!-- makanan -->
-  <section id="makanan-user.php">
+  <section id="user-jasa.php">
     <div id="wrapper" >
       <div class="kotak">
-          <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
-          Makanan</h1>
-          <input type="search" id="searchInput" name="search" placeholder="   Cari Makanan...">
+          <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 12px;">
+          Jasa</h1>
+          <input type="search" id="searchInput" name="search" placeholder="   Cari jasa...">
       </div>
     </div>
 
@@ -130,6 +132,7 @@
     </div>
   </div>
  </div>
+
   <!-- end makanan -->
 
 
