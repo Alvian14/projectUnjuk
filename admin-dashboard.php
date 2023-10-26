@@ -46,7 +46,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 
   <!-- Template Main CSS File -->
   <link href="assets/css/dashboard.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="assets/css/dashboard.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -75,23 +75,171 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero"> 
-    <div class="hero-container mt-5 d-flex justify-content-center">
+  <section id="dasbord" class="d-flex flex-column align-items-center">
+    <div class="hero-container mt-5 d-flex justify-content-center"> 
       <div class="row">
         <div class="col" style="width: 20rem;  ">
           <h5 class="card-title" style="color: black; font-weight: bold;">
           UMKM</h5>
-          
+          <hr class="line" style="margin-top: 10px;">
           <p class="card-text " style="color: black; font-size: 15px;" >
             Total UMKM Terdaftar</p>
-
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col" style="width: 20rem;  ">
+          <h5 class="card-title" style="color: black; font-weight: bold;">
+          KECAMATAN</h5>
+          <hr>
+          <p class="card-text " style="color: black; font-size: 15px;" >
+            Total Wilayah Terdaftar</p>
+        </div>
       </div> 
     </div>
+
+
+    <h2>Section title</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Header</th>
+              <th scope="col">Header</th>
+              <th scope="col">Header</th>
+              <th scope="col">Header</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1,001</td>
+              <td>random</td>
+              <td>data</td>
+              <td>placeholder</td>
+              <td>text</td>
+            </tr>
+            <tr>
+              <td>1,002</td>
+              <td>placeholder</td>
+              <td>irrelevant</td>
+              <td>visual</td>
+              <td>layout</td>
+            </tr>
+            <tr>
+              <td>1,003</td>
+              <td>data</td>
+              <td>rich</td>
+              <td>dashboard</td>
+              <td>tabular</td>
+            </tr>
+            <tr>
+              <td>1,003</td>
+              <td>information</td>
+              <td>placeholder</td>
+              <td>illustrative</td>
+              <td>data</td>
+            </tr>
+            <tr>
+              <td>1,004</td>
+              <td>text</td>
+              <td>random</td>
+              <td>layout</td>
+              <td>dashboard</td>
+            </tr>
+            <tr>
+              <td>1,005</td>
+              <td>dashboard</td>
+              <td>irrelevant</td>
+              <td>text</td>
+              <td>placeholder</td>
+            </tr>
+            <tr>
+              <td>1,006</td>
+              <td>dashboard</td>
+              <td>illustrative</td>
+              <td>rich</td>
+              <td>data</td>
+            </tr>
+            <tr>
+              <td>1,007</td>
+              <td>placeholder</td>
+              <td>tabular</td>
+              <td>information</td>
+              <td>irrelevant</td>
+            </tr>
+            <tr>
+              <td>1,008</td>
+              <td>random</td>
+              <td>data</td>
+              <td>placeholder</td>
+              <td>text</td>
+            </tr>
+            <tr>
+              <td>1,009</td>
+              <td>placeholder</td>
+              <td>irrelevant</td>
+              <td>visual</td>
+              <td>layout</td>
+            </tr>
+            <tr>
+              <td>1,010</td>
+              <td>data</td>
+              <td>rich</td>
+              <td>dashboard</td>
+              <td>tabular</td>
+            </tr>
+            <tr>
+              <td>1,011</td>
+              <td>information</td>
+              <td>placeholder</td>
+              <td>illustrative</td>
+              <td>data</td>
+            </tr>
+            <tr>
+              <td>1,012</td>
+              <td>text</td>
+              <td>placeholder</td>
+              <td>layout</td>
+              <td>dashboard</td>
+            </tr>
+            <tr>
+              <td>1,013</td>
+              <td>dashboard</td>
+              <td>irrelevant</td>
+              <td>text</td>
+              <td>visual</td>
+            </tr>
+            <tr>
+              <td>1,014</td>
+              <td>dashboard</td>
+              <td>illustrative</td>
+              <td>rich</td>
+              <td>data</td>
+            </tr>
+            <tr>
+              <td>1,015</td>
+              <td>random</td>
+              <td>tabular</td>
+              <td>information</td>
+              <td>text</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+    
+    
+   
     
 
   </section><!-- End Hero -->
 
-  <main id="main">
+  
 
   
 
@@ -99,13 +247,13 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" style="background-color: 235088;">
+  <!-- <footer id="footer" style="background-color: 235088;">
     <div class="container">
       <div class="copyright">
       Copyright &copy; 2023 <strong><span>M-fast</span></strong>. All Rights Reserved
       </div>
     </div>
-  </footer><!-- End  Footer -->
+  </footer> -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

@@ -387,27 +387,42 @@ section {
 /*--------------------------------------------------------------
 # mulai pembuatan disini
 --------------------------------------------------------------*/
+#dasbord .judul{
+  color: black;
+  margin-right: auto;
+}
 
-#hero .row{
+#dasbord .judul-title{
+  font-weight: bold;
+  font-family: "Open Sans", sans-serif;
+}
+
+#dasbord .image{
+  width: 50%;
+}
+
+ #dasbord .row{
   padding: 30px;
   background-color: white;
-  margin: 10px 0px;
+  position: relative;
+  left: 28%;
   border-radius: 5px;
   margin-right: 20%;
   height: 50;
   
 }
 
-#hero .card-text{
+#dasbord .card-text{
   position: relative;
-  top: 70%;
-}
+  top: 50%;
+} 
 
-/* 
-#hero .box{
+
+/* #hero .box{
   padding: 30px;
   background-color: white;
   margin: 10px 0px;
   border-radius: 10px;
   text-align: center;
-} */
+}  */
+

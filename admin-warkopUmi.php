@@ -76,11 +76,6 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center"> 
-    <div class="hero-container">
-        <h1>aku suka kamu</h1>
-    </div>
-  </section><!-- End Hero -->
-
   <main id="main">
 
     
