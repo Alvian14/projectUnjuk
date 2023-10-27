@@ -99,35 +99,72 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-/* ###################################### */
 
-#dasbord .judul{
+.nav-item a {
+  transition: color 0.3s, color 0.3s;
+}
+
+.nav-item a:hover {
+  color: #007BFF; 
+
+}
+/* ###################### selesai navbar ####################### */
+
+
+/* ################ kotak pendataan ################ */
+/* 
+ #dasbord .judul{
   color: black;
   margin-right: auto;
   top: -20%;
-}
+}  */
 
-#dasbord .judul-title{
+ #dasbord .card-title{
   font-weight: bold;
   font-family: "Open Sans", sans-serif;
+} 
+
+#dasbord .hero-container{
+  display: flex;
+ 
 }
 
-#dasbord .image{
-  width: 50%;
-}
 
  #dasbord .row{
   padding: 30px;
-  background-color: white;
+  background-color: #D9D9D9;
   position: relative;
   left: 28%;
   border-radius: 5px;
   margin-right: 20%;
   height: 50;
-  
+} 
+
+
+
+@media (max-width: 768px) {
+  #dasbord .row {
+      margin: 10px auto; /* Mengatur elemen ke tengah dan memberikan jarak atas/bawah */
+      max-width: 400px; /* Maksimum lebar elemen */
+      width: 90%; /* Lebar elemen berdasarkan ukuran layar */
+      text-align: center; /* Pusatkan teks secara horizontal */
+  }
 }
 
-#dasbord .card-text{
-  position: relative;
-  top: 50%;
-} 
+@media (max-width: 768px) {
+  #dasbord .row {
+      max-width: 100%;
+      flex-direction: column; /* Mengatur elemen di dalamnya untuk tampil di bawah satu sama lain */
+      align-items: center; /* Pusatkan elemen secara horizontal */
+  }
+}
+
+
+
+
+
+
+
+
+
+/* ############### selesai kotak pendataan ##################### */

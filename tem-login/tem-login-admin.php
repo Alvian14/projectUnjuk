@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
-        header("Location: ../admin-dashboard.php");
+        header("Location: ../admin-beranda.php");
         exit();
     } else {
         $queryUsername = "SELECT * FROM akun WHERE email = '$username'";
@@ -84,9 +84,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	            </div>
 	           
 	        </form>
+				<div class="form-group  text-center">
+					<p><a href="../index.php">Keluar</a></p>
+				</div>		
 	        </div>
-			</div>
-			</div>
+				</div>
+				</div>
 		</div>
 	</section>
 

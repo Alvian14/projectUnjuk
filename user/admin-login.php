@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
-        header("Location: dashboard-admin.php");
+        header("Location: admin-beranda.php");
         exit();
     } else {
         $pesan = "Username atau password salah.  Silakan coba lagi.";
