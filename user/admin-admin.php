@@ -83,6 +83,36 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   </section><!-- End Hero -->
 
   <main id="main">
+    
+
+  <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Kecamatan</th>
+              <th scope="col">Jumlah UMKM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><a href="admin-daftar.php">Bagor</a></td>
+              <td>data</td>
+              
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Baron</td>
+              <td>irrelevant</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Berbek</td>
+              <td>irrelevant</td>
+            </tr>
+           
+          </tbody>
+        </table>
 
     
 

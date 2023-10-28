@@ -1,4 +1,4 @@
-
+</nav><!-- .navbar -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,11 +26,10 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
+  <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
+  
 
-
-  <!-- bootstrap css -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
 </head>
 
 <body>
@@ -38,8 +37,8 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top  " style="background-color: #235088;">
     <div class="container d-flex align-items-center">
-      <!-- <img src="assets/img/logoUnjuk.png" width="80px"> -->
-      <h1 class="logo me-auto "><a href="index.php">UNjuk</a></h1>
+
+      <h1 class="logo me-auto"><a href="index.php">UNjuk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -64,76 +63,36 @@
   </header><!-- End Header -->
 
 
-
- <section id="user-layanan.php">
-    <div id="wrapper" >
+  <!-- makanan -->
+  <section id="layanan">
+   <div id="wrapper" >
       <div class="kotak">
           <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
-          Produk Terbaru</h1>
+          Layanan</h1>
       </div>
     </div>
-
- </section>
- 
-
- <div class="input">
-  <div class="produk">
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
+    <div class="informasi container mt-5">
+    <p>Terimakasih Telah menggunakan layanan klinik UMKM Digital Dinas Koperasi & Usaha Mikro Kab Nganjuk</p>
+            <p>Untuk Pelayanan melalui form berikut:</p>
+            <a href="https://forms.gle/x1r1v2UeVDaYXkpP7" target="_blank">Form UMKM Digital</a>
+            <p>Untuk Layanan :</p>
+            <ol>
+                <li>Klinik UMKM Go Digital</li>
+                <li>Fasilitasi Perizinan NIB / PIRT /Halal</li>
+                <li>Design Kemasan</li>
+                <li>Market Hub</li>
+                <li>Affiliate Program</li>
+            </ol>
+            <p>Info lebih lanjut bisa via WhatsApp (WA)</p>
     </div>
-  </div>
- </div>
+  </section>
+ <!-- end makanan -->
 
 
 
-  
 
-    
-
-   
-<footer id="footer">
+ <!-- footer -->
+  <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -187,7 +146,8 @@
       </div>
     </div>
   </footer><!-- End Footer -->
-   
+
+
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -200,13 +160,9 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-
-  <!-- js bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script src="assets/js/klik-menu.js"></script>       
 </body>
 
 </html>
