@@ -95,69 +95,14 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
             </a>
           </li>
         </ul>
-
-        
       </div>
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <h2>Dashboard</h2>
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <section id="dasbord" class="d-flex flex-column align-items-center">
-          <div class="hero-container mt-5 d-flex justify-content-center"> 
-            <div class="row">
-              <div class="col" style="width: 20rem;  ">
-                <h5 class="card-title" style="color: black; font-weight: bold;">
-                UMKM</h5>
-                <hr class="line" style="margin-top: 10px;">
-                <p class="card-text " style="color: black; font-size: 15px;" >
-                  Total UMKM Terdaftar</p>
-              </div>
-            </div>
-            
-            <div class="row">
-              <div class="col" style="width: 20rem;  ">
-                <h5 class="card-title" style="color: black; font-weight: bold;">
-                KECAMATAN</h5>
-                <hr>
-                <p class="card-text " style="color: black; font-size: 15px;" >
-                  Total Wilayah Terdaftar</p>
-              </div>
-            </div> 
-          </div>
-        </section>
-      </div>
-      <br>
-      <br>
-
-      <h3 class="title mt-3">Total UMKM Perkecamatan</h3>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">No</th>
-              <th scope="col">Kecamatan</th>
-              <th scope="col">Jumlah UMKM</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>random</td>
-              <td>data</td>
-              
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              
-            </tr>
-           
-          </tbody>
-        </table>
-      </div>
+    
     </main>
+
   </div>
 </div>
 

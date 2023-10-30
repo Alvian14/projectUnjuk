@@ -111,6 +111,7 @@ body {
 /* ###################### selesai navbar ####################### */
 
 
+
 /* ################ kotak pendataan ################ */
 /* 
  #dasbord .judul{
@@ -144,26 +145,64 @@ body {
 
 @media (max-width: 768px) {
   #dasbord .row {
-      margin: 10px auto; /* Mengatur elemen ke tengah dan memberikan jarak atas/bawah */
-      max-width: 400px; /* Maksimum lebar elemen */
-      width: 90%; /* Lebar elemen berdasarkan ukuran layar */
-      text-align: center; /* Pusatkan teks secara horizontal */
+      margin: 10px auto;
+      max-width: 400px; 
+      width: 90%;
+      text-align: center; 
   }
 }
 
 @media (max-width: 768px) {
   #dasbord .row {
       max-width: 100%;
-      flex-direction: column; /* Mengatur elemen di dalamnya untuk tampil di bawah satu sama lain */
-      align-items: center; /* Pusatkan elemen secara horizontal */
+      flex-direction: column; 
+      align-items: center;
+      
   }
 }
 
 
 
+ /* CSS untuk layar besar (lebar lebih dari 768px) */
+ @media (min-width: 768px) {
+     .hero-container {
+         display: flex;
+         justify-content: space-between;
+     }
+     .col {
+         width: 20%;
+     }
+ }
 
+ /* CSS untuk layar kecil (lebar kurang dari 768px) */
+ @media (max-width: 768px) {
+     .hero-container {
+         flex-direction: column;
+         align-items: center;
+         margin-right: 57%;
+     }
+     .col {
+         width: 100%;
+         margin-bottom: 20px;
+     }
+ }
 
+ /* Gaya umum untuk kedua ukuran layar */
+ .card-title {
+     color: black;
+     font-weight: bold;
+ }
 
+ .umkm-count {
+     color: black;
+     font-weight: bold;
+     font-size: 18px;
+ }
+
+ .card-text {
+     color: black;
+     font-size: 15px;
+ }
 
 
 

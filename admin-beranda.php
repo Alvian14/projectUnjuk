@@ -42,7 +42,14 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
+    <!-- template tabel data-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+
+      <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+      <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+      <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+      <script defer src="assets/js/tabel-daftar.js"></script>
     <!-- <link href="assets/dashboard.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="assets/dashboard.css?v=<?php echo time(); ?>">
   </head>
@@ -121,60 +128,34 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama UMKM</th>
-                    <th>Jenis Usaha</th>
-                    <th>NIB</th>
-                    <th>Nomor telepon</th>
-                    <th>Alamat</th>
-                    <th>ID Akun</th>
-                    <th>foto UMKM</th>
+                    <th>Kecamatan</th>
+                    <th>Jumlah UMKM</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Keripik pisang</td>
-                    <td>Makanan</td>
-                    <td>61</td>
-                    <td>032292039323</td>
-                    <td>Kertosono</td>
-                    <td>2030</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Kencur</td>
-                    <td>Minuman</td>
-                    <td>61</td>
-                    <td>032292039323</td>
-                    <td>Sukomoro</td>
-                    <td>2031</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Keripik pisang</td>
-                    <td>Makanan</td>
-                    <td>61</td>
-                    <td>032292039323</td>
-                    <td>Kertosono</td>
-                    <td>2032</td>
-                    <td></td>
-                </tr>
+            <?php
+                include "koneksi.php";
+                $no=1;
+                $ambilData = mysqli_query($conn, "select * from akun");
+                while ($tampil = mysqli_fetch_array($ambilData)){
+                    echo "
+                    <tr>
+                        <td>$no</td>
+                        <td><a href='daftar-kecamatan/admin-daftar.php?'>Bagor</a></td>
+                        <td><a href='daftar-kecamatan/admin-daftar.php?id=$tampil[email]'>$tampil[email]</a></td>
+                    </tr>";
+                    $no++;
+
+
+                  
+                }
+                
+                
+               ?>
+            
            
             </tbody>
-            <tfoot>
-                <tr>
-                <th>No.</th>
-                    <th>Nama UMKM</th>
-                    <th>Jenis Usaha</th>
-                    <th>NIB</th>
-                    <th>Nomor telepon</th>
-                    <th>Alamat</th>
-                    <th>ID Akun</th>
-                    <th>foto UMKM</th>
-                </tr>
-            </tfoot>
         </table>
       </div>
 
