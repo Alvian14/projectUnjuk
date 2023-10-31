@@ -1,4 +1,16 @@
-</nav><!-- .navbar -->
+<?php
+// Hubungkan ke database Anda
+include "koneksi.php";
+
+// Query SQL dengan INNER JOIN
+$query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.pirt_produk, pd.harga_prooduk
+        FROM produk AS pd
+        INNER JOIN umkm AS um
+        ON pd.id_umkm = um.id_umkm";
+
+$result = mysqli_query($conn, $query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,13 +41,6 @@
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
-  <!-- =======================================================
-  * Template Name: Arsha
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -80,58 +85,32 @@
       </div>
     </div>
 
+
+    <div class="container mt-4">
+      <div class="row">
+          <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+              <div class="col-6 col-md-4 col-lg-3 mb-4">
+                  <div class="card">
+                      <a href="index.php">
+                          <img src="assets/img/makanan.png" class="card-img-top" alt="Gambar Produk">
+                      </a>
+                      <div class="card-body">
+                          <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
+                          <p class="card-text"><?php echo $row['nama_umkm']; ?></p>
+                          <p class="card-text"><?php echo $row['notelp_umkm']; ?></p>
+                          <p class="card-text"><?php echo $row['pirt_produk']; ?></p>
+                          <p class="card-text">Rp <?php echo $row['harga_prooduk']; ?></p>
+                      </div>
+                  </div>
+              </div>
+          <?php } ?>
+      </div>
+  </div>
+
+
+
  </section>
  
-
- <div class="input">
-  <div class="produk">
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/makanan.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Krupuk Sukun</h5>
-        <p style="margin-left: -8%; ">Bu Diyah <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-    </div>
-  </div>
- </div>
   <!-- end makanan -->
 
 
@@ -146,6 +125,10 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
