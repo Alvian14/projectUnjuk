@@ -134,27 +134,106 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
-                include "koneksi.php";
-                $no=1;
-                $ambilData = mysqli_query($conn, "select * from akun");
-                while ($tampil = mysqli_fetch_array($ambilData)){
-                    echo "
-                    <tr>
-                        <td>$no</td>
-                        <td><a href='daftar-kecamatan/admin-daftar.php?'>Bagor</a></td>
-                        <td><a href='daftar-kecamatan/admin-daftar.php?id=$tampil[email]'>$tampil[email]</a></td>
-                    </tr>";
-                    $no++;
-
-
-                  
-                }
-                
-                
-               ?>
-            
-           
+                <tr>
+                  <td>1</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Bagor</a></td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Baron</a></td>
+                  <td>30</td>
+                </tr>   
+                <tr>
+                  <td>3</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Berbek</a></td>
+                  <td>30</td>
+                </tr>   
+                <tr>
+                  <td>4</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Gondang</a></td>
+                  <td>30</td>
+                </tr>   
+                <tr>
+                  <td>5</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Jatikalen</a></td>
+                  <td>30</td>
+                </tr>   
+                <tr>
+                  <td>6</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Kertosono</a></td>
+                  <td>30</td>
+                </tr>   
+                <tr>
+                  <td>7</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Lengkong</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>8</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Loceret</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>9</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Nganjuk</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>10</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Ngetos</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>11</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Ngluyu</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>12</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Ngronggot</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>13</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Pace</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>14</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Patianrowo</a></td>
+                  <td>30</td>
+                </tr> 
+                <tr>
+                  <td>15</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Prambon</a></td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Rejoso</a></td>
+                  <td>30</td>
+                </tr>     
+                <tr>
+                  <td>17</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Sawahan</a></td>
+                  <td>30</td>
+                </tr>  
+                <tr>
+                  <td>18</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Sukomoro</a></td>
+                  <td>30</td>
+                </tr>  
+                <tr>
+                  <td>19</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Tanjunganom</a></td>
+                  <td>30</td>
+                </tr>  
+                <tr>
+                  <td>20</td>
+                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Wilangan</a></td>
+                  <td>30</td>
+                </tr>                      
             </tbody>
         </table>
       </div>

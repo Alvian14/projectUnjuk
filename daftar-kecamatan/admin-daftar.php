@@ -92,7 +92,10 @@
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <h3 class="title mt-3">Daftar</h3>
-        <div class="container">
+      <h6 class="title ">
+        <a href="../admin-beranda.php">Dashboard</a> / Daftar
+      </h6>
+        <!-- <div class="container">
           <div class="d-flex justify-content-end " >
               <button class="btn btn-primary mt-4" style="margin-right: 5px">
                   <a class="nav-link" href="../admin-tambah.php">
@@ -100,84 +103,85 @@
                   Tambah </a>
               </button>
           </div>
-        </div>
+        </div> -->
+
 
 
         <!-- ###################### TABEL UMKM ###################### -->
         <div class="table-responsive mt-5">
-    <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Nama UMKM</th>
-                <th>Jenis Usaha</th>
-                <th>NIB</th>
-                <th>Nomor telepon</th>
-                <th>Alamat</th>
-                <th>ID Akun</th>
-                <th>foto UMKM</th>
-                <th>Aksi</th> <!-- Tambahkan kolom "Aksi" -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Keripik pisang</td>
-                <td>Makanan</td>
-                <td>61</td>
-                <td>032292039323</td>
-                <td>Kertosono</td>
-                <td>2030</td>
-                <td></td>
-                <td>
-                    <button class="btn btn-danger">Hapus</button>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Kencur</td>
-                <td>Minuman</td>
-                <td>61</td>
-                <td>032292039323</td>
-                <td>Sukomoro</td>
-                <td>2031</td>
-                <td></td>
-                <td>
-                    <button class="btn btn-danger">Hapus</button>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Keripik pisang</td>
-                <td>Makanan</td>
-                <td>61</td>
-                <td>032292039323</td>
-                <td>Kertosono</td>
-                <td>2032</td>
-                <td></td>
-                <td>
-                    <button class="btn btn-danger">Hapus</button>
-                    <button class="btn btn-primary">Edit</button>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>No.</th>
-                <th>Nama UMKM</th>
-                <th>Jenis Usaha</th>
-                <th>NIB</th>
-                <th>Nomor telepon</th>
-                <th>Alamat</th>
-                <th>ID Akun</th>
-                <th>foto UMKM</th>
-                <th>Aksi</th> <!-- Tambahkan kolom "Aksi" di bagian bawah juga -->
-            </tr>
-        </tfoot>
-    </table>
-</div>
+          <table id="example" class="table table-striped" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>No.</th>
+                      <th>Nama UMKM</th>
+                      <th>Jenis Usaha</th>
+                      <th>NIB</th>
+                      <th>Nomor telepon</th>
+                      <th>Alamat</th>
+                      <th>ID Akun</th>
+                      <th>foto UMKM</th>
+                      <th>Aksi</th> <!-- Tambahkan kolom "Aksi" -->
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>1</td>
+                      <td>Keripik pisang</td>
+                      <td>Makanan</td>
+                      <td>61</td>
+                      <td>032292039323</td>
+                      <td>Kertosono</td>
+                      <td>2030</td>
+                      <td></td>
+                      <td>
+                          <button class="btn btn-danger">Hapus</button>
+                          <button class="btn btn-primary">Edit</button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>2</td>
+                      <td>Kencur</td>
+                      <td>Minuman</td>
+                      <td>61</td>
+                      <td>032292039323</td>
+                      <td>Sukomoro</td>
+                      <td>2031</td>
+                      <td></td>
+                      <td>
+                          <button class="btn btn-danger">Hapus</button>
+                          <button class="btn btn-primary">Edit</button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>3</td>
+                      <td>Keripik pisang</td>
+                      <td>Makanan</td>
+                      <td>61</td>
+                      <td>032292039323</td>
+                      <td>Kertosono</td>
+                      <td>2032</td>
+                      <td></td>
+                      <td>
+                          <button class="btn btn-danger">Hapus</button>
+                          <button class="btn btn-primary">Edit</button>
+                      </td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <th>No.</th>
+                      <th>Nama UMKM</th>
+                      <th>Jenis Usaha</th>
+                      <th>NIB</th>
+                      <th>Nomor telepon</th>
+                      <th>Alamat</th>
+                      <th>ID Akun</th>
+                      <th>foto UMKM</th>
+                      <th>Aksi</th> <!-- Tambahkan kolom "Aksi" di bagian bawah juga -->
+                  </tr>
+              </tfoot>
+          </table>
+      </div>
 
 
        

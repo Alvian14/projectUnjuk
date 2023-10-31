@@ -1,22 +1,3 @@
-<?php
-// Mulai session PHP jika belum dimulai
-session_start();
-
-if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
-    // Lakukan tindakan logout di sini (seperti unset($_SESSION['user']) atau sesuai kebutuhan)
-
-    // Mengatur header cache agar halaman tidak bisa dikembalikan
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-    header("Cache-Control: post-check=0, pre-check=0", false);
-    header("Pragma: no-cache");
-
-    // Redirect ke halaman login atau halaman lain setelah logout
-    header("Location: tem-login/tem-login-admin.php");
-    exit();
-}
-?>
-
-
 
 <!doctype html>
 <html lang="en">
@@ -38,7 +19,8 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     <link rel="website icon" href="tem-login/images/logoUnjuk.png">
 
     <!-- Bootstrap core CSS -->
-<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+   
 
     <style>
       .bd-placeholder-img {
@@ -57,8 +39,51 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     </style>
 
     
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
+    <!-- template tabel data -->
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="file"] {
+            cursor: pointer;
+        }
+
+        .form-group input[type="file"]::file-selector-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Membuat input gambar responsif */
+        .responsive-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+      
+    <!-- <link href="assets/dashboard.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="assets/dashboard.css?v=<?php echo time(); ?>">
   </head>
   <body>
@@ -89,7 +114,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
               Update Warkop Umi
             </a>
           <li class="nav-item">
-            <a class="nav-link" style="font-size: 18px;" href="?logout=true">
+            <a class="nav-link" style="font-size: 18px;" href="#" onclick="konfirmasiKeluar()">
             <i class='bx bx-log-out' ></i>
               Keluar
             </a>
@@ -97,19 +122,94 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
         </ul>
       </div>
     </nav>
-
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h2>Dashboard</h2>
     
-    </main>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <h3 class="title mt-3">Tambah UMKM</h3>
+      <div class="group">
+        <form>
+            <div class="form-group">
+                <label for="name">Nama Produk:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="kategori">Kategori Produk</label>
+                <select id="kategori" name="kategori" style="width: 100%; height: 45px; border-radius: 5px;">
+                    <option value="Makanan">Makanan</option>
+                    <option value="Minuman">Minuman</option>
+                    <option value="Jasa">Jasa</option>
+                    <option value="Kerajinan">Kerajinan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pirt">PIRT</label>
+                <input type="text" id="pirt" name="pirt">
+            </div>
+            <div class="form-group">
+                <label for="bpom">BPOM</label>
+                <input type="text" id="bpom" name="bpom" >
+            </div>
+            <div class="form-group">
+                <label for="halal">ID Halal</label>
+                <input type="text" id="halal" name="halal">
+            </div>
+            <div class="form-group">
+                <label for="deskripsi">Deskripsi Produk</label>
+                <textarea id="deskripsi" name="deskripsi" rows="4" 
+                placeholder="Masukkan deskripsi produk Anda"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="harga">Harga Produk</label>
+                <input type="text" id="harga" name="harga">
+            </div>
+            <div class="form-group">
+                <label for="file">Unggah Gambar:</label>
+                <input type="file" id="file" name="file" accept="image/*">
+            </div>
+            <div class="form-group">
+                <img src="" alt="Gambar yang diunggah" class="responsive-image" id="image-preview">
+            </div>
+        </form>
 
+        <div class="container ml-5">
+            <div class="d-flex justify-content-end " >
+                <button class="btn btn-primary mt-4" style="margin-right: 5px; height: 40px">
+                    <i class='bx bx-plus' style='color:#fafafa'></i> 
+                    Tambah </a>
+                </button>
+                <button class="btn btn-success mt-4" style="margin-right: 5px">
+                    <i class='bx bx-pencil' style='color:#fafafa'></i> Ubah
+                </button>
+            </div>
+        </div> 
+</div>
+
+<script>
+    // Menampilkan gambar yang diunggah dalam elemen img
+    const fileInput = document.getElementById('file');
+    const imagePreview = document.getElementById('image-preview');
+
+    fileInput.addEventListener('change', function() {
+        const file = fileInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.src = '';
+        }
+    });
+</script>
+
+    </main>
   </div>
 </div>
 
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/konfirmasi.js"></script>
+    <!-- <script src="assets/js/tabel-daftar.js"></script> -->
 
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
   </body>
 </html>
