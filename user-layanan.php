@@ -1,4 +1,4 @@
-</nav><!-- .navbar -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +54,7 @@
               <li><a href="user-kerajinan.php">Kerajinan</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="user-tentangKami.php">Tentang Kami</a></li>
+          <li><a class="nav-link scrollto" href="#footer">Tentang Kami</a></li>
           <li><a class="getstarted scrollto" href="tem-login/tem-login-admin.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -65,70 +65,94 @@
 
   <!-- makanan -->
   <section id="layanan">
-   <div id="wrapper" >
+    <div id="wrapper" >
       <div class="kotak">
           <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
           Layanan</h1>
       </div>
     </div>
-    <!-- <div class="informasi container mt-5">
-    <p>Terimakasih Telah menggunakan layanan klinik UMKM Digital Dinas Koperasi & Usaha Mikro Kab Nganjuk</p>
-            <p>Untuk Pelayanan melalui form berikut:</p>
-            <a href="https://forms.gle/x1r1v2UeVDaYXkpP7" target="_blank">Form UMKM Digital</a>
-            <p>Untuk Layanan :</p>
-            <ol>
-                <li>Klinik UMKM Go Digital</li>
-                <li>Fasilitasi Perizinan NIB / PIRT /Halal</li>
-                <li>Design Kemasan</li>
-                <li>Market Hub</li>
-                <li>Affiliate Program</li>
-            </ol>
-            <p>Info lebih lanjut bisa via WhatsApp (WA)</p>
-    </div> -->
-      <div class="informasi container mt-5 d-flex">
-        <div class="kotak text-center" style="width: 18rem; box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1); ">
-        <i class='bx bx-clinic bx-lg' style='color:#1089ff' ></i>
-          <div class="card-body">
-              <h5 class="card-title">Klinik UMKM Go Digital</h5>
-              <p class="card-text mt-3">Deskripsi singkat atau konten lainnya dapat ditambahkan di sini.</p>
-          </div>
-        </div>
-        
-        <div class="kotak text-center " style="width: 18rem; box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1); margin-left: 5%">
-          <i class='bx bxs-file-doc bx-lg' style='color:#1089ff' ></i>
-          <div class="card-body">
-              <h5 class="card-title">Fasilitas Perizinan</h5>
-              <p class="card-text mt-3">Untuk Perizinan NIB / PIRT/ HALAL.</p>
-          </div>
-        </div>
+    
+                <div class="container mt-5">
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="kotak text-center" style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                <i class='bx bxs-clinic bx-lg' style='color:#1089ff' ></i>
+                                <div class="card-body">
+                                    <h5 class="card-title">Klinik UMKM Go Digital</h5>
+                                    <p class="card-text mt-3">Membantu penjualan menggunakan platfrom digital.</p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="kotak text-center " style="width: 18rem; box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1); margin-left: 5%">
-        <i class='bx bxs-magic-wand bx-lg' style='color:#1089ff'  ></i>
-          <div class="card-body">
-              <h5 class="card-title">Design Kemasan</h5>
-              <p class="card-text mt-3">Membantu para UMKM untuk membuat desain.</p>
-          </div>
-        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="kotak text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                <i class='bx bxs-file-doc bx-lg' style='color:#1089ff'></i>
+                                <div class="card-body">
+                                    <h5 class="card-title">Fasilitas Perizinan</h5>
+                                    <p class="card-text mt-3">Untuk Perizinan NIB / PIRT/ HALAL.</p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="kotak text-center " style="width: 18rem; box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1); margin-left: 5%">
-        <i class='bx bxs-store bx-flip-horizontal bx-lg' style='color:#1089ff' ></i>
-          <div class="card-body">
-              <h5 class="card-title">Market Hub</h5>
-              <p class="card-text mt-3">Membantu para UMKM untuk membuat desain.</p>
-          </div>
-        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="kotak text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                <i class='bx bxs-magic-wand bx-tada bx-lg' style='color:#1089ff' ></i>
+                                <div class="card-body">
+                                    <h5 class="card-title">Design Kemasan</h5>
+                                    <p class="card-text mt-3">Membantu para UMKM untuk membuat desain.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="kotak text-center " style="width: 18rem; box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1); margin-left: 5%">
-        <i class='bx bxs-store bx-flip-horizontal bx-lg' style='color:#1089ff' ></i>
-          <div class="card-body">
-              <h5 class="card-title">Affiliate Program</h5>
-              <p class="card-text mt-3">Membantu para UMKM untuk membuat desain.</p>
-          </div>
-        </div>
+                <div class="container mt-5 ">
+                    <div class="row g-4 justify-content-center align-items-center">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="kotak text-center " style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                <i class='bx bxs-store bx-lg' style='color:#1089ff; font-size: 3rem;'  ></i>
+                                <div class="card-body">
+                                    <h5 class="card-title">Market Hub</h5>
+                                    <p class="card-text mt-3">Layanan Marketplace.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="kotak text-center " style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                <i class='bx bxs-file-doc bx-lg' style='color:#1089ff; font-size: 3rem;'></i>
+                                  <div class="card-body">
+                                    <h5 class="card-title">Affiliate Program</h5>
+                                      <p class="card-text mt-3">Untuk Perizinan NIB / PIRT / HALAL.</p>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-      </div>
-        
+
+                <div class="informasi container mt-5 ">
+                        <p>Terimakasih Telah menggunakan layanan klinik UMKM Digital Dinas Koperasi & Usaha Mikro Kab Nganjuk</p>
+                        <p>Untuk Pelayanan melalui form Klik dibawah ini:</p>
+                        <a href="https://forms.gle/x1r1v2UeVDaYXkpP7" target="_blank">Klik Disini</a>
+                        <p>Untuk Layanan :</p>
+                        <ol>
+                            <li>Klinik UMKM Go Digital</li>
+                            <li>Fasilitasi Perizinan NIB / PIRT /Halal</li>
+                            <li>Design Kemasan</li>
+                            <li>Market Hub</li>
+                            <li>Affiliate Program</li>
+                        </ol>
+                        <p>Info lebih lanjut bisa via WhatsApp (WA)</p>
+                        
+                </div> 
+  
+
+
+
+
+
 
 
   </section>
@@ -139,7 +163,7 @@
 
  <!-- footer -->
   <footer id="footer">
-    <div class="footer-top">
+    <div class="footer-top mt-5">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6 footer-contact mx-auto ml-auto">

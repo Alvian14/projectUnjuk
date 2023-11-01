@@ -11,7 +11,17 @@
 
   $result = $conn->query($query);
 
+
 ?>
+
+
+
+
+
+
+
+
+
 
 <!doctype html>
 <html lang="en">
@@ -153,7 +163,7 @@
                           echo "<td><img src='" . $row['umkm_foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></td>";
                           echo "<td>";
                           echo "<button class='btn btn-primary'><i class='bx bx-pencil'></i> Edit</button>";
-                          echo "<button class='btn btn-danger'><i class='bx bxs-trash' ></i> Hapus</button>";
+                          echo "<button class='btn btn-danger' data-id='" . $row['id_umkm'] . "' onclick='hapusUMKM(this)'><i class='bx bxs-trash'></i> Hapus</button>";
                           echo "</td>";
                           echo "</tr>";
                           $no++;
@@ -187,6 +197,29 @@
     </main>
   </div>
 </div>
+
+<script>
+function hapusUMKM(button) {
+    var idUMKM = button.getAttribute('data-id');
+
+    if (confirm("Apakah Anda yakin ingin menghapus UMKM dengan ID " + idUMKM + "?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../hapus-data.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert(xhr.responseText);
+                // Perbarui tampilan tabel jika perlu
+                // ...
+            }
+        };
+        xhr.send("id_umkm=" + idUMKM);
+    }
+}
+// </script>
+
+
+
 
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

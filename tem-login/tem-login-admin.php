@@ -98,6 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	<script src="js/bootstrap.min.js"></script>
   	<script src="js/main.js"></script>
 	<script src="../assets/js/login.js"></script>
-	<script src="../assets/js/stop.js"></script>
+	<!-- <script src="../assets/js/stop.js"></script> -->
 	</body>
 </html>

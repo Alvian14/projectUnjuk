@@ -65,7 +65,7 @@ $result = mysqli_query($conn, $query);
               <li><a href="user-kerajinan.php">Kerajinan</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="user-tentangKami.php">Tentang Kami</a></li>
+          <li><a class="nav-link scrollto" href="#">Tentang Kami</a></li>
           <li><a class="getstarted scrollto" href="tem-login/tem-login-admin.php">Masuk</a></li>  
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
