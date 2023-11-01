@@ -3,7 +3,7 @@
 include "koneksi.php";
 
 // Query SQL dengan INNER JOIN
-$query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.pirt_produk, pd.harga_prooduk
+$query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm,pd.harga_prooduk
         FROM produk AS pd
         INNER JOIN umkm AS um
         ON pd.id_umkm = um.id_umkm";
@@ -81,7 +81,7 @@ $result = mysqli_query($conn, $query);
       <div class="kotak">
           <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
           Makanan</h1>
-          <input type="search" id="searchInput" name="search" placeholder="   Cari Makanan...">
+          <input type="search" id="searchInput"  name="search" placeholder="   Cari Makanan...">
       </div>
     </div>
 
@@ -98,7 +98,6 @@ $result = mysqli_query($conn, $query);
                           <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
                           <p class="card-text"><?php echo $row['nama_umkm']; ?></p>
                           <p class="card-text"><?php echo $row['notelp_umkm']; ?></p>
-                          <p class="card-text"><?php echo $row['pirt_produk']; ?></p>
                           <p class="card-text">Rp <?php echo $row['harga_prooduk']; ?></p>
                       </div>
                   </div>

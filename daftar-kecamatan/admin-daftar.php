@@ -1,3 +1,17 @@
+<?php
+    include "../koneksi.php";
+
+  // Periksa koneksi
+  if ($conn->connect_error) {
+      die("Koneksi gagal: " . $conn->connect_error);
+  }
+
+  // Buat query SQL untuk mengambil data dari tabel UMKM
+  $query = "SELECT * FROM umkm";
+
+  $result = $conn->query($query);
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -116,56 +130,38 @@
                       <th>Nama UMKM</th>
                       <th>Jenis Usaha</th>
                       <th>NIB</th>
-                      <th>Nomor telepon</th>
+                      <th>Nomor Telepon</th>
                       <th>Alamat</th>
                       <th>ID Akun</th>
-                      <th>foto UMKM</th>
-                      <th>Aksi</th> <!-- Tambahkan kolom "Aksi" -->
+                      <th>Foto UMKM</th>
+                      <th>Aksi</th>
                   </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td>1</td>
-                      <td>Keripik pisang</td>
-                      <td>Makanan</td>
-                      <td>61</td>
-                      <td>032292039323</td>
-                      <td>Kertosono</td>
-                      <td>2030</td>
-                      <td></td>
-                      <td>
-                          <button class="btn btn-danger">Hapus</button>
-                          <button class="btn btn-primary">Edit</button>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>2</td>
-                      <td>Kencur</td>
-                      <td>Minuman</td>
-                      <td>61</td>
-                      <td>032292039323</td>
-                      <td>Sukomoro</td>
-                      <td>2031</td>
-                      <td></td>
-                      <td>
-                          <button class="btn btn-danger">Hapus</button>
-                          <button class="btn btn-primary">Edit</button>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>3</td>
-                      <td>Keripik pisang</td>
-                      <td>Makanan</td>
-                      <td>61</td>
-                      <td>032292039323</td>
-                      <td>Kertosono</td>
-                      <td>2032</td>
-                      <td></td>
-                      <td>
-                          <button class="btn btn-danger">Hapus</button>
-                          <button class="btn btn-primary">Edit</button>
-                      </td>
-                  </tr>
+                  <?php
+                  if ($result->num_rows > 0) {
+                      $no = 1;
+                      while ($row = $result->fetch_assoc()) {
+                          echo "<tr>";
+                          echo "<td>" . $no . "</td>";
+                          echo "<td>" . $row['nama_umkm'] . "</td>";
+                          echo "<td>" . $row['Jenis_usahaumkm'] . "</td>";
+                          echo "<td>" . $row['Nib_umkm'] . "</td>";
+                          echo "<td>" . $row['notelp_umkm'] . "</td>";
+                          echo "<td>" . $row['alamat_umkm'] . "</td>";
+                          echo "<td>" . $row['id_akun'] . "</td>";
+                          echo "<td><img src='" . $row['umkm_foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></td>";
+                          echo "<td>";
+                          echo "<button class='btn btn-primary'><i class='bx bx-pencil'></i> Edit</button>";
+                          echo "<button class='btn btn-danger'><i class='bx bxs-trash' ></i> Hapus</button>";
+                          echo "</td>";
+                          echo "</tr>";
+                          $no++;
+                      }
+                  } else {
+                      echo "Tidak ada data UMKM yang ditemukan.";
+                  }
+                  ?>
               </tbody>
               <tfoot>
                   <tr>
@@ -173,15 +169,15 @@
                       <th>Nama UMKM</th>
                       <th>Jenis Usaha</th>
                       <th>NIB</th>
-                      <th>Nomor telepon</th>
+                      <th>Nomor Telepon</th>
                       <th>Alamat</th>
                       <th>ID Akun</th>
-                      <th>foto UMKM</th>
-                      <th>Aksi</th> <!-- Tambahkan kolom "Aksi" di bagian bawah juga -->
+                      <th>Foto UMKM</th>
+                      <th>Aksi</th>
                   </tr>
               </tfoot>
           </table>
-      </div>
+        </div>
 
 
        
@@ -195,8 +191,22 @@
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="assets/js/tabel-daftar.js"></script> -->
-    <script src="../assets/js/konfirmasi.js"></script>
+
+    <!-- script yang digunakan untuk konfirmasi keluar -->
+    <script >
+      function konfirmasiKeluar() {
+        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
+        if (konfirmasi) {
+          window.location.href = "../tem-login/tem-login-admin.php";
+        }
+      }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
   </body>
 </html>
+
+<?php
+
+$conn->close();
+?>

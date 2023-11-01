@@ -124,8 +124,8 @@
     </nav>
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h3 class="title mt-3">Tambah UMKM</h3>
-      <div class="group">
+      <h3 class="title mt-3">Update Warkop Umi</h3>
+      <div class="group mt-5">
         <form>
             <div class="form-group">
                 <label for="name">Nama Produk:</label>
@@ -209,6 +209,15 @@
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="assets/js/tabel-daftar.js"></script> -->
+
+    <script >
+      function konfirmasiKeluar() {
+        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
+        if (konfirmasi) {
+          window.location.href = "tem-login/tem-login-admin.php";
+        }
+      }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
   </body>

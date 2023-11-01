@@ -71,7 +71,7 @@
           Layanan</h1>
       </div>
     </div>
-    <div class="informasi container mt-5">
+    <!-- <div class="informasi container mt-5">
     <p>Terimakasih Telah menggunakan layanan klinik UMKM Digital Dinas Koperasi & Usaha Mikro Kab Nganjuk</p>
             <p>Untuk Pelayanan melalui form berikut:</p>
             <a href="https://forms.gle/x1r1v2UeVDaYXkpP7" target="_blank">Form UMKM Digital</a>
@@ -84,7 +84,37 @@
                 <li>Affiliate Program</li>
             </ol>
             <p>Info lebih lanjut bisa via WhatsApp (WA)</p>
-    </div>
+    </div> -->
+      <div class="informasi container mt-5 d-flex">
+        <div class="kotak text-center" style="width: 18rem; background-color: ; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); ">
+        <i class='bx bx-clinic bx-lg' style='color:#1988f2' ></i>
+          <div class="card-body">
+              <h5 class="card-title">Klinik UMKM Go Digital</h5>
+              <p class="card-text mt-3">Deskripsi singkat atau konten lainnya dapat ditambahkan di sini.</p>
+          </div>
+        </div>
+        
+        <div class="kotak text-center " style="width: 18rem; background-color: ; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); margin-left: 5%">
+          <i class='bx bxs-file-doc bx-lg' style='color:#1089ff' ></i>
+          <div class="card-body">
+              <h5 class="card-title">Fasilitas Perizinan</h5>
+              <p class="card-text mt-3">Untuk Perizinan NIB / PIRT/ HALAL.</p>
+          </div>
+        </div>
+
+        <div class="kotak text-center " style="width: 18rem; background-color: ; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); margin-left: 5%">
+          <i class='bx bxs-file-doc bx-lg' style='color:#1089ff' ></i>
+          <div class="card-body">
+              <h5 class="card-title">Design Kemasan</h5>
+              <p class="card-text mt-3">Membantu para UMKM untuk membuat desain.</p>
+          </div>
+        </div>
+
+
+      </div>
+        
+
+
   </section>
  <!-- end makanan -->
 

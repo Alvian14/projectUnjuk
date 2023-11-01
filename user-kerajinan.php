@@ -52,7 +52,7 @@
         <ul>
           <li><a class="nav-link scrollto" href="index.php">Warkop Umi</a></li>
           <li><a class="nav-link scrollto" href="user-layanan.php">Layanan</a></li>
-          <li class="dropdown"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown active"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="user-makanan.php">Makanan</a></li>
               <li><a href="user-minuman.php">Minuman</a></li>
@@ -75,7 +75,7 @@
     <div id="wrapper" >
       <div class="kotak">
           <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
-          Makanan</h1>
+          Kerajinan</h1>
           <input type="search" id="searchInput" name="search" placeholder="   Cari Makanan...">
       </div>
     </div>
@@ -149,7 +149,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script src="assets/js/klik-menu.js"></script>
 </body>
 
 </html>

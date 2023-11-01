@@ -69,7 +69,7 @@
     <div id="wrapper" >
       <div class="kotak">
           <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
-          Produk Terbaru</h1>
+          Warta Koperasi Usaha Mikro</h1>
       </div>
     </div>
 
