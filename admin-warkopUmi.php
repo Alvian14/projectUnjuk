@@ -1,3 +1,62 @@
+<?php
+    // require_once("koneksi.php");
+
+    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //     // Mengambil data dari formulir
+    //     $judul_kegiatan = $_POST["judul"];
+    //     $tanggal_kegiatan = $_POST["tgl"];
+    //     $jam_kegiatan = $_POST["jam"];
+    //     $deskripsi = $_POST["deskripsi"];
+    //     $foto = $_POST["foto"];
+    
+    //     // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
+    //     $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
+    //             VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$foto')";
+    
+    //     if (mysqli_query($conn, $sql)) {
+    //         echo "Data kegiatan berhasil ditambahkan ke database.";
+    //     } else {
+    //         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    //     }
+    
+    //     // Menutup koneksi database
+    //     mysqli_close($conn);
+    // };
+
+    require_once("koneksi.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Mengambil data dari formulir
+    $judul_kegiatan = $_POST["judul"];
+    $tanggal_kegiatan = $_POST["tgl"];
+    $jam_kegiatan = $_POST["jam"];
+    $deskripsi = $_POST["deskripsi"];
+
+    // Proses unggah gambar
+    $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
+    $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
+
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
+        // Gambar berhasil diunggah
+        $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
+
+        // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
+        $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
+                VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
+
+        if (mysqli_query($conn, $sql)) {
+            $pesan ="Data kegiatan berhasil ditambahkan ke database.";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    } else {
+        echo "Gagal mengunggah gambar.";
+    }
+
+    // Menutup koneksi database
+    mysqli_close($conn);
+}
+?>
 
 <!doctype html>
 <html lang="en">
@@ -126,61 +185,52 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <h3 class="title mt-3">Update Warkop Umi</h3>
       <div class="group mt-5">
-        <form>
-            <div class="form-group">
-                <label for="name">Nama Produk:</label>
-                <input type="text" id="name" name="name">
-            </div>
-            <div class="form-group">
-                <label for="kategori">Kategori Produk</label>
-                <select id="kategori" name="kategori" style="width: 100%; height: 45px; border-radius: 5px;">
-                    <option value="Makanan">Makanan</option>
-                    <option value="Minuman">Minuman</option>
-                    <option value="Jasa">Jasa</option>
-                    <option value="Kerajinan">Kerajinan</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="pirt">PIRT</label>
-                <input type="text" id="pirt" name="pirt">
-            </div>
-            <div class="form-group">
-                <label for="bpom">BPOM</label>
-                <input type="text" id="bpom" name="bpom" >
-            </div>
-            <div class="form-group">
-                <label for="halal">ID Halal</label>
-                <input type="text" id="halal" name="halal">
-            </div>
-            <div class="form-group">
-                <label for="deskripsi">Deskripsi Produk</label>
-                <textarea id="deskripsi" name="deskripsi" rows="4" 
-                placeholder="Masukkan deskripsi produk Anda"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="harga">Harga Produk</label>
-                <input type="text" id="harga" name="harga">
-            </div>
-            <div class="form-group">
-                <label for="file">Unggah Gambar:</label>
-                <input type="file" id="file" name="file" accept="image/*">
-            </div>
-            <div class="form-group">
-                <img src="" alt="Gambar yang diunggah" class="responsive-image" id="image-preview">
-            </div>
-        </form>
+        
+        <?php if (!empty($pesan)) { ?>
+                  <div class="notifikasi  notifikasi-1">
+                      <?php echo $pesan; ?>
+                  </div>
+              <?php } ?>
+      <form  method="POST" action="admin-warkopUmi.php" id="yourFormId" enctype="multipart/form-data">
+          <div class="form-group">
+              <label for="judul">Judul:</label>
+              <input type="text" id="judul" name="judul" placeholder="Masukkan judul kegiatan">
+          </div>
+          
+          <div class="form-group">
+              <label for="tgl">Tanggal:</label>
+              <input type="date" id="tgl" name="tgl">
+          </div>
+          
+          <div class="form-group">
+              <label for="jam">Jam:</label>
+              <input type="time" id="jam" name="jam">
+          </div>
+          
+          <div class="form-group">
+              <label for="deskripsi">Deskripsi</label>
+              <textarea id="deskripsi" name="deskripsi" rows="4" style="width: 100%";
+              placeholder="Masukkan deskripsi"></textarea>
+          </div>
+          
+          <div class="form-group">
+              <label for="file">Unggah Gambar:</label>
+              <input type="file" id="file" name="file" accept="image/*">
+          </div>
+          
+          <div class="form-group">
+              <img src="" alt="" class="responsive-image" >
+               <!-- id="image-preview"> -->
+          </div>
+      </form>
 
         <div class="container ml-5">
             <div class="d-flex justify-content-end " >
-                <button class="btn btn-primary mt-4" style="margin-right: 5px; height: 40px">
-                    <i class='bx bx-plus' style='color:#fafafa'></i> 
-                    Tambah </a>
-                </button>
-                <button class="btn btn-success mt-4" style="margin-right: 5px">
-                    <i class='bx bx-pencil' style='color:#fafafa'></i> Ubah
+                <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId">
+                    <i class='bx bx-plus' style='color:#fafafa'></i> Tambah
                 </button>
             </div>
-        </div> 
+        </div>
 </div>
 
 <script>

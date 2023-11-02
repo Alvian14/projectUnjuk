@@ -76,7 +76,7 @@
                     <div class="row g-4">
                         <div class="col-md-6 col-lg-4">
                             <div class="kotak text-center" style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                                <i class='bx bxs-clinic bx-lg' style='color:#1089ff' ></i>
+                                <i class='bx bxs-clinic bx-tada bx-lg' style='color:#47b2e4' ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Klinik UMKM Go Digital</h5>
                                     <p class="card-text mt-3">Membantu penjualan menggunakan platfrom digital.</p>
@@ -86,7 +86,7 @@
 
                         <div class="col-md-6 col-lg-4">
                             <div class="kotak text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                                <i class='bx bxs-file-doc bx-lg' style='color:#1089ff'></i>
+                                <i class='bx bxs-file-doc bx-tada bx-lg' style='color:#47b2e4'  ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Fasilitas Perizinan</h5>
                                     <p class="card-text mt-3">Untuk Perizinan NIB / PIRT/ HALAL.</p>
@@ -96,7 +96,7 @@
 
                         <div class="col-md-6 col-lg-4">
                             <div class="kotak text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                                <i class='bx bxs-magic-wand bx-tada bx-lg' style='color:#1089ff' ></i>
+                                <i class='bx bxs-magic-wand bx-tada bx-lg' style='color:#47b2e4' ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Design Kemasan</h5>
                                     <p class="card-text mt-3">Membantu para UMKM untuk membuat desain.</p>
@@ -110,7 +110,7 @@
                     <div class="row g-4 justify-content-center align-items-center">
                         <div class="col-md-6 col-lg-4">
                             <div class="kotak text-center " style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                                <i class='bx bxs-store bx-lg' style='color:#1089ff; font-size: 3rem;'  ></i>
+                                <i class='bx bxs-store bx-tada bx-lg' style='color:#47b2e4' ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Market Hub</h5>
                                     <p class="card-text mt-3">Layanan Marketplace.</p>
@@ -120,10 +120,10 @@
 
                         <div class="col-md-6 col-lg-4">
                             <div class="kotak text-center " style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
-                                <i class='bx bxs-file-doc bx-lg' style='color:#1089ff; font-size: 3rem;'></i>
+                                  <i class='bx bx-trending-up bx-tada bx-lg' style='color:#47b2e4' ></i>
                                   <div class="card-body">
                                     <h5 class="card-title">Affiliate Program</h5>
-                                      <p class="card-text mt-3">Untuk Perizinan NIB / PIRT / HALAL.</p>
+                                      <p class="card-text mt-3">Membantu menjual produk pelaku UMKM.</p>
                                   </div>
                             </div>
                         </div>
@@ -145,13 +145,10 @@
                             <li>Affiliate Program</li>
                         </ol>
                         <p>Info lebih lanjut bisa via WhatsApp (WA)</p>
+                        <p><a href="https://api.whatsapp.com/send?phone=+62 856-4892-0999" target="_blank">Hubungi Kami di WhatsApp</a></p>
                         
                 </div> 
   
-
-
-
-
 
 
 

@@ -1,3 +1,16 @@
+<?php
+  //   // Hubungkan ke database MySQL (ganti dengan informasi koneksi Anda)
+  //  include "koneksi.php";
+
+  //   // Periksa koneksi database
+  //   if ($conn->connect_error) {
+  //       die("Koneksi gagal: " . $conn->connect_error);
+  //   }
+
+  //   // Query database untuk mengambil data
+  //   $sql = "SELECT foto, tanggal, deskripsi FROM tabel_data";
+  //   $result = $conn->query($sql);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
