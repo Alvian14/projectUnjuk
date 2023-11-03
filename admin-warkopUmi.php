@@ -45,12 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
 
         if (mysqli_query($conn, $sql)) {
-            $pesan ="Data kegiatan berhasil ditambahkan ke database.";
+
+            $pesan = "Data kegiatan berhasil ditambahkan.";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     } else {
-        echo "Gagal mengunggah gambar.";
+            $eror = "Gagal menambahkan data.";
     }
 
     // Menutup koneksi database
@@ -79,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Bootstrap core CSS -->
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
-   
+
 
     <style>
       .bd-placeholder-img {
@@ -95,12 +96,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           font-size: 3.5rem;
         }
       }
-    </style>
 
-    
-    <!-- template tabel data -->
-    <style>
-        .form-container {
+
+      .form-container {
             max-width: 400px;
             margin: 0 auto;
         }
@@ -140,7 +138,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             max-width: 100%;
             height: auto;
         }
+
+        .notifikasi {
+          background-color: green;
+          color: white;
+          text-align: center;
+          padding: 10px;
+          position: fixed;
+          top: 15%; /* Menengahkan vertikal */
+          left: 50%; /* Menengahkan horizontal */
+          transform: translate(-50%, -50%); /* Mencentralkan elemen */
+          border-radius: 5px;
+        }
+
+        .eror {
+          background-color: #ff0000;
+          color: white;
+          text-align: center;
+          padding: 10px;
+          position: fixed;
+          top: 15%; /* Menengahkan vertikal */
+          left: 50%; /* Menengahkan horizontal */
+          transform: translate(-50%, -50%); /* Mencentralkan elemen */
+          border-radius: 5px;
+        }
+  
     </style>
+  
+
+    
+    
       
     <!-- <link href="assets/dashboard.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="assets/dashboard.css?v=<?php echo time(); ?>">
@@ -186,12 +213,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <h3 class="title mt-3">Update Warkop Umi</h3>
       <div class="group mt-5">
         
-        <?php if (!empty($pesan)) { ?>
-                  <div class="notifikasi  notifikasi-1">
-                      <?php echo $pesan; ?>
-                  </div>
-              <?php } ?>
+        
       <form  method="POST" action="admin-warkopUmi.php" id="yourFormId" enctype="multipart/form-data">
+                <?php if (!empty($pesan)) { ?>
+                    <div class="notifikasi">
+                        <?php echo $pesan; ?>
+                    </div>
+                <?php } ?>
+
+                <?php if (!empty($eror)) { ?>
+                    <div class="eror">
+                        <?php echo $eror; ?>
+                    </div>
+                <?php } ?>
+        
           <div class="form-group">
               <label for="judul">Judul:</label>
               <input type="text" id="judul" name="judul" placeholder="Masukkan judul kegiatan">
@@ -215,7 +250,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           
           <div class="form-group">
               <label for="file">Unggah Gambar:</label>
-              <input type="file" id="file" name="file" accept="image/*">
+              <input type="file" id="file" name="file" accept="image/*"
+              placeholder="Pastikan anda memasukkan foto">
           </div>
           
           <div class="form-group">
@@ -224,6 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
       </form>
 
+
         <div class="container ml-5">
             <div class="d-flex justify-content-end " >
                 <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId">
@@ -231,6 +268,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </button>
             </div>
         </div>
+        <!-- <div class="notifikasi" id="konfirmasiNotifikasi">
+            <div>Apakah Anda yakin ingin menambahkan data?</div>
+            <button id="konfirmasiYa" style="background-color: green; color: white;">Ya</button>
+            <button id="konfirmasiBatal" style="background-color: red; color: white;">Batal</button>
+        </div> -->
+        
 </div>
 
 <script>
@@ -250,6 +293,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             imagePreview.src = '';
         }
     });
+
+   
 </script>
 
     </main>
@@ -266,8 +311,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (konfirmasi) {
           window.location.href = "tem-login/tem-login-admin.php";
         }
-      }
+      };
+
+      setTimeout(function() {
+          var notifikasi = document.querySelector('.eror');
+          if (notifikasi) {
+              notifikasi.style.display = 'none';
+          }
+      }, 2000); // 5000 m
+
+      // document.getElementById("tambahButton").addEventListener("click", function() {
+      //       document.getElementById("konfirmasiNotifikasi").style.display = "block";
+      //   });
+
+      //   document.getElementById("konfirmasiYa").addEventListener("click", function() {
+      //       // Tambahkan logika untuk menambahkan data ke database di sini
+      //       alert("Data berhasil ditambahkan");
+      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
+      //   });
+
+      //   document.getElementById("konfirmasiBatal").addEventListener("click", function() {
+      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
+      //   });
+
     </script>
+
+    <script src="assets/js/login.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
   </body>
