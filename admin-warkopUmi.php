@@ -33,6 +33,11 @@
         // Menutup koneksi database
         mysqli_close($conn);
     };
+
+
+
+
+ 
 ?>
 
 <!doctype html>
@@ -205,7 +210,7 @@
         
           <div class="form-group">
               <label for="judul">Judul:</label>
-              <input type="text" id="judul" name="judul" placeholder="Masukkan judul kegiatan">
+              <input type="text" id="judul" name="judul" placeholder="Masukkan judul">
           </div>
           
           <div class="form-group">

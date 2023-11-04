@@ -28,6 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
+
+
 ?>
 
 <!doctype html>
@@ -100,5 +103,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	<script src="js/main.js"></script>
 	<script src="../assets/js/login.js"></script>
 	<!-- <script src="../assets/js/stop.js"></script> -->
+
+	<script>
+		if (window.history && window.history.pushState) {
+			$(window).on('popstate', function (event) {
+				window.history.pushState('forward', null, './');
+			});
+		}
+
+		$(document).keydown(function (e) {
+			if (e.key === "Backspace" || e.key === "Back") {
+				e.preventDefault();
+			}
+		});
+
+		$(document).on("keydown", function (e) {
+			if (e.which === 8) {
+				e.preventDefault();
+			}
+		});
+	</script>
 	</body>
 </html>

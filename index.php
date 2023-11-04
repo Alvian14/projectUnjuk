@@ -1,15 +1,15 @@
 <?php
   //   // Hubungkan ke database MySQL (ganti dengan informasi koneksi Anda)
-      include "koneksi.php";
-        
-      // Ambil data kegiatan
-      $sql = "SELECT * FROM kegiatan";
-      $result = mysqli_query($conn, $sql);
+  include "koneksi.php";
 
-      if (!$result) {
-          echo "Gagal mengambil data kegiatan: " . mysqli_error($conn);
-          exit; // Keluar dari skrip jika terjadi kesalahan
-      }
+  // Ambil data kegiatan dan urutkan berdasarkan tanggal secara descending
+  $sql = "SELECT * FROM kegiatan ORDER BY id_kegiatan DESC";
+  $result = mysqli_query($conn, $sql);
+  
+  if (!$result) {
+      echo "Gagal mengambil data kegiatan: " . mysqli_error($conn);
+      exit; // Keluar dari skrip jika terjadi kesalahan
+  }
 
 
       // $currentDateTime = date("Y-m-d H:i:s");
@@ -67,14 +67,16 @@
   <!-- bootstrap css -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
   <style>
-      .container-kotak {
+    .container-kotak {
       display: flex;
-      flex-direction: row;
-      background-color: #f0f0f0; /* Warna latar belakang abu-abu */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
-      border-radius: 8px; /* Melengkungkan sudut kontainer */
-      margin: 10px; /* Memberi jarak antar kontainer */
-      padding: 15px; /* Menambahkan ruang di sekitar konten */
+  flex-direction: row;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 10px auto; /* Menggunakan auto untuk margin horizontal akan memusatkan kontainer. */
+  padding: 15px;
+  max-width: 1000px;
+  height: auto;ruang di sekitar konten */
     }
 
     .image-container {
