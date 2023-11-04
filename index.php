@@ -1,16 +1,38 @@
 <?php
   //   // Hubungkan ke database MySQL (ganti dengan informasi koneksi Anda)
-  //  include "koneksi.php";
+      include "koneksi.php";
+        
+      // Ambil data kegiatan
+      $sql = "SELECT * FROM kegiatan";
+      $result = mysqli_query($conn, $sql);
 
-  //   // Periksa koneksi database
-  //   if ($conn->connect_error) {
-  //       die("Koneksi gagal: " . $conn->connect_error);
-  //   }
+      if (!$result) {
+          echo "Gagal mengambil data kegiatan: " . mysqli_error($conn);
+          exit; // Keluar dari skrip jika terjadi kesalahan
+      }
 
-  //   // Query database untuk mengambil data
-  //   $sql = "SELECT foto, tanggal, deskripsi FROM tabel_data";
-  //   $result = $conn->query($sql);
+
+      // $currentDateTime = date("Y-m-d H:i:s");
+
+      //   while ($row = mysqli_fetch_assoc($result)) {
+      //       // Periksa jika tanggal kegiatan kurang dari waktu saat ini
+      //       if ($row['tgl'] < $currentDateTime) {
+      //           // Hapus data yang telah lewat batas waktu
+      //           $id_kegiatan = $row['id_kegiatan'];
+      //           $deleteSql = "DELETE FROM kegiatan WHERE id_kegiatan = '$id_kegiatan'";
+      //           $deleteResult = mysqli_query($conn, $deleteSql);
+      //           if (!$deleteResult) {
+      //               echo "Gagal menghapus data: " . mysqli_error($conn);
+      //           }
+      //       }
+      //   }
+
+      //   echo "Proses penghapusan data selesai.";
+
+      //   // Tutup koneksi database
+      //   mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +66,49 @@
 
   <!-- bootstrap css -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+  <style>
+      .container-kotak {
+      display: flex;
+      flex-direction: row;
+      background-color: #f0f0f0; /* Warna latar belakang abu-abu */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+      border-radius: 8px; /* Melengkungkan sudut kontainer */
+      margin: 10px; /* Memberi jarak antar kontainer */
+      padding: 15px; /* Menambahkan ruang di sekitar konten */
+    }
+
+    .image-container {
+      flex: 1;
+      margin-right: 10px; /* Memberi jarak di sebelah kanan gambar */
+    }
+
+    .image {
+      max-width: 100%; /* Gambar tidak melebihi lebar kontainer */
+      height: auto;
+      border-radius: 8px; /* Melengkungkan sudut gambar */
+    }
+
+    .content {
+      flex: 2;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px; /* Memberi jarak antara judul dan deskripsi */
+    }
+
+    .description {
+      font-size: 16px;
+      margin-bottom: 10px; /* Memberi jarak antara deskripsi dan tanggal/jam */
+    }
+
+    .datetime {
+      font-size: 14px;
+      
+    }
+  
+</style>
 </head>
 
 <body>
@@ -85,6 +150,26 @@
           Warta Koperasi Usaha Mikro</h1>
       </div>
     </div>
+
+    <!-- pembuatan kegiatan -->
+    <?php
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<div class="container-kotak">';
+        echo '<div class="image-container">';
+        echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
+        echo '</div>';
+        echo '<div class="content">';
+        echo '<div class="title">' . $row['judul'] . '</div>';
+        echo '<div class="description">' . $row['deskripsi'] . '</div>';
+        echo '<div class="datetime">';
+        echo 'Tanggal: ' . $row['tgl'] . '<br>';
+        echo 'Jam: ' . $row['jam'];
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
+
 
  </section>
  
@@ -185,3 +270,4 @@
 </body>
 
 </html>
+

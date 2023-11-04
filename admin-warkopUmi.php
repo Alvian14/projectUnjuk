@@ -1,62 +1,38 @@
 <?php
-    // require_once("koneksi.php");
-
-    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //     // Mengambil data dari formulir
-    //     $judul_kegiatan = $_POST["judul"];
-    //     $tanggal_kegiatan = $_POST["tgl"];
-    //     $jam_kegiatan = $_POST["jam"];
-    //     $deskripsi = $_POST["deskripsi"];
-    //     $foto = $_POST["foto"];
-    
-    //     // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
-    //     $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
-    //             VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$foto')";
-    
-    //     if (mysqli_query($conn, $sql)) {
-    //         echo "Data kegiatan berhasil ditambahkan ke database.";
-    //     } else {
-    //         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    //     }
-    
-    //     // Menutup koneksi database
-    //     mysqli_close($conn);
-    // };
-
     require_once("koneksi.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Mengambil data dari formulir
-    $judul_kegiatan = $_POST["judul"];
-    $tanggal_kegiatan = $_POST["tgl"];
-    $jam_kegiatan = $_POST["jam"];
-    $deskripsi = $_POST["deskripsi"];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Mengambil data dari formulir
+        $judul_kegiatan = $_POST["judul"];
+        $tanggal_kegiatan = $_POST["tgl"];
+        $jam_kegiatan = $_POST["jam"];
+        $deskripsi = $_POST["deskripsi"];
 
-    // Proses unggah gambar
-    $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
-    $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
+        // Proses unggah gambar
+        $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
+        $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
 
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
-        // Gambar berhasil diunggah
-        $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
+            // Gambar berhasil diunggah
+            $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
 
-        // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
-        $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
-                VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
+            // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
+            $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
+                    VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
 
-        if (mysqli_query($conn, $sql)) {
+            if (mysqli_query($conn, $sql)) {
 
-            $pesan = "Data kegiatan berhasil ditambahkan.";
+                $pesan = "Data kegiatan berhasil ditambahkan.";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                $eror = "Gagal menambahkan data.";
         }
-    } else {
-            $eror = "Gagal menambahkan data.";
-    }
 
-    // Menutup koneksi database
-    mysqli_close($conn);
-}
+        // Menutup koneksi database
+        mysqli_close($conn);
+    };
 ?>
 
 <!doctype html>

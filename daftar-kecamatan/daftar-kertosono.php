@@ -7,19 +7,13 @@
   }
 
   // Buat query SQL untuk mengambil data dari tabel UMKM
-  $query = "SELECT * FROM umkm";
+  $query = "SELECT * FROM umkm WHERE kecamatan_umkm = 'Kertosono'";
 
   $result = $conn->query($query);
 
 
+
 ?>
-
-
-
-
-
-
-
 
 
 
@@ -202,15 +196,27 @@
 function hapusUMKM(button) {
     var idUMKM = button.getAttribute('data-id');
 
-    if (confirm("Apakah Anda yakin ingin menghapus UMKM dengan ID " + idUMKM + "?")) {
+    if (confirm("Apakah Anda yakin ingin menghapus UMKM ini ?")) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "../hapus-data.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 alert(xhr.responseText);
-                // Perbarui tampilan tabel jika perlu
-                // ...
+
+                // Perbarui tampilan tabel jika data berhasil dihapus
+                if (xhr.responseText === "Data berhasil dihapus.") {
+                    // Temukan elemen tabel yang ingin Anda perbarui
+                    var table = document.getElementById("tabel-umkm");
+
+                    // Temukan baris yang sesuai dengan data yang dihapus
+                    var row = document.getElementById("row-" + idUMKM);
+
+                    if (row) {
+                        // Hapus baris dari tabel
+                        table.deleteRow(row.rowIndex);
+                    }
+                }
             }
         };
         xhr.send("id_umkm=" + idUMKM);

@@ -1,4 +1,20 @@
-
+<?php
+  include "koneksi.php";
+  
+  // Query SQL untuk mengambil total UMKM
+  $query = "SELECT COUNT(*) AS total_umkm FROM umkm";
+  $result = mysqli_query($conn, $query);
+  
+  if ($result) {
+      $row = mysqli_fetch_assoc($result);
+      $total_umkm = $row['total_umkm'];
+  } else {
+      $total_umkm = "Gagal mengambil data";
+  }
+  
+  // Tutup koneksi database
+  mysqli_close($conn);
+  ?>
 
 
 
@@ -97,19 +113,19 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <section id="dasbord" class="d-flex flex-column align-items-center">
           <div class="hero-container mt-5  justify-content-center"> 
-            <div class="row">
+          <div class="row">
               <div class="col" style="width: 20rem;">
-                <h5 class="card-title" style="color: black; font-weight: bold;">UMKM</h5><br>
-                <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;">1000</span>
-                <hr style="border-top: 1px solid black; margin-top: 10px;">
-                <p class="card-text" style="color: black; font-size: 15px;">Total UMKM Terdaftar</p>
+                  <h5 class="card-title" style="color: black; font-weight: bold;">UMKM</h5><br>
+                  <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;"><?php echo $total_umkm; ?></span>
+                  <hr style="border-top: 1px solid black; margin-top: 10px;">
+                  <p class="card-text" style="color: black; font-size: 15px;">Total UMKM Terdaftar</p>
               </div>
-            </div>
+          </div>
             
             <div class="row">
               <div class="col" style="width: 20rem;">
                 <h5 class="card-title" style="color: black; font-weight: bold;">KECAMATAN</h5><br>
-                <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;">1000</span>
+                <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;">20</span>
                 <hr style="border-top: 1px solid black; margin-top: 10px;">
                 <p class="card-text" style="color: black; font-size: 15px;">Total Wilayah Terdaftar</p>
               </div>
@@ -136,17 +152,17 @@
             <tbody>
                 <tr>
                   <td>1</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Bagor</a></td>
+                  <td><a href='daftar-kecamatan/daftar-Bagor.php?'>Bagor</a></td>
                   <td>30</td>
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Baron</a></td>
+                  <td><a href='daftar-kecamatan/daftar-baron.php?'>Baron</a></td>
                   <td>30</td>
                 </tr>   
                 <tr>
                   <td>3</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Berbek</a></td>
+                  <td><a href='daftar-kecamatan/daftar-berbek.php?'>Berbek</a></td>
                   <td>30</td>
                 </tr>   
                 <tr>
@@ -161,7 +177,7 @@
                 </tr>   
                 <tr>
                   <td>6</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Kertosono</a></td>
+                  <td><a href='daftar-kecamatan/daftar-kertosono.php?'>Kertosono</a></td>
                   <td>30</td>
                 </tr>   
                 <tr>
@@ -176,7 +192,7 @@
                 </tr> 
                 <tr>
                   <td>9</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Nganjuk</a></td>
+                  <td><a href='daftar-kecamatan/daftar-nganjuk.php?'>Nganjuk</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
@@ -253,6 +269,26 @@
           window.location.href = "tem-login/tem-login-admin.php";
         }
       }
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+            function updateTotalUMKM() {
+          // Lakukan pengambilan data dengan AJAX
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
+              var totalUMKM = xhttp.responseText;
+              document.getElementById('total-umkm').textContent = totalUMKM;
+            }
+          };
+          xhttp.open('GET', 'admin-beranda.php', true); // Ganti "ambil_total_umkm.php" dengan skrip yang sesuai
+          xhttp.send();
+        }
+
+        // Perbarui total UMKM secara berkala (contoh setiap 30 detik)
+        setInterval(updateTotalUMKM, 30000); // 30000 milidetik = 30 detik
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
