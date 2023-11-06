@@ -1,15 +1,17 @@
 <?php
-    include "../koneksi.php";
+   include "../koneksi.php";
 
-  // Periksa koneksi
-  if ($conn->connect_error) {
-      die("Koneksi gagal: " . $conn->connect_error);
-  }
-
-  // Buat query SQL untuk mengambil data dari tabel UMKM
-  $query = "SELECT * FROM umkm WHERE kecamatan_umkm = 'Kertosono'";
-
-  $result = $conn->query($query);
+   // Periksa koneksi
+   if ($conn->connect_error) {
+       die("Koneksi gagal: " . $conn->connect_error);
+   }
+   
+   $kecamatan = $_GET['kecamatan']; // Mengambil parameter kecamatan dari URL
+   
+   // Buat query SQL untuk mengambil data dari tabel UMKM berdasarkan kecamatan yang dipilih
+   $query = "SELECT * FROM umkm WHERE kecamatan_umkm = '$kecamatan'";
+   
+   $result = $conn->query($query);
 
 
 

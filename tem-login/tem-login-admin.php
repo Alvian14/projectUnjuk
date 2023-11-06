@@ -9,8 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) == 1) {
-        header("Location: ../admin-beranda.php");
-        exit();
+        $row = mysqli_fetch_assoc($result);
+        if ($row['Level'] === 'admin') {
+            header("Location: ../admin-beranda.php");
+            exit();
+        } else {
+            $pesan = "Anda bukan admin. Silakan coba lagi.";
+        }
     } else {
         $queryUsername = "SELECT * FROM akun WHERE email = '$username'";
         $resultUsername = mysqli_query($conn, $queryUsername);
@@ -21,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($resultUsername) == 0 && mysqli_num_rows($resultPassword) == 0) {
             $pesan = "Username dan password salah. Silakan coba lagi.";
         } elseif (mysqli_num_rows($resultUsername) == 0) {
-            $pesan2 = "Username salah. Silakan coba lagi.";
+            $pesan = "Username salah. Silakan coba lagi.";
         } elseif (mysqli_num_rows($resultPassword) == 0) {
-            $pesan2 = "Password salah. Silakan coba lagi.";
+            $pesan = "Password salah. Silakan coba lagi.";
         }
     }
 }
@@ -104,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<script src="../assets/js/login.js"></script>
 	<!-- <script src="../assets/js/stop.js"></script> -->
 
-	<script>
+	<!-- <script>
 		if (window.history && window.history.pushState) {
 			$(window).on('popstate', function (event) {
 				window.history.pushState('forward', null, './');
@@ -122,6 +127,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				e.preventDefault();
 			}
 		});
-	</script>
+	</script> -->
 	</body>
 </html>
