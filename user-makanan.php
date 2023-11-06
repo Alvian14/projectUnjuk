@@ -1,15 +1,23 @@
 <?php
-// Hubungkan ke database Anda
-include "koneksi.php";
-
-// Query SQL dengan INNER JOIN
-$query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm,pd.harga_prooduk
-        FROM produk AS pd
-        INNER JOIN umkm AS um
-        ON pd.id_umkm = um.id_umkm";
+// Membuat koneksi ke database
+  include "koneksi.php";
+// Menjalankan kueri SQL
+$query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_prooduk
+          FROM produk AS pd
+          INNER JOIN umkm AS um
+          ON pd.id_umkm = um.id_umkm
+          WHERE pd.katergori_produk = 'Makanan'";
 
 $result = mysqli_query($conn, $query);
+
+// Memeriksa hasil kueri
+if (!$result) {
+    die("Kesalahan dalam eksekusi kueri: " . mysqli_error($conn));
+}
+
+// Sekarang Anda dapat menggunakan hasil kueri dengan aman
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +48,14 @@ $result = mysqli_query($conn, $query);
   <!-- Template Main CSS File -->
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
+
+  <!-- style card -->
+  <style>
+    .card-title{
+      font-weight: bold; 
+      font-size: 23px;
+    }
+  </style>
 
 </head>
 
@@ -85,7 +101,7 @@ $result = mysqli_query($conn, $query);
       </div>
     </div>
 
-
+        <!-- menampilakan card produk -->
     <div class="container mt-4">
       <div class="row">
           <?php while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -95,10 +111,10 @@ $result = mysqli_query($conn, $query);
                           <img src="assets/img/makanan.png" class="card-img-top" alt="Gambar Produk">
                       </a>
                       <div class="card-body">
-                          <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
-                          <p class="card-text"><?php echo $row['nama_umkm']; ?></p>
-                          <p class="card-text"><?php echo $row['notelp_umkm']; ?></p>
-                          <p class="card-text">Rp <?php echo $row['harga_prooduk']; ?></p>
+                          <h5 class="card-title" ><?php echo $row['nama_produk']; ?></h5>
+                          <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
+                          <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p>
+                          <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_prooduk']; ?></p>
                       </div>
                   </div>
               </div>
@@ -106,7 +122,7 @@ $result = mysqli_query($conn, $query);
       </div>
   </div>
 
-
+            <!-- selesai menampilkan card produk -->
 
  </section>
  

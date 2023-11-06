@@ -1,4 +1,23 @@
-</nav><!-- .navbar -->
+<?php
+// Membuat koneksi ke database
+  include "koneksi.php";
+// Menjalankan kueri SQL
+$query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_prooduk
+          FROM produk AS pd
+          INNER JOIN umkm AS um
+          ON pd.id_umkm = um.id_umkm
+          WHERE pd.katergori_produk = 'Minuman'";
+
+$result = mysqli_query($conn, $query);
+
+// Memeriksa hasil kueri
+if (!$result) {
+    die("Kesalahan dalam eksekusi kueri: " . mysqli_error($conn));
+}
+
+// Sekarang Anda dapat menggunakan hasil kueri dengan aman
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,65 +99,31 @@
       </div>
     </div>
 
+          <!-- menampilkan card produk -->
+    <div class="container mt-4">
+      <div class="row">
+          <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+              <div class="col-6 col-md-4 col-lg-3 mb-4">
+                  <div class="card">
+                      <a href="index.php">
+                          <img src="assets/img/makanan.png" class="card-img-top" alt="Gambar Produk">
+                      </a>
+                      <div class="card-body">
+                          <h5 class="card-title" ><?php echo $row['nama_produk']; ?></h5>
+                          <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
+                          <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p>
+                          <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_prooduk']; ?></p>
+                      </div>
+                  </div>
+              </div>
+          <?php } ?>
+      </div>
+  </div>
+             <!-- selesai menampilkan card produk -->
  </section>
  
 
- <div class="input">
-  <div class="produk">
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
-        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
-        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
-        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-
-    <ul class="ul-produk">
-      <li class="li-produk">
-        <img id="gambar" src="assets/img/minuman.png" style="margin-left: -12%;">
-        <h5 style="font-weight: bold ; margin-left: -8%; ">Sirup Markisa Brastagi</h5>
-        <p style="margin-left: -8%; ">Sugeng Cahyono <br>
-          081559769075 <br>
-        </p>
-        <p style="margin-left: -8%; color: #47B2E4; font-weight: bold; margin-top: -5%;">Rp 20.000</p>
-      </li>
-    </ul>
-
-   
-
-    
-
-    </div>
-  </div>
- </div>
+ 
 
   <!-- end makanan -->
 

@@ -16,7 +16,7 @@
   mysqli_close($conn);
   ?>
 
-
+<img src="<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk">
 
 <!doctype html>
 <html lang="en">
