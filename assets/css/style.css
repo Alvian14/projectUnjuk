@@ -330,17 +330,37 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# MAKANAN
+# MAKANAN , MINUMAN, JASA, KERAJINAN
 --------------------------------------------------------------*/
 
-section input{
-  position:relative;
+section input {
+  position: relative;
   top: -40px;
   left: 70%;
   width: 20%;
   border-radius: 5px;
 }
 
+/* CSS untuk perangkat seluler */
+@media screen and (max-width: 480px) {
+  section input {
+    width: 80%; /* Sesuaikan lebar dengan tampilan seluler */
+    left: 50%; /* Sesuaikan posisi horizontal */
+    top: 0; /* Kembalikan ke posisi aslinya */
+  }
+
+  .search-container {
+    display: flex;
+    margin-right: 33%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -11%;
+  }
+
+  .search-button {
+    display: none;
+  }
+}
 
 
 
