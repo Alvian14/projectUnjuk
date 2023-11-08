@@ -15,8 +15,8 @@
   // Tutup koneksi database
   mysqli_close($conn);
   ?>
-<!-- gambar untuk produk -->
-<img src="<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk">
+
+
 
 <!doctype html>
 <html lang="en">
@@ -141,11 +141,28 @@
       <?php
         if (isset($_GET['kecamatan'])) {
             $kecamatan = $_GET['kecamatan'];
-            header("Location: daftar-kertosono.php/daftar-$kecamatan.php");
+            header("Location: daftar-perkecamatan.php/daftar-$kecamatan.php");
             exit();
         }
+
+
+// Query untuk mengambil jumlah UMKM berdasarkan kecamatan
+        $query = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Nganjuk'";
+
+        // Eksekusi query
+        $result = $conn->query($query);
+
+        if ($result) {
+            $row = $result->fetch_assoc();
+            $jumlah_umkm = $row['jumlah_umkm'];
+            echo "Jumlah UMKM di Nganjuk: " . $jumlah_umkm;
+        } else {
+            echo "Error: " . $conn->error;
+        }
+
+        // Tutup koneksi database
+        $conn->close();
         ?>
-        
 
       <h3 class="title mt-3">Total UMKM Perkecamatan</h3>
       <div class="table-responsive">
@@ -155,115 +172,116 @@
                     <th>No.</th>
                     <th>Kecamatan</th>
                     <th>Jumlah UMKM</th>
-                    
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                    <td>1</td>
-                    <td><a href='daftar-kecamatan/daftar-kertosono.php?kecamatan=Bagor'>Bagor</a></td>
-                    <td>30</td>
+                <tr>
+                  <td>1</td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Bagor'>Bagor</a></td>
+                  <?php
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<td>" . $row['jumlah_umkm'] . "</td>";
+                    }
+                    ?>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td><a href='daftar-kecamatan/daftar-kertosono.php?kecamatan=Baron'>Baron</a></td>
-                    <td>30</td>
-                </tr>
+                  <td>2</td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Baron'>Baron</a></td>
+                  <td>30</td>
+                </tr>   
                 <tr>
-                    <td>3</td>
-                    <td><a href='daftar-kecamatan/daftar-kecamatan.php?kecamatan=Berbek'>Berbek</a></td>
-                    <td>30</td>
-                </tr>
+                  <td>3</td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Berbek'>Berbek</a></td>
+                  <td>30</td>
+                </tr>   
                 <tr>
-                    <td>4</td>
-                    <td><a href='daftar-kecamatan/daftar-kecamatan.php?kecamatan=Gondang'>Gondang</a></td>
-                    <td>30</td>
-                </tr>
+                  <td>4</td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Gondang'>Gondang</a></td>
+                  <td>30</td>
+                </tr>   
                 <tr>
                   <td>5</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Jatikalen</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Jatikalen'>Jatikalen</a></td>
                   <td>30</td>
                 </tr>   
                 <tr>
                   <td>6</td>
-                  <td><a href='daftar-kecamatan/daftar-kertosono.php?'>Kertosono</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Kertosono'>Kertosono</a></td>
                   <td>30</td>
                 </tr>   
                 <tr>
                   <td>7</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Lengkong</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Lengkong'>Lengkong</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>8</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Loceret</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Loceret'>Loceret</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>9</td>
-                  <td><a href='daftar-kecamatan/daftar-nganjuk.php?'>Nganjuk</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Nganjuk'>Nganjuk</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>10</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Ngetos</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Ngetos'>Ngetos</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>11</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Ngluyu</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Ngluyu'>Ngluyu</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>12</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Ngronggot</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Ngronggot'>Ngronggot</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>13</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Pace</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Pace'>Pace</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>14</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Patianrowo</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Patianrowo'>Patianrowo</a></td>
                   <td>30</td>
                 </tr> 
                 <tr>
                   <td>15</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Prambon</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Prambon'>Prambon</a></td>
                   <td>30</td>
                 </tr>
                 <tr>
                   <td>16</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Rejoso</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Rejoso'>Rejoso</a></td>
                   <td>30</td>
                 </tr>     
                 <tr>
                   <td>17</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Sawahan</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Sawahan'>Sawahan</a></td>
                   <td>30</td>
                 </tr>  
                 <tr>
                   <td>18</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Sukomoro</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Sukomoro'>Sukomoro</a></td>
                   <td>30</td>
                 </tr>  
                 <tr>
                   <td>19</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Tanjunganom</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Tanjunganom'>Tanjunganom</a></td>
                   <td>30</td>
                 </tr>  
                 <tr>
                   <td>20</td>
-                  <td><a href='daftar-kecamatan/admin-daftar.php?'>Wilangan</a></td>
+                  <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Wilangan'>Wilangan</a></td>
                   <td>30</td>
                 </tr>                      
             </tbody>
         </table>
       </div>
-
-      
 
       <!-- ################ selesai tabel kecamatan ####################### -->
 

@@ -144,7 +144,329 @@
             header("Location: daftar-perkecamatan.php/daftar-$kecamatan.php");
             exit();
         }
+
+        
+          // data bagor
+          include "koneksi.php";
+          $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Bagor'";
+
+          $result = mysqli_query($conn, $sql);
+
+          if (mysqli_num_rows($result) > 0) {
+              // Ambil hasil dari query
+              $row = mysqli_fetch_assoc($result);
+              $jumlah_umkm_bagor = $row["jumlah_umkm"];
+          } else {
+              $jumlah_umkm_bagor = 0;
+          }
+          mysqli_close($conn);
+
+
+          // data baron
+        include "koneksi.php";
+        $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Baron'";
+
+          $result = mysqli_query($conn, $sql);
+
+          if (mysqli_num_rows($result) > 0) {
+              // Ambil hasil dari query
+              $row = mysqli_fetch_assoc($result);
+              $jumlah_umkm_baron = $row["jumlah_umkm"];
+          } else {
+              $jumlah_umkm_baron = 0;
+          }
+          mysqli_close($conn);
+
+
+          // data berbek
+          include "koneksi.php";
+          $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Berbek'";
+  
+            $result = mysqli_query($conn, $sql);
+  
+            if (mysqli_num_rows($result) > 0) {
+                // Ambil hasil dari query
+                $row = mysqli_fetch_assoc($result);
+                $jumlah_umkm_berbek = $row["jumlah_umkm"];
+            } else {
+                $jumlah_umkm_berbek = 0;
+            }
+            mysqli_close($conn);
+
+
+            // data gondang
+          include "koneksi.php";
+          $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Gondang'";
+  
+            $result = mysqli_query($conn, $sql);
+  
+            if (mysqli_num_rows($result) > 0) {
+                // Ambil hasil dari query
+                $row = mysqli_fetch_assoc($result);
+                $jumlah_umkm_gondang = $row["jumlah_umkm"];
+            } else {
+                $jumlah_umkm_gondang = 0;
+            }
+            mysqli_close($conn);
+
+
+            // data jatikalen
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Jatikalen'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_jatikalen = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_jatikalen = 0;
+              }
+              mysqli_close($conn);  
+
+
+              // data kertosono
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Kertosono'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_kertosono = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_kertosono = 0;
+              }
+              mysqli_close($conn);  
+
+
+              // data lengkong
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Lengkong'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_lengkong = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_lengkong = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data loceret
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Loceret'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_loceret = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_loceret = 0;
+              }
+              mysqli_close($conn);
+
+              
+              // data prambon
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Prambon'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_prambon = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_prambon = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data nganjuk
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Nganjuk'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_nganjuk = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_nganjuk = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data ngetos
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Ngetos'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_ngetos = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_ngetos = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data ngluyu
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Ngluyu'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_ngluyu = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_ngluyu = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data ngronggot
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Ngronggot'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_ngronggot = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_ngronggot = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data pace
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Pace'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_pace = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_pace = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data patianrowo
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Patianrowo'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_patianrowo = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_patianrowo = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data rejoso
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Rejoso'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_rejoso = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_rejoso = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data sawahan
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Sawahan'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_sawahan = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_sawahan = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data sukomoro
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Sukomoro'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_sukomoro = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_sukomoro = 0;
+              }
+              mysqli_close($conn);
+
+
+              // data tanjunganom
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Tanjunganom'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_tanjunganom = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_tanjunganom = 0;
+              }
+              mysqli_close($conn);
+
+              
+              // data wilangan
+            include "koneksi.php";
+            $sql = "SELECT COUNT(*) as jumlah_umkm FROM umkm WHERE kecamatan_umkm = 'Wilangan'";
+    
+              $result = mysqli_query($conn, $sql);
+    
+              if (mysqli_num_rows($result) > 0) {
+                  // Ambil hasil dari query
+                  $row = mysqli_fetch_assoc($result);
+                  $jumlah_umkm_wilangan = $row["jumlah_umkm"];
+              } else {
+                  $jumlah_umkm_wilangan = 0;
+              }
+              mysqli_close($conn);
         ?>
+
+
       <h3 class="title mt-3">Total UMKM Perkecamatan</h3>
       <div class="table-responsive">
       <table id="example" class="table table-striped" style="width:100%">
@@ -159,102 +481,102 @@
                 <tr>
                   <td>1</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Bagor'>Bagor</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_bagor; ?></td>
                 </tr>
                 <tr>
                   <td>2</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Baron'>Baron</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_baron; ?></td>
                 </tr>   
                 <tr>
                   <td>3</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Berbek'>Berbek</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_berbek; ?></td>
                 </tr>   
                 <tr>
                   <td>4</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Gondang'>Gondang</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_gondang; ?></td>
                 </tr>   
                 <tr>
                   <td>5</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Jatikalen'>Jatikalen</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_jatikalen; ?></td>
                 </tr>   
                 <tr>
                   <td>6</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Kertosono'>Kertosono</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_kertosono; ?></td>
                 </tr>   
                 <tr>
                   <td>7</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Lengkong'>Lengkong</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_lengkong; ?></td>
                 </tr> 
                 <tr>
                   <td>8</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Loceret'>Loceret</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_loceret; ?></td>
                 </tr> 
                 <tr>
                   <td>9</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Nganjuk'>Nganjuk</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_nganjuk; ?></td>
                 </tr> 
                 <tr>
                   <td>10</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Ngetos'>Ngetos</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_ngetos; ?></td>
                 </tr> 
                 <tr>
                   <td>11</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Ngluyu'>Ngluyu</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_ngluyu; ?></td>
                 </tr> 
                 <tr>
                   <td>12</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Ngronggot'>Ngronggot</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_ngronggot; ?></td>
                 </tr> 
                 <tr>
                   <td>13</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Pace'>Pace</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_pace; ?></td>
                 </tr> 
                 <tr>
                   <td>14</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Patianrowo'>Patianrowo</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_patianrowo; ?></td>
                 </tr> 
                 <tr>
                   <td>15</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Prambon'>Prambon</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_prambon; ?></td>
                 </tr>
                 <tr>
                   <td>16</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Rejoso'>Rejoso</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_rejoso; ?></td>
                 </tr>     
                 <tr>
                   <td>17</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Sawahan'>Sawahan</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_sawahan; ?></td>
                 </tr>  
                 <tr>
                   <td>18</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Sukomoro'>Sukomoro</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_sukomoro; ?></td>
                 </tr>  
                 <tr>
                   <td>19</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Tanjunganom'>Tanjunganom</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_tanjunganom; ?></td>
                 </tr>  
                 <tr>
                   <td>20</td>
                   <td><a href='daftar-kecamatan/daftar-perkecamatan.php?kecamatan=Wilangan'>Wilangan</a></td>
-                  <td>30</td>
+                  <td><?php echo $jumlah_umkm_wilangan; ?></td>
                 </tr>                      
             </tbody>
         </table>
