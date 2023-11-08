@@ -14,6 +14,25 @@
   
   // Tutup koneksi database
   mysqli_close($conn);
+
+
+  include "koneksi.php";  
+  // menampilkan jumlah produk terdaftar
+  $query = "SELECT COUNT(*) AS total_produk FROM produk";
+  $result = mysqli_query($conn, $query);
+  
+  if ($result) {
+      $row = mysqli_fetch_assoc($result);
+      $total_produk = $row['total_produk'];
+  } else {
+      $total_produk = "Gagal mengambil data";
+  }
+  
+  // Tutup koneksi database
+  mysqli_close($conn);
+
+
+
   ?>
 
 
@@ -124,10 +143,10 @@
             
             <div class="row">
               <div class="col" style="width: 20rem;">
-                <h5 class="card-title" style="color: black; font-weight: bold;">KECAMATAN</h5><br>
-                <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;">20</span>
+                <h5 class="card-title" style="color: black; font-weight: bold;">PRODUK</h5><br>
+                <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;"><?php echo $total_produk?></span>
                 <hr style="border-top: 1px solid black; margin-top: 10px;">
-                <p class="card-text" style="color: black; font-size: 15px;">Total Wilayah Terdaftar</p>
+                <p class="card-text" style="color: black; font-size: 15px;">Total Produk Terdaftar</p>
               </div>
             </div>
           </div>
