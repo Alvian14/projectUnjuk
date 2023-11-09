@@ -146,27 +146,30 @@
               <tbody>
                   <?php
                   if ($result->num_rows > 0) {
-                      $no = 1;
-                      while ($row = $result->fetch_assoc()) {
-                          echo "<tr>";
-                          echo "<td>" . $no . "</td>";
-                          echo "<td>" . $row['nama_umkm'] . "</td>";
-                          echo "<td>" . $row['Jenis_usahaumkm'] . "</td>";
-                          echo "<td>" . $row['Nib_umkm'] . "</td>";
-                          echo "<td>" . $row['notelp_umkm'] . "</td>";
-                          echo "<td>" . $row['alamat_umkm'] . "</td>";
-                          echo "<td>" . $row['id_akun'] . "</td>";
-                          echo "<td><img src='" . $row['umkm_foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></td>";
-                          echo "<td>";
-                          echo "<button class='btn btn-primary'><i class='bx bx-pencil'></i> Edit</button>";
-                          echo "<button class='btn btn-danger' data-id='" . $row['id_umkm'] . "' onclick='hapusUMKM(this)'><i class='bx bxs-trash'></i> Hapus</button>";
-                          echo "</td>";
-                          echo "</tr>";
-                          $no++;
-                      }
-                  } else {
-                      echo "Tidak ada data UMKM yang ditemukan.";
-                  }
+                    $no = 1;
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $no . "</td>";
+                        echo "<td>" . $row['nama_umkm'] . "</td>";
+                        echo "<td>" . $row['Jenis_usahaumkm'] . "</td>";
+                        echo "<td>" . $row['Nib_umkm'] . "</td>";
+                        echo "<td>" . $row['notelp_umkm'] . "</td>";
+                        echo "<td>" . $row['alamat_umkm'] . "</td>";
+                        echo "<td>" . $row['id_akun'] . "</td>";
+                        echo "<td><img src='" . $row['umkm_foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></td>";
+                        echo "<td>";
+                        echo "<button class='btn btn-primary'><i class='bx bx-pencil'></i> Lihat</button>";
+                        echo '<a class="btn btn-danger" role="button" href="../hapus-data.php?id=' . htmlentities($row['id_umkm']) . '"
+                        onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
+                        <i class="bx bx-trash"></i> Hapus
+                        </a>';
+                        echo "</td>";
+                        echo "</tr>";
+                        $no++;
+                    }
+                } else {
+                    echo "Tidak ada data UMKM yang ditemukan.";
+                }
                   ?>
               </tbody>
               <tfoot>
@@ -193,40 +196,6 @@
     </main>
   </div>
 </div>
-
-<script>
-function hapusUMKM(button) {
-    var idUMKM = button.getAttribute('data-id');
-
-    if (confirm("Apakah Anda yakin ingin menghapus UMKM ini ?")) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../hapus-data.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                alert(xhr.responseText);
-
-                // Perbarui tampilan tabel jika data berhasil dihapus
-                if (xhr.responseText === "Data berhasil dihapus.") {
-                    // Temukan elemen tabel yang ingin Anda perbarui
-                    var table = document.getElementById("tabel-umkm");
-
-                    // Temukan baris yang sesuai dengan data yang dihapus
-                    var row = document.getElementById("row-" + idUMKM);
-
-                    if (row) {
-                        // Hapus baris dari tabel
-                        table.deleteRow(row.rowIndex);
-                    }
-                }
-            }
-        };
-        xhr.send("id_umkm=" + idUMKM);
-    }
-}
-// </script>
-
-
 
 
 

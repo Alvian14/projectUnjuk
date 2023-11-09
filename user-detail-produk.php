@@ -1,37 +1,3 @@
-<?php
-  //   // Hubungkan ke database MySQL (ganti dengan informasi koneksi Anda)
-  include "koneksi.php";
-
-  // Ambil data kegiatan dan urutkan berdasarkan tanggal secara descending
-  $sql = "SELECT * FROM kegiatan ORDER BY id_kegiatan DESC";
-  $result = mysqli_query($conn, $sql);
-  
-  if (!$result) {
-      echo "Gagal mengambil data kegiatan: " . mysqli_error($conn);
-      exit; // Keluar dari skrip jika terjadi kesalahan
-  }
-
-
-      // $currentDateTime = date("Y-m-d H:i:s");
-
-      //   while ($row = mysqli_fetch_assoc($result)) {
-      //       // Periksa jika tanggal kegiatan kurang dari waktu saat ini
-      //       if ($row['tgl'] < $currentDateTime) {
-      //           // Hapus data yang telah lewat batas waktu
-      //           $id_kegiatan = $row['id_kegiatan'];
-      //           $deleteSql = "DELETE FROM kegiatan WHERE id_kegiatan = '$id_kegiatan'";
-      //           $deleteResult = mysqli_query($conn, $deleteSql);
-      //           if (!$deleteResult) {
-      //               echo "Gagal menghapus data: " . mysqli_error($conn);
-      //           }
-      //       }
-      //   }
-
-      //   echo "Proses penghapusan data selesai.";
-
-      //   // Tutup koneksi database
-      //   mysqli_close($conn);
-?>
 
 
 <!DOCTYPE html>
@@ -61,56 +27,75 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
+  <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
-
-  <!-- bootstrap css -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
   <style>
-    .container-kotak {
-      display: flex;
-  flex-direction: row;
-  background-color: #f0f0f0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin: 10px auto; /* Menggunakan auto untuk margin horizontal akan memusatkan kontainer. */
-  padding: 15px;
-  max-width: 1000px;
-  height: auto;ruang di sekitar konten */
-    }
+   
+   .detail {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
 
-    .image-container {
-      flex: 1;
-      margin-right: 10px; /* Memberi jarak di sebelah kanan gambar */
-    }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
 
-    .image {
-      max-width: 100%; /* Gambar tidak melebihi lebar kontainer */
-      height: auto;
-      border-radius: 8px; /* Melengkungkan sudut gambar */
-    }
+        .product-details {
+            text-align: left;
+        }
 
-    .content {
-      flex: 2;
-    }
+        .product-info {
+            text-align: left;
+        }
 
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px; /* Memberi jarak antara judul dan deskripsi */
-    }
+        .product-info h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
 
-    .description {
-      font-size: 16px;
-      margin-bottom: 10px; /* Memberi jarak antara deskripsi dan tanggal/jam */
-    }
+        .product-info p {
+            color: #666;
+            margin-bottom: 10px;
+            word-wrap: break-word; /* atau overflow-wrap: break-word; */
+        }
 
-    .datetime {
-      font-size: 14px;
-      
-    }
-  
-</style>
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .separator {
+            border-bottom: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        @media screen and (max-width: 600px) {
+            .detail {
+                padding: 10px;
+            }
+
+            .product-image,
+            .product-details {
+                flex: 1;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .product-image {
+                margin-bottom: 10px;
+            }
+        }
+  </style>
+
+ 
 </head>
 
 <body>
@@ -118,8 +103,8 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top  " style="background-color: #235088;">
     <div class="container d-flex align-items-center">
-      <!-- <img src="assets/img/logoUnjuk.png" width="80px"> -->
-      <h1 class="logo me-auto "><a href="index.php">UNjuk</a></h1>
+
+      <h1 class="logo me-auto"><a href="index.php">UNjuk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -127,7 +112,7 @@
         <ul>
           <li><a class="nav-link scrollto" href="index.php">Warkop Umi</a></li>
           <li><a class="nav-link scrollto" href="user-layanan.php">Layanan</a></li>
-          <li class="dropdown"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown active"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="user-makanan.php">Makanan</a></li>
               <li><a href="user-minuman.php">Minuman</a></li>
@@ -140,62 +125,88 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+
     </div>
   </header><!-- End Header -->
 
 
-
- <section id="index.php">
-    <div id="wrapper" >
-      <div class="kotak">
-          <h1 style="font-family: 'Jost', sans-serif ; color: white; font-size: 27px; margin-left: 10px;">
-          Warta Koperasi Usaha Mikro</h1>
-      </div>
+  <!-- makanan -->
+  <section id="user-kerajinan.php">
+    <div id="wrapper">
+        <div class="kotak">
+            <h1 style="font-family: 'Jost', sans-serif; color: white; font-size: 27px; margin-left: 10px;">
+                Detail produk
+            </h1>
+            
+        </div>
     </div>
 
-    <!-- pembuatan kegiatan -->
-    <?php
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="container-kotak ">';
-        echo '<div class="image-container">';
-        echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
-        echo '</div>';
-        echo '<div class="content">';
-        echo '<div class="title">' . $row['judul'] . '</div>';
-        echo '<div class="description">' . $row['deskripsi'] . '</div>';
-        echo '<div class="datetime">';
-        echo 'Tanggal: ' . $row['tgl'] . '<br>';
-        echo 'Jam: ' . $row['jam'];
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
 
+    <div class="detail ">
+    <div class="product-image">
+        <img src="assets1/elearning.jpg" alt="Nama Produk" style="width: 100%;">
+    </div>
+    <div class="product-details">
+        <div class="product-info">
+            <h2>Beras Kencur</h2>
+            <br>
+            <p class="label">Harga:</p>
+            <p>333333</p>
 
- </section>
- 
+            <div class="separator"></div>
 
- 
+            <p class="label">Kategori:</p>
+            <p>makanan</p>
 
+            <div class="separator"></div>
 
+            <p class="label">PIRT:</p>
+            <p>092823</p>
 
-  
+            <div class="separator"></div>
 
+            <p class="label">BPOM:</p>
+            <p>asfdasfasfas</p>
+
+            <div class="separator"></div>
+
+            <p class="label">Deskripsi:</p>
+            <p>asfasjfjaflasjf;ajf;alsfjas;lfjalkfjaf;ajf;lasfjalfjasfl;jasf;llasjf;lasfjasl;fjasf;lasjf;lasjfasl</p>
+
+            <div class="separator"></div>
+
+            <p class="label">Penjual:</p>
+            <p>sugeng</p>
+
+            <div class="separator"></div>
+
+            <p class="label">No Wa:</p>
+            <p>0202020222</p>
+
+            
+        </div>
+    </div>
+</div>
+</div>
     
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+</section>
 
 
-<!-- <section id="tentang-kami"> -->
+
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <!-- <section id="tentang-kami"> -->
   <footer id="footer">
-      <div class="footer-top">
+      <div class="footer-top" >
         <div class="container">
           <div class="row">
             <div class="col-lg-3 col-md-6 footer-contact mx-auto ml-auto">
@@ -239,16 +250,9 @@
         <div class="copyright" id="copyright">
         Copyright &copy; 2023 <strong><span>M-fast</span></strong>. All Rights Reserved
         </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-          <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
-        </div>
       </div>
     </footer><!-- End Footer -->
-  <!-- </section> -->
+
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -262,14 +266,18 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-
-  <!-- js bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/klik-menu.js"></script>        
+  <script src="assets/js/klik-menu.js"></script>
+
+
+        <!-- untuk refresh saat selesai pencarian produk -->
+  <script>
+    if (window.location.search.includes('?search=')) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  </script>
+
 </body>
 
 </html>
-

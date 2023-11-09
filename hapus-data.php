@@ -1,30 +1,35 @@
+
 <?php
-// Pastikan Anda memiliki koneksi ke basis data
-include "koneksi.php";
-// Fungsi untuk menghapus data UMKM berdasarkan ID
-function hapusUMKM($id_umkm, $conn) {
-    $sql = "DELETE FROM umkm WHERE id_umkm = " . $id_umkm;
-    
-    if ($conn->query($sql) === TRUE) {
-        return true;
+// Check if 'id' parameter is set in the GET request
+if (isset($_GET['id'])) {
+    // Get the 'id' from the GET request
+    $id = $_GET['id'];
+
+    // Your database connection code goes here
+    require("koneksi.php");
+
+    // SQL query to delete the record
+    $sql = "DELETE FROM `umkm` WHERE id_umkm = $id";
+
+    // Execute the query
+    $eksekusi = mysqli_query($conn, $sql);
+
+    // Check if the query was successful
+    if ($eksekusi) {
+        // Redirect back to the previous page
+        header("Location: ".$_SERVER['HTTP_REFERER']);
+        exit();
     } else {
-        return false;
+        // If the query fails, display an error message
+        echo "Error: " . $sql . "<br>" . mysqli_error($konek);
     }
-};
 
-// Tangani permintaan penghapusan
-if (isset($_POST['id_umkm'])) {
-    $id_umkm = $_POST['id_umkm'];
-
-    if (hapusUMKM($id_umkm, $conn)) {
-        echo "UMKM telah dihapus.";
-    } else {
-        echo "Gagal menghapus UMKM.";
-    }
-};
-
-
-
+    // Close the database connection
+    mysqli_close($konek);
+} else {
+    // If 'id' parameter is not set, display an error message
+    echo "Invalid request. 'id' parameter is missing.";
+}
 ?>
 
 
