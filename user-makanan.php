@@ -136,7 +136,7 @@ if (!$result) {
             ?>
                 <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <div class="card">
-                        <a href="index.php">
+                        <a href="user-detail-produk.php">
                             <img src="assets/img/makanan.png" class="card-img-top" alt="Gambar Produk">
                         </a>
                         <div class="card-body">

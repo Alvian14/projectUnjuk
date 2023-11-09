@@ -7,33 +7,38 @@
         $tanggal_kegiatan = $_POST["tgl"];
         $jam_kegiatan = $_POST["jam"];
         $deskripsi = $_POST["deskripsi"];
-
+    
         // Proses unggah gambar
         $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
         $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
-
+    
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
             // Gambar berhasil diunggah
             $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
-
+    
             // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
             $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
                     VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
-
+    
             if (mysqli_query($conn, $sql)) {
-
                 $pesan = "Data kegiatan berhasil ditambahkan.";
+
+                // Hapus data kegiatan yang sudah lewat
+                // date_default_timezone_set('Asia/Jakarta');
+
+              // // Hapus data kegiatan yang sudah lewat
+              // $sqlDelete = "DELETE FROM kegiatan WHERE STR_TO_DATE(CONCAT(tgl, ' ', jam), '%Y-%m-%d %H:%i:%s') < NOW()";
+              // mysqli_query($conn, $sqlDelete);
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
         } else {
-                $eror = "Gagal menambahkan data.";
+            $eror = "Gagal menambahkan data.";
         }
-
+    
         // Menutup koneksi database
         mysqli_close($conn);
-    };
-
+    }
 
 
 

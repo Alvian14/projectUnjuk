@@ -12,25 +12,11 @@
   }
 
 
-      // $currentDateTime = date("Y-m-d H:i:s");
+    date_default_timezone_set('Asia/Jakarta');
 
-      //   while ($row = mysqli_fetch_assoc($result)) {
-      //       // Periksa jika tanggal kegiatan kurang dari waktu saat ini
-      //       if ($row['tgl'] < $currentDateTime) {
-      //           // Hapus data yang telah lewat batas waktu
-      //           $id_kegiatan = $row['id_kegiatan'];
-      //           $deleteSql = "DELETE FROM kegiatan WHERE id_kegiatan = '$id_kegiatan'";
-      //           $deleteResult = mysqli_query($conn, $deleteSql);
-      //           if (!$deleteResult) {
-      //               echo "Gagal menghapus data: " . mysqli_error($conn);
-      //           }
-      //       }
-      //   }
-
-      //   echo "Proses penghapusan data selesai.";
-
-      //   // Tutup koneksi database
-      //   mysqli_close($conn);
+    // Hapus data kegiatan yang sudah lewat
+    $sqlDelete = "DELETE FROM kegiatan WHERE STR_TO_DATE(CONCAT(tgl, ' ', jam), '%Y-%m-%d %H:%i:%s') < NOW()";
+    mysqli_query($conn, $sqlDelete);
 ?>
 
 

@@ -1,4 +1,29 @@
+<?php
+  include  "koneksi.php";
 
+  if (isset($_GET['id_produk'])) {
+    $id_produk = $_GET['id_produk'];
+
+    // Pastikan id_produk bukan string kosong atau null
+    if (!empty($id_produk)) {
+        // Query untuk mengambil detail produk berdasarkan id_produk
+        $query = "SELECT * FROM produk WHERE id_umkm = $id_umkm";
+        $result = mysqli_query($conn, $query);
+
+        // Periksa apakah ada hasil query
+        if ($row = mysqli_fetch_assoc($result)) {
+            // Lakukan sesuatu dengan data produk, misalnya tampilkan informasi
+        } else {
+            echo "Produk tidak ditemukan.";
+        }
+    } else {
+        echo "ID Produk tidak valid.";
+    }
+} else {
+    echo "ID Produk tidak ditemukan di URL.";
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -142,52 +167,49 @@
     </div>
 
 
-    <div class="detail ">
-    <div class="product-image">
-        <img src="assets1/elearning.jpg" alt="Nama Produk" style="width: 100%;">
-    </div>
-    <div class="product-details">
-        <div class="product-info">
-            <h2>Beras Kencur</h2>
-            <br>
-            <p class="label">Harga:</p>
-            <p>333333</p>
+    <div class="container">
+        <div class="product-image">
+          <img src="<?php echo $row['gambar_produk1']; ?>" alt="Deskripsi gambar" style="width: 100%;">
+        </div>
+        <div class="product-details">
+            <div class="product-info">
+                <h2><?php echo $row['nama_produk']; ?></h2>
 
-            <div class="separator"></div>
+                <p class="label">Harga:</p>
+                <p>$<?php echo $row['harga_prooduk']; ?></p>
 
-            <p class="label">Kategori:</p>
-            <p>makanan</p>
+                <div class="separator"></div>
 
-            <div class="separator"></div>
+                <p class="label">Kategori:</p>
+                <p><?php echo $row['kategori_produk']; ?></p>
 
-            <p class="label">PIRT:</p>
-            <p>092823</p>
+                <div class="separator"></div>
 
-            <div class="separator"></div>
+                <p class="label">PIRT:</p>
+                <p><?php echo $row['pirt']; ?></p>
 
-            <p class="label">BPOM:</p>
-            <p>asfdasfasfas</p>
+                <div class="separator"></div>
 
-            <div class="separator"></div>
+                <p class="label">BPOM:</p>
+                <p><?php echo $row['bpom']; ?></p>
 
-            <p class="label">Deskripsi:</p>
-            <p>asfasjfjaflasjf;ajf;alsfjas;lfjalkfjaf;ajf;lasfjalfjasfl;jasf;llasjf;lasfjasl;fjasf;lasjf;lasjfasl</p>
+                <div class="separator"></div>
 
-            <div class="separator"></div>
+                <p class="label">ID Halal:</p>
+                <p><?php echo $row['id_halal']; ?></p>
 
-            <p class="label">Penjual:</p>
-            <p>sugeng</p>
+                <div class="separator"></div>
 
-            <div class="separator"></div>
+                <p class="label">Deskripsi Produk:</p>
+                <p><?php echo $row['deskripsi_produk']; ?></p>
 
-            <p class="label">No Wa:</p>
-            <p>0202020222</p>
+                <div class="separator"></div>
 
-            
+                <p class="label">Nama UMKM:</p>
+                <p><?php echo $row['nama_umkm']; ?></p>
+            </div>
         </div>
     </div>
-</div>
-</div>
     
 
 </section>
