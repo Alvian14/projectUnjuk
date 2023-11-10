@@ -1,22 +1,3 @@
-<?php
-// Membuat koneksi ke database
-  include "koneksi.php";
-// Menjalankan kueri SQL
-$query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_prooduk
-          FROM produk AS pd
-          INNER JOIN umkm AS um
-          ON pd.id_umkm = um.id_umkm
-          WHERE pd.katergori_produk = 'Jasa'";
-
-$result = mysqli_query($conn, $query);
-
-// Memeriksa hasil kueri
-if (!$result) {
-    die("Kesalahan dalam eksekusi kueri: " . mysqli_error($conn));
-}
-
-// Sekarang Anda dapat menggunakan hasil kueri dengan aman
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,17 +96,19 @@ if (!$result) {
 
             if (isset($_GET['search'])) {
                 $search = $_GET['search'];
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_prooduk
+                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
-                          WHERE pd.katergori_produk = 'Jasa' AND pd.nama_produk LIKE '%$search%'";
+                          WHERE pd.kategori_produk = 'Jasa' AND pd.nama_produk LIKE '%$search%'
+                          LIMIT 20";
             } else {
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_prooduk
+                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
-                          WHERE pd.katergori_produk = 'Jasa'";
+                          WHERE pd.kategori_produk = 'Jasa'
+                          LIMIT 20";
             }
 
             $result = mysqli_query($conn, $query);
@@ -141,7 +124,7 @@ if (!$result) {
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
                             <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
                             <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p>
-                            <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_prooduk']; ?></p>
+                            <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
                         </div>
                     </div>
                 </div>

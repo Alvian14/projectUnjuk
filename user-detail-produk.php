@@ -291,14 +291,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/klik-menu.js"></script>
-
-
-        <!-- untuk refresh saat selesai pencarian produk -->
-  <script>
-    if (window.location.search.includes('?search=')) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  </script>
+  
 
 </body>
 

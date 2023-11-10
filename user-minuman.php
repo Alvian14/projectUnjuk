@@ -100,13 +100,15 @@
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
-                          WHERE pd.katergori_produk = 'Minuman' AND pd.nama_produk LIKE '%$search%'";
+                          WHERE pd.kategori_produk = 'Minuman' AND pd.nama_produk LIKE '%$search%'
+                          LIMIT 20";
             } else {
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_prooduk
+                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
-                          WHERE pd.katergori_produk = 'Minuman'";
+                          WHERE pd.kategori_produk = 'Minuman'
+                          LIMIT 20";
             }
 
             $result = mysqli_query($conn, $query);
@@ -122,7 +124,7 @@
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
                             <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
                             <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p>
-                            <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_prooduk']; ?></p>
+                            <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
                         </div>
                     </div>
                 </div>
