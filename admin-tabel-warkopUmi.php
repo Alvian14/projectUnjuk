@@ -1,49 +1,3 @@
-<?php
-    require_once("koneksi.php");
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Mengambil data dari formulir
-        $judul_kegiatan = $_POST["judul"];
-        $tanggal_kegiatan = $_POST["tgl"];
-        $jam_kegiatan = $_POST["jam"];
-        $deskripsi = $_POST["deskripsi"];
-    
-        // Proses unggah gambar
-        $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
-        $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
-    
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
-            // Gambar berhasil diunggah
-            $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
-    
-            // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
-            $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
-                    VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
-    
-            if (mysqli_query($conn, $sql)) {
-                $pesan = "Data kegiatan berhasil ditambahkan.";
-
-                // Hapus data kegiatan yang sudah lewat
-                // date_default_timezone_set('Asia/Jakarta');
-
-              // // Hapus data kegiatan yang sudah lewat
-              // $sqlDelete = "DELETE FROM kegiatan WHERE STR_TO_DATE(CONCAT(tgl, ' ', jam), '%Y-%m-%d %H:%i:%s') < NOW()";
-              // mysqli_query($conn, $sqlDelete);
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
-        } else {
-            $eror = "Gagal menambahkan data.";
-        }
-    
-        // Menutup koneksi database
-        mysqli_close($conn);
-    }
-
-
-
- 
-?>
 
 <!doctype html>
 <html lang="en">
@@ -65,6 +19,13 @@
     <link rel="website icon" href="tem-login/images/logoUnjuk.png">
 
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="assets/js/tabel-daftar.js"></script>
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -197,101 +158,70 @@
     </nav>
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h3 class="title mt-3">Update Warkop Umi</h3>
-      <div class="group mt-5">
+      <h3 class="title mt-3">Detail Warkop Umi</h3>
+      <h6 class="title "> Detail Warkop Umi / 
+        <a  style="text-decoration: none;" href="admin-warkopUmi.php">Update Warkop Umi</a>
+      </h6>
         
-        
-      <form  method="POST" action="admin-warkopUmi.php" id="yourFormId" enctype="multipart/form-data">
-                <?php if (!empty($pesan)) { ?>
-                    <div class="notifikasi">
-                        <?php echo $pesan; ?>
-                    </div>
-                <?php } ?>
+        <div class="table-responsive mt-5">
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Id</th>
+                        <th>Judul</th>
+                        <th>Tanggal</th>
+                        <th>Jam</th>
+                        <th>Deskripsi</th>
+                        <th>Foto</th>
+                        <th>Aksi</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                
+                include "koneksi.php";
+                // Buat kueri SQL untuk mengambil data dari tabel kegiatan
+                $sql = "SELECT * FROM kegiatan";
+                $result = $conn->query($sql);
 
-                <?php if (!empty($eror)) { ?>
-                    <div class="eror">
-                        <?php echo $eror; ?>
-                    </div>
-                <?php } ?>
-        
-          <div class="form-group">
-              <label for="judul">Judul:</label>
-              <input type="text" id="judul" name="judul" placeholder="Masukkan judul">
-          </div>
-          
-          <div class="form-group">
-              <label for="tgl">Tanggal:</label>
-              <input type="date" id="tgl" name="tgl">
-          </div>
-          
-          <div class="form-group">
-              <label for="jam">Jam:</label>
-              <input type="time" id="jam" name="jam">
-          </div>
-          
-          <div class="form-group">
-              <label for="deskripsi">Deskripsi</label>
-              <textarea id="deskripsi" name="deskripsi" rows="4" style="width: 100%";
-              placeholder="Masukkan deskripsi"></textarea>
-          </div>
-          
-          <div class="form-group">
-              <label for="file">Unggah Gambar:</label>
-              <input type="file" id="file" name="file" accept="image/*"
-              placeholder="Pastikan anda memasukkan foto">
-          </div>
-          
-          <div class="form-group">
-              <img src="" alt="" class="responsive-image" >
-               <!-- id="image-preview"> -->
-          </div>
-      </form>
+                // Tampilkan data dalam tabel HTML
+                if ($result->num_rows > 0) {
+                    $no = 1;
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $no . "</td>";
+                        echo "<td>" . $row['id_kegiatan'] . "</td>";
+                        echo "<td>" . $row['judul'] . "</td>";
+                        echo "<td>" . $row['tgl'] . "</td>";
+                        echo "<td>" . $row['jam'] . "</td>";
+                        echo "<td>" . $row['deskripsi'] . "</td>";
+                        echo "<td><a href='" . $row['foto'] . "' target='_blank'><img src='" . $row['foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></a></td>";
+                        echo "<td>";
+                        echo '<a class="btn btn-success" role="button" href="edit-kegiatan.php?id=' . htmlentities($row['id_kegiatan']) . '">
+                            <i class="bx bx-edit"></i>
+                            </a>';
+                        echo '<a class="btn btn-danger" role="button" href="hapus-kegiatan.php?id=' . htmlentities($row['id_kegiatan']) . '"
+                            onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
+                            <i class="bx bx-trash"></i>
+                            </a>';
+                        echo "</td>";
+                        echo "</tr>";
+                        $no++;
+                    }
+                } else {
+                    echo "Tidak ada data UMKM yang ditemukan.";
+                }
 
-
-        <div class="container ml-5">
-            <div class="d-flex justify-content-end " >
-                <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId">
-                    <i class='bx bx-plus' style='color:#fafafa'></i> Tambah
-                </button>
-                <button class="btn btn-warning mt-1" style="margin-right: 5px; height: 40px" onclick="window.location.href='admin-tabel-warkopUmi.php'" >
-                <i class='bx bx-calendar-check' style='color:#282727'  ></i> Lihat
-                </button>
+                // Tutup koneksi
+                $conn->close();
+            ?>
+                </tbody>
+            </table>
             </div>
         </div>
-        <!-- <div class="notifikasi" id="konfirmasiNotifikasi">
-            <div>Apakah Anda yakin ingin menambahkan data?</div>
-            <button id="konfirmasiYa" style="background-color: green; color: white;">Ya</button>
-            <button id="konfirmasiBatal" style="background-color: red; color: white;">Batal</button>
-        </div> -->
-        
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var deskripsiInput = document.getElementById('deskripsi');
-        var pesanDeskripsi = document.getElementById('pesanDeskripsi');
-
-        deskripsiInput.addEventListener('input', function () {
-            var deskripsiValue = deskripsiInput.value;
-            var karakterCount = deskripsiValue.length;
-
-            var minimumLength = 100;
-            var maximumLength = 500;
-
-            if (karakterCount < minimumLength) {
-                pesanDeskripsi.innerHTML = 'Deskripsi harus memiliki setidaknya 100 karakter.';
-            } else if (karakterCount > maximumLength) {
-                pesanDeskripsi.innerHTML = 'Deskripsi tidak boleh lebih dari 500 karakter.';
-                deskripsiInput.value = deskripsiValue.substring(0, maximumLength);
-            } else {
-                pesanDeskripsi.innerHTML = ''; // Menghapus pesan jika panjang karakter sesuai
-            }
-        });
-    });
-
-
-   
-</script>
 
     </main>
   </div>

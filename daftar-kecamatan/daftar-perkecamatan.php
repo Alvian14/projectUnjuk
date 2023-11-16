@@ -171,19 +171,6 @@
                 }
                   ?>
               </tbody>
-              <tfoot>
-                  <tr>
-                      <th>No.</th>
-                      <th>Nama UMKM</th>
-                      <th>Jenis Usaha</th>
-                      <th>NIB</th>
-                      <th>Nomor Telepon</th>
-                      <th>Alamat</th>
-                      <th>ID Akun</th>
-                      <th>Foto UMKM</th>
-                      <th>Aksi</th>
-                  </tr>
-              </tfoot>
           </table>
         </div>
 

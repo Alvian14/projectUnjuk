@@ -348,6 +348,40 @@ section input {
   border-radius: 5px;
 }
 
+@media screen and (max-width: 576px) {
+  .col-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+
+  .card-img-top {
+    height: 200px; /* Sesuaikan tinggi kartu sesuai kebutuhan Anda */
+    object-fit: cover;
+}
+
+
+}
+
+@media screen and (max-width: 462px) {
+  section input {
+    width: 80%; /* Sesuaikan lebar dengan tampilan seluler */
+    left: 50%; /* Sesuaikan posisi horizontal */
+    top: 0; /* Kembalikan ke posisi aslinya */
+  }
+
+  .search-container {
+    display: flex;
+    margin-right: 33%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -8%;
+  }
+
+  .search-button {
+    display: none;
+  }
+}
+
 /* CSS untuk perangkat seluler */
 @media screen and (max-width: 480px) {
   section input {
@@ -361,7 +395,7 @@ section input {
     margin-right: 33%;
     flex-direction: column;
     align-items: center;
-    margin-top: -12%;
+    margin-top: -11%;
   }
 
   .search-button {
