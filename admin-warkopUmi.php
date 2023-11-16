@@ -129,6 +129,7 @@
           background-color: green;
           color: white;
           text-align: center;
+          
           padding: 10px;
           position: fixed;
           top: 15%; /* Menengahkan vertikal */
@@ -263,22 +264,28 @@
 </div>
 
 <script>
-    // Menampilkan gambar yang diunggah dalam elemen img
-    const fileInput = document.getElementById('file');
-    const imagePreview = document.getElementById('image-preview');
+    document.addEventListener('DOMContentLoaded', function () {
+        var deskripsiInput = document.getElementById('deskripsi');
+        var pesanDeskripsi = document.getElementById('pesanDeskripsi');
 
-    fileInput.addEventListener('change', function() {
-        const file = fileInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        } else {
-            imagePreview.src = '';
-        }
+        deskripsiInput.addEventListener('input', function () {
+            var deskripsiValue = deskripsiInput.value;
+            var karakterCount = deskripsiValue.length;
+
+            var minimumLength = 100;
+            var maximumLength = 500;
+
+            if (karakterCount < minimumLength) {
+                pesanDeskripsi.innerHTML = 'Deskripsi harus memiliki setidaknya 100 karakter.';
+            } else if (karakterCount > maximumLength) {
+                pesanDeskripsi.innerHTML = 'Deskripsi tidak boleh lebih dari 500 karakter.';
+                deskripsiInput.value = deskripsiValue.substring(0, maximumLength);
+            } else {
+                pesanDeskripsi.innerHTML = ''; // Menghapus pesan jika panjang karakter sesuai
+            }
+        });
     });
+
 
    
 </script>

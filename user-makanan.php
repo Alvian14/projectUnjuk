@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,14 +30,9 @@
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
-  <!-- style card -->
-  <style>
-    .card-title{
-      font-weight: bold; 
-      font-size: 23px;
-    }
-  </style>
 
+
+ 
 </head>
 
 <body>
@@ -53,7 +49,7 @@
         <ul>
           <li><a class="nav-link scrollto" href="index.php">Warkop Umi</a></li>
           <li><a class="nav-link scrollto" href="user-layanan.php">Layanan</a></li>
-          <li class="dropdown"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown active"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="user-makanan.php">Makanan</a></li>
               <li><a href="user-minuman.php">Minuman</a></li>
@@ -62,7 +58,7 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#footer">Tentang Kami</a></li>
-          <li><a class="getstarted scrollto" href="tem-login/tem-login-admin.php">Masuk</a></li>  
+          <li><a class="getstarted scrollto" href="tem-login/tem-login-admin.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -72,7 +68,7 @@
 
 
   <!-- makanan -->
-  <section id="user-makanan.php">
+  <section id="user-kerajinan.php">
     <div id="wrapper">
         <div class="kotak">
             <h1 style="font-family: 'Jost', sans-serif; color: white; font-size: 27px; margin-left: 10px;">
@@ -80,7 +76,7 @@
             </h1>
             <form action="user-makanan.php" method="get">
                 <div class="search-container">
-                    <input class="search-input" type="search" id="searchInput" name="search" placeholder="Cari Makanan...">
+                    <input class="search-input" type="search" id="searchInput" name="search" placeholder="Cari Kerajinan...">
                     <input class="search-button"  type="submit" value="Cari" style="width: 5%;">
                 </div>
             </form>
@@ -97,34 +93,38 @@
 
             if (isset($_GET['search'])) {
                 $search = $_GET['search'];
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Makanan' AND pd.nama_produk LIKE '%$search%'
                           LIMIT 20";
             } else {
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Makanan'
                           LIMIT 20";
             }
-
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_assoc($result)) {
             ?>
                 <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <div class="card">
-                        <a href="user-detail-produk.php">
-                            <img src="assets/img/makanan.png" class="card-img-top" alt="Gambar Produk">
+                        <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
+                            <?php if (!empty($row['gambar_produk1'])) : ?>
+                                <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
+                            <?php else : ?>
+                                <!-- Gambar default jika tidak ada gambar produk -->
+                                <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
+                            <?php endif; ?>
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
                             <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
-                            <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p>
+                            <!-- <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p> -->
                             <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
                         </div>
                     </div>
@@ -134,9 +134,6 @@
     </div>
     <!-- selesai menampilkan card produk -->
 </section>
-
- 
-
 
 
 
@@ -212,18 +209,54 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/klik-menu.js"></script>
+
+
+        <!-- untuk refresh saat selesai pencarian produk -->
   <script>
     if (window.location.search.includes('?search=')) {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
-  </script>
 
+    <script>
+    $(document).ready(function () {
+        // Fungsi untuk menampilkan card dengan efek fade-in
+        function fadeInCard(card) {
+            card.animate({ opacity: 1 }, 1000);
+        }
+
+        // Animasi fade-in pada card saat halaman dimuat
+        $(".card").each(function () {
+            fadeInCard($(this));
+        });
+
+        // Animasi fade-in pada card saat kursor berada di atasnya
+        $(".card").hover(
+            function () {
+                $(this).css({ opacity: 1 });
+            },
+            function () {
+                $(this).css({ opacity: 0 });
+            }
+        );
+
+        // Fungsi untuk menambahkan card baru dan menampilkannya dengan animasi
+        function addNewCard() {
+            var newCard = $("<div class='col-6 col-md-4 col-lg-3 mb-4 card'>Card Baru</div>");
+            newCard.css({ opacity: 0 });
+            $(".row").append(newCard);
+            fadeInCard(newCard);
+        }
+
+        // Menambahkan card baru saat menu diklik
+        $(".menu-item").click(function () {
+            addNewCard();
+        });
+    });
+</script>   
+  </script>
 
 </body>
 

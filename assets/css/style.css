@@ -333,6 +333,13 @@ h6 {
 # MAKANAN , MINUMAN, JASA, KERAJINAN
 --------------------------------------------------------------*/
 
+/* .kotak{
+  display: flex;
+  justify-content: space-between;
+} */
+
+
+
 section input {
   position: relative;
   top: -40px;
@@ -354,35 +361,15 @@ section input {
     margin-right: 33%;
     flex-direction: column;
     align-items: center;
-    margin-top: -11%;
+    margin-top: -12%;
   }
 
   .search-button {
     display: none;
   }
+
+  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -395,23 +382,30 @@ section input {
 
 
 /*--------------------------------------------------------------
-#  LAYANAN
+#  KOTAK INISIALISASI
 --------------------------------------------------------------*/
-layanan .informasi{
-  height: 500px;
+#wrapper {
+  max-width: 100%;
 }
 
 
-/* #layanan .cont{
-    max-width: 200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-} */
 
-#layanan .kotak{
-  border-radius: 10px;
+h1 {
+  font-family: 'Jost', sans-serif;
+  color: white;
+  font-size: 27px;
+  margin-left: 10px;
 }
+
+/* Media query untuk layar dengan lebar maksimum 600px */
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 20px; /* Sesuaikan ukuran font untuk layar yang lebih kecil */
+    margin-left: 5%; /* Atur margin kiri menjadi 0 agar sesuai dengan tata letak responsif */
+  }
+}
+
+
 
 
 

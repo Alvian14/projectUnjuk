@@ -1,22 +1,3 @@
-<?php
-// Membuat koneksi ke database
-  // include "koneksi.php";
-// Menjalankan kueri SQL
-// $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_prooduk
-//           FROM produk AS pd
-//           INNER JOIN umkm AS um
-//           ON pd.id_umkm = um.id_umkm
-//           WHERE pd.katergori_produk = 'Kerajinan'";
-
-// $result = mysqli_query($conn, $query);
-
-// // Memeriksa hasil kueri
-// if (!$result) {
-//     die("Kesalahan dalam eksekusi kueri: " . mysqli_error($conn));
-// }
-
-// Sekarang Anda dapat menggunakan hasil kueri dengan aman
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -105,35 +86,39 @@
 
     <!-- menampilkan card produk -->
     <div class="container mt-5">
-        <div class="row">
-            <?php
-            include "koneksi.php";
+    <div class="row">
+        <?php
+        include "koneksi.php";
 
-            if (isset($_GET['search'])) {
-                $search = $_GET['search'];
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                          FROM produk AS pd
-                          INNER JOIN umkm AS um
-                          ON pd.id_umkm = um.id_umkm
-                          WHERE pd.kategori_produk = 'Kerajinan' AND pd.nama_produk LIKE '%$search%'
-                          LIMIT 20";
-            } else {
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                          FROM produk AS pd
-                          INNER JOIN umkm AS um
-                          ON pd.id_umkm = um.id_umkm
-                          WHERE pd.kategori_produk = 'Kerajinan'
-                          LIMIT 20";
-            }
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                      FROM produk AS pd
+                      INNER JOIN umkm AS um
+                      ON pd.id_umkm = um.id_umkm
+                      WHERE pd.kategori_produk = 'Kerajinan' AND pd.nama_produk LIKE '%$search%'
+                      LIMIT 20";
+        } else {
+            $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                      FROM produk AS pd
+                      INNER JOIN umkm AS um
+                      ON pd.id_umkm = um.id_umkm
+                      WHERE pd.kategori_produk = 'Kerajinan'
+                      LIMIT 20";
+        }
+        $result = mysqli_query($conn, $query);
 
-            $result = mysqli_query($conn, $query);
-
-            while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-                <div class="col-6 col-md-4 col-lg-3 mb-4">
+        while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <div class="card">
-                        <a href="index.php">
-                            <img src="assets/img/makanan.png" class="card-img-top" alt="Gambar Produk">
+                        <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
+                            <?php if (!empty($row['gambar_produk1'])) : ?>
+                                <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
+                            <?php else : ?>
+                                <!-- Gambar default jika tidak ada gambar produk -->
+                                <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
+                            <?php endif; ?>
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
@@ -143,9 +128,9 @@
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
+        <?php } ?>
     </div>
+</div>
     <!-- selesai menampilkan card produk -->
 </section>
 

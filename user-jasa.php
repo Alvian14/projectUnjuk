@@ -96,14 +96,14 @@
 
             if (isset($_GET['search'])) {
                 $search = $_GET['search'];
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Jasa' AND pd.nama_produk LIKE '%$search%'
                           LIMIT 20";
             } else {
-                $query = "SELECT pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
@@ -117,8 +117,13 @@
             ?>
                 <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <div class="card">
-                        <a href="index.php">
-                            <img src="assets/img/makanan.png" class="card-img-top" alt="Gambar Produk">
+                        <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
+                            <?php if (!empty($row['gambar_produk1'])) : ?>
+                                <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
+                            <?php else : ?>
+                                <!-- Gambar default jika tidak ada gambar produk -->
+                                <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
+                            <?php endif; ?>
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>

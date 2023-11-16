@@ -1,4 +1,3 @@
-
 <?php
 // Check if 'id' parameter is set in the GET request
 if (isset($_GET['id'])) {
@@ -31,6 +30,3 @@ if (isset($_GET['id'])) {
     echo "Invalid request. 'id' parameter is missing.";
 }
 ?>
-
-
-

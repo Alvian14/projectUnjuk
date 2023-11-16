@@ -7,7 +7,10 @@
     // Pastikan id_produk bukan string kosong atau null
     if (!empty($id_produk)) {
         // Query untuk mengambil detail produk berdasarkan id_produk
-        $query = "SELECT * FROM produk WHERE id_umkm = $id_umkm";
+        $query = "SELECT pd.*, um.nama_umkm , um.notelp_umkm
+              FROM produk AS pd
+              INNER JOIN umkm AS um ON pd.id_umkm = um.id_umkm
+              WHERE pd.id_produk = $id_produk";
         $result = mysqli_query($conn, $query);
 
         // Periksa apakah ada hasil query
@@ -55,9 +58,14 @@
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
+<!-- Bootstrap JS dan Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-JZvQlGFJxuZSxrl9qjN1cl5fCk4iBAv3Blq5l/J7FV05Kf5d4w1jA3bR6jFbFSIj" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyId5K7L9x8nCcHbLfjo5miC6c5MII8bXi" crossorigin="anonymous"></script>
+
   <style>
    
-   .detail {
+    .detail {
             max-width: 800px;
             margin: 20px auto;
             background-color: #fff;
@@ -75,6 +83,8 @@
 
         .product-details {
             text-align: left;
+            display: flex;
+            justify-content: space-between;
         }
 
         .product-info {
@@ -89,7 +99,9 @@
         .product-info p {
             color: #666;
             margin-bottom: 10px;
-            word-wrap: break-word; /* atau overflow-wrap: break-word; */
+            word-wrap: break-word; 
+            max-width: 600px; 
+            margin: 0 auto; 
         }
 
         .label {
@@ -97,9 +109,16 @@
             color: #333;
         }
 
-        .separator {
+        .garis {
             border-bottom: 1px solid #ccc;
             margin: 10px 0;
+            
+        }
+
+        .carousel-item img {
+        height: 500px; /* Sesuaikan tinggi gambar sesuai kebutuhan Anda */
+        object-fit: cover;
+        border-radius: 5px; /* Untuk memberikan sudut yang bulat */
         }
 
         @media screen and (max-width: 600px) {
@@ -167,49 +186,95 @@
     </div>
 
 
-    <div class="container">
-        <div class="product-image">
-          <img src="<?php echo $row['gambar_produk1']; ?>" alt="Deskripsi gambar" style="width: 100%;">
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="productCarousel" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" style="border-radius: 5px;">
+                        <div class="carousel-item active">
+                            <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" alt="Gambar Produk 1" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="public/img/produk-photo/<?php echo $row['gambar_produk2']; ?>" alt="Gambar Produk 2" class="d-block w-100"> 
+                        </div>
+                        <div class="carousel-item">
+                            <img src="public/img/produk-photo/<?php echo $row['gambar_produk3']; ?>" alt="Gambar Produk 3" class="d-block w-100">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="product-details">
-            <div class="product-info">
-                <h2><?php echo $row['nama_produk']; ?></h2>
+        <div class="col-md-6">
+            <div class="product-details">
+                <div class="product-info">
+                    <h2 style="font-weight: bold;"><?php echo $row['nama_produk']; ?></h2>
 
-                <p class="label">Harga:</p>
-                <p>$<?php echo $row['harga_prooduk']; ?></p>
+                    <p class="label mt-4 ">Harga:</p>
+                    <p>Rp <?php echo $row['harga_produk']; ?></p>
 
-                <div class="separator"></div>
+                    <div class="garis"></div>
 
-                <p class="label">Kategori:</p>
-                <p><?php echo $row['kategori_produk']; ?></p>
+                    <p class="label">Kategori:</p>
+                    <p><?php echo $row['kategori_produk']; ?></p>
 
-                <div class="separator"></div>
+                    <div class="garis"></div>
 
-                <p class="label">PIRT:</p>
-                <p><?php echo $row['pirt']; ?></p>
+                    <p class="label">PIRT:</p>
+                    <p><?php echo $row['pirt_produk']; ?></p>
 
-                <div class="separator"></div>
+                    <div class="garis"></div>
 
-                <p class="label">BPOM:</p>
-                <p><?php echo $row['bpom']; ?></p>
+                    <p class="label">BPOM:</p>
+                    <p><?php echo $row['bpom_produk']; ?></p>
 
-                <div class="separator"></div>
+                    <div class="garis"></div>
 
-                <p class="label">ID Halal:</p>
-                <p><?php echo $row['id_halal']; ?></p>
+                    <p class="label">ID Halal:</p>
+                    <p><?php echo $row['idhalal_produk']; ?></p>
 
-                <div class="separator"></div>
+                    <div class="garis"></div>
 
-                <p class="label">Deskripsi Produk:</p>
-                <p><?php echo $row['deskripsi_produk']; ?></p>
+                    <p class="label">Deskripsi Produk:</p>
+                    <p><?php echo $row['deskripsi_produk']; ?></p>
 
-                <div class="separator"></div>
+                    <div class="garis"></div>
 
-                <p class="label">Nama UMKM:</p>
-                <p><?php echo $row['nama_umkm']; ?></p>
+                    <p class="label">Nama UMKM:</p>
+                    <p><?php echo $row['nama_umkm']; ?></p>
+
+                    <div class="garis"></div>
+
+                    <p class="label">No telepon:</p>
+                    <p> <?php
+                        $nomor_telepon = $row['notelp_umkm'];
+
+                        // Hapus karakter selain angka dari nomor telepon
+                        $nomor_telepon = preg_replace('/[^0-9]/', '', $nomor_telepon);
+
+                        // Buat URL WhatsApp
+                        $wa_url = "https://api.whatsapp.com/send?phone=+{$nomor_telepon}";
+
+                        // Tampilkan tautan jika nomor telepon tidak kosong
+                        if (!empty($nomor_telepon)) {
+                            echo "<a href='{$wa_url}' target='_blank'>{$row['notelp_umkm']}</a>";
+                        } else {
+                            echo "Nomor telepon tidak tersedia";
+                        }
+                        ?></p>
+                </div>
             </div>
         </div>
     </div>
+</div>
     
 
 </section>
@@ -292,6 +357,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/klik-menu.js"></script>
   
+ 
 
 </body>
 

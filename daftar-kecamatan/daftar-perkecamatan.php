@@ -158,10 +158,9 @@
                         echo "<td>" . $row['id_akun'] . "</td>";
                         echo "<td><img src='" . $row['umkm_foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></td>";
                         echo "<td>";
-                        echo "<button class='btn btn-primary'><i class='bx bx-pencil'></i> Lihat</button>";
                         echo '<a class="btn btn-danger" role="button" href="../hapus-data.php?id=' . htmlentities($row['id_umkm']) . '"
                         onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
-                        <i class="bx bx-trash"></i> Hapus
+                        <i class="bx bx-trash"></i>
                         </a>';
                         echo "</td>";
                         echo "</tr>";
