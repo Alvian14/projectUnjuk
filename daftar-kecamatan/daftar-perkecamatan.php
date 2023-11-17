@@ -112,8 +112,9 @@
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <h3 class="title mt-3">Daftar</h3>
-      <h6 class="title "> Daftar /
+      <h6 class="title ">
         <a  style="text-decoration: none;" href="../admin-beranda.php">Dashboard</a>
+        / Daftar
       </h6>
         <!-- <div class="container">
           <div class="d-flex justify-content-end " >

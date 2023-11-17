@@ -1,3 +1,58 @@
+<?php
+    include "koneksi.php";
+
+    $id_kegiatan = $_GET['id'];
+
+    $query = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
+    $result = mysqli_query($conn, $query);
+
+    if (!$result) {
+        die("Query error: " . mysqli_error($conn));
+    }
+
+    if (mysqli_num_rows($result) > 0) {
+        $data = mysqli_fetch_assoc($result);
+        $judul = $data['judul'];
+        $tgl = $data['tgl'];
+        $jam = $data['jam'];
+        $deskripsi = $data['deskripsi'];
+        $gambar = $data['foto']; // Sesuaikan dengan kolom di tabel Anda
+    } else {
+        echo "Data tidak ditemukan.";
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $judul_baru = $_POST['judul'];
+        $tgl_baru = $_POST['tgl'];
+        $jam_baru = $_POST['jam'];
+        $deskripsi_baru = $_POST['deskripsi'];
+
+        $file_foto = '';
+        if ($_FILES['file']['name'] !== '') {
+            $file_foto = 'assets1/' . $_FILES['file']['name'];
+            move_uploaded_file($_FILES['file']['tmp_name'], $file_foto);
+        } else {
+            $file_foto = $gambar;
+        }
+
+        $update_query = "UPDATE kegiatan SET
+                            judul = '$judul_baru',
+                            tgl = '$tgl_baru',
+                            jam = '$jam_baru',
+                            deskripsi = '$deskripsi_baru',
+                            foto = '$file_foto'
+                            WHERE id_kegiatan = $id_kegiatan";
+
+        $update_result = mysqli_query($conn, $update_query);
+
+        if ($update_result) {
+            header("Location: admin-tabel-warkopUmi.php");
+            exit();
+        } else {
+            echo "Gagal menyunting data: " . mysqli_error($conn);
+        }
+    }
+?>
 
 <!doctype html>
 <html lang="en">
@@ -19,13 +74,6 @@
     <link rel="website icon" href="tem-login/images/logoUnjuk.png">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-
-    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script defer src="assets/js/tabel-daftar.js"></script>
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -114,11 +162,11 @@
     </style>
   
 
-    
+  <link rel="stylesheet" href="assets/dashboard.css?v=<?php echo time(); ?>">
     
       
     <!-- <link href="assets/dashboard.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="assets/dashboard.css?v=<?php echo time(); ?>">
+    
   </head>
   <body>
     
@@ -158,72 +206,40 @@
     </nav>
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h3 class="title mt-3">Detail Warkop Umi</h3>
-      <h6 class="title ">  
-        <a  style="text-decoration: none;" href="admin-warkopUmi.php">Update Warkop Umi</a>
-        / Detail Warkop Umi
-      </h6>
-        
-        <div class="table-responsive mt-5">
-            <table id="example" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Id</th>
-                        <th>Judul</th>
-                        <th>Tanggal</th>
-                        <th>Jam</th>
-                        <th>Deskripsi</th>
-                        <th>Foto</th>
-                        <th>Aksi</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                
-                include "koneksi.php";
-                // Buat kueri SQL untuk mengambil data dari tabel kegiatan
-                $sql = "SELECT * FROM kegiatan";
-                $result = $conn->query($sql);
-
-                // Tampilkan data dalam tabel HTML
-                if ($result->num_rows > 0) {
-                    $no = 1;
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $no . "</td>";
-                        echo "<td>" . $row['id_kegiatan'] . "</td>";
-                        echo "<td>" . $row['judul'] . "</td>";
-                        echo "<td>" . $row['tgl'] . "</td>";
-                        echo "<td>" . $row['jam'] . "</td>";
-                        echo "<td>" . $row['deskripsi'] . "</td>";
-                        echo "<td><a href='" . $row['foto'] . "' target='_blank'><img src='" . $row['foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></a></td>";
-                        echo "<td>";
-                        echo '<a class="btn btn-success" role="button" href="admin-edit-warkopUmi.php?id=' . htmlentities($row['id_kegiatan']) . '">
-                            <i class="bx bx-edit"></i>
-                            </a>';
-                        echo '<a class="btn btn-danger mt-1" role="button" href="hapus-kegiatan.php?id=' . htmlentities($row['id_kegiatan']) . '"
-                            onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
-                            <i class="bx bx-trash"></i>
-                            </a>';
-                        echo "</td>";
-                        echo "</tr>";
-                        $no++;
-                    }
-                } else {
-                    echo "Tidak ada data UMKM yang ditemukan.";
-                }
-
-                // Tutup koneksi
-                $conn->close();
-            ?>
-                </tbody>
-            </table>
-            </div>
+        <h3 class="title mt-3">Edit Warkop Umi</h3>
+        <h6 class="title ">
+            <a style="text-decoration: none;" href="admin-warkopUmi.php">Update Warkop Umi </a> /
+            <a style="text-decoration: none;" href="admin-tabel-warkopUmi.php">Detail Warkop Umi</a>
+            / Edit Warkop Umi
+        </h6>
+        <div class="group mt-5">
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="judul">Judul:</label>
+                    <input type="text" id="judul" name="judul" value="<?php echo $judul; ?>" placeholder="Masukkan judul">
+                </div>
+                <div class="form-group">
+                    <label for="tgl">Tanggal:</label>
+                    <input type="date" id="tgl" name="tgl" value="<?php echo $tgl; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="jam">Jam:</label>
+                    <input type="time" id="jam" name="jam" value="<?php echo isset($_POST['jam']) ? $_POST['jam'] : date('H:i', strtotime($jam)); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea id="deskripsi" name="deskripsi" rows="4" style="width: 100%"
+                        placeholder="Masukkan deskripsi"><?php echo $deskripsi; ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="file">Unggah Gambar:</label>
+                    <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto">
+                </div>
+                <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit">
+                    <i class='bx bx-plus' style='color:#fafafa'></i> Edit
+                </button>
+            </form>
         </div>
-
-
     </main>
   </div>
 </div>
@@ -245,21 +261,7 @@
           if (notifikasi) {
               notifikasi.style.display = 'none';
           }
-      }, 2000); // 5000 m
-
-      // document.getElementById("tambahButton").addEventListener("click", function() {
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "block";
-      //   });
-
-      //   document.getElementById("konfirmasiYa").addEventListener("click", function() {
-      //       // Tambahkan logika untuk menambahkan data ke database di sini
-      //       alert("Data berhasil ditambahkan");
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
-      //   });
-
-      //   document.getElementById("konfirmasiBatal").addEventListener("click", function() {
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
-      //   });
+      }, 2000); 
 
     </script>
 
