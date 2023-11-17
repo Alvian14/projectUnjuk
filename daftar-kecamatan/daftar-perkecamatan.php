@@ -60,7 +60,6 @@
 
     
     <!-- template tabel data -->
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
@@ -116,17 +115,6 @@
         <a  style="text-decoration: none;" href="../admin-beranda.php">Dashboard</a>
         / Daftar
       </h6>
-        <!-- <div class="container">
-          <div class="d-flex justify-content-end " >
-              <button class="btn btn-primary mt-4" style="margin-right: 5px">
-                  <a class="nav-link" href="../admin-tambah.php">
-                  <i class='bx bx-plus' style='color:#fafafa'></i> 
-                  Tambah </a>
-              </button>
-          </div>
-        </div> -->
-
-
 
         <!-- ###################### TABEL UMKM ###################### -->
         <div class="table-responsive mt-5">
@@ -157,7 +145,7 @@
                         echo "<td>" . $row['notelp_umkm'] . "</td>";
                         echo "<td>" . $row['alamat_umkm'] . "</td>";
                         echo "<td>" . $row['id_akun'] . "</td>";
-                        echo "<td><img src='" . $row['umkm_foto'] . "' alt='Foto UMKM' style='max-width: 100px; max-height: 100px;'></td>";
+                        echo '<td><img src="../public/img/umkm-photo/' . $row['umkm_foto'] . '" class="card-img-top" alt="Gambar Produk" style="max-width: 100px; max-height: 100px;"></td>';
                         echo "<td>";
                         echo '<a class="btn btn-danger" role="button" href="../hapus-data.php?id=' . htmlentities($row['id_umkm']) . '"
                         onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
@@ -174,7 +162,6 @@
               </tbody>
           </table>
         </div>
-
 
        
 

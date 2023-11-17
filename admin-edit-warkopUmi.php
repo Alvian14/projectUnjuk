@@ -206,11 +206,11 @@
     </nav>
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <h3 class="title mt-3">Edit Warkop Umi</h3>
+        <h3 class="title mt-3">Ubah Warkop Umi</h3>
         <h6 class="title ">
             <a style="text-decoration: none;" href="admin-warkopUmi.php">Update Warkop Umi </a> /
             <a style="text-decoration: none;" href="admin-tabel-warkopUmi.php">Detail Warkop Umi</a>
-            / Edit Warkop Umi
+            / Ubah Warkop Umi
         </h6>
         <div class="group mt-5">
             <form method="POST" action="" enctype="multipart/form-data">
@@ -236,7 +236,7 @@
                     <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto">
                 </div>
                 <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit">
-                    <i class='bx bx-plus' style='color:#fafafa'></i> Edit
+                <i class="bx bx-edit"></i> Ubah perubahan
                 </button>
             </form>
         </div>
