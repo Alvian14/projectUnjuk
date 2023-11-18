@@ -28,7 +28,23 @@
   <!-- Template Main CSS File -->
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
+
+  <style>
+   .kotak {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out; /* Animasi saat hovered */
+  }
+
+  .kotak:hover {
+    transform: scale(1.05); /* Membesar saat hovered */
+  }
+
+  .card-body {
+    padding: 20px;
+  }
   
+  </style>
 
 </head>
 
@@ -79,7 +95,7 @@
                                 <i class='bx bxs-clinic bx-tada bx-lg' style='color:#47b2e4' ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Klinik UMKM Go Digital</h5>
-                                    <p class="card-text mt-3">Membantu penjualan menggunakan platfrom digital.</p>
+                                    <p class="card-text mt-3">Membantu penjualan platfrom digital.</p>
                                 </div>
                             </div>
                         </div>
