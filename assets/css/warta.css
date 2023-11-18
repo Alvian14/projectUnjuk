@@ -1,0 +1,48 @@
+.container-kotak {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 10px auto;
+    padding: 15px;
+    max-width: 1000px;
+    height: auto;
+  }
+  
+  .image-container {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image {
+    max-width: 50%; /* Gambar tidak melebihi lebar kontainer */
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .content {
+    flex: 2;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .description {
+    font-size: 16px;
+    margin-bottom: 10px;
+    max-height: 100px;
+    overflow: hidden;
+    white-space: pre-line;
+    text-overflow: ellipsis;
+  }
+  
+  .datetime {
+    font-size: 14px;
+  }

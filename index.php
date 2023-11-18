@@ -48,55 +48,11 @@
 
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="assets/css/warta.css?v=<?php echo time(); ?>">
 
 
   <!-- bootstrap css -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
-  <style>
-    .container-kotak {
-      display: flex;
-  flex-direction: row;
-  background-color: #f0f0f0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin: 10px auto; /* Menggunakan auto untuk margin horizontal akan memusatkan kontainer. */
-  padding: 15px;
-  max-width: 1000px;
-  height: auto;ruang di sekitar konten */
-    }
-
-    .image-container {
-      flex: 1;
-      margin-right: 10px; /* Memberi jarak di sebelah kanan gambar */
-    }
-
-    .image {
-      max-width: 100%; /* Gambar tidak melebihi lebar kontainer */
-      height: auto;
-      border-radius: 8px; /* Melengkungkan sudut gambar */
-    }
-
-    .content {
-      flex: 2;
-    }
-
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px; /* Memberi jarak antara judul dan deskripsi */
-    }
-
-    .description {
-      font-size: 16px;
-      margin-bottom: 10px; /* Memberi jarak antara deskripsi dan tanggal/jam */
-    }
-
-    .datetime {
-      font-size: 14px;
-      
-    }
-  
-</style>
 </head>
 
 <body>
@@ -142,16 +98,16 @@
     <!-- pembuatan kegiatan -->
     <?php
     while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="container-kotak ">';
+        echo '<div class="container-kotak mt-4">';
         echo '<div class="image-container">';
         echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
         echo '</div>';
         echo '<div class="content">';
         echo '<div class="title">' . $row['judul'] . '</div>';
-        echo '<div class="description">' . $row['deskripsi'] . '</div>';
-        echo '<div class="datetime">';
         echo 'Tanggal: ' . $row['tgl'] . '<br>';
         echo 'Jam: ' . $row['jam'];
+        echo '<div class="description">' . $row['deskripsi'] . '</div>';
+        echo '<div class="datetime">';
         echo '</div>';
         echo '</div>';
         echo '</div>';
