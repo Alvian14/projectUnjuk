@@ -41,8 +41,20 @@
     overflow: hidden;
     white-space: pre-line;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* Number of lines to show before adding ellipsis */
+  }
+  
+  /* Add more responsive styles as needed */
+  @media (max-width: 768px) {
+    .description {
+      max-height: 60px; /* Adjust the max-height for smaller screens */
+      -webkit-line-clamp: 3; /* Adjust the number of lines for smaller screens */
+    }
   }
   
   .datetime {
     font-size: 14px;
   }
+
