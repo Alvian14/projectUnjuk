@@ -8,32 +8,36 @@
         $jam_kegiatan = $_POST["jam"];
         $deskripsi = $_POST["deskripsi"];
     
-        // Proses unggah gambar
-        $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
-        $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
+        // Validasi tanggal
+        $today = date("Y-m-d");
     
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
-            // Gambar berhasil diunggah
-            $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
-    
-            // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
-            $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
-                    VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
-    
-            if (mysqli_query($conn, $sql)) {
-                $pesan = "Data kegiatan berhasil ditambahkan.";
-
-                // Hapus data kegiatan yang sudah lewat
-                // date_default_timezone_set('Asia/Jakarta');
-
-              // // Hapus data kegiatan yang sudah lewat
-              // $sqlDelete = "DELETE FROM kegiatan WHERE STR_TO_DATE(CONCAT(tgl, ' ', jam), '%Y-%m-%d %H:%i:%s') < NOW()";
-              // mysqli_query($conn, $sqlDelete);
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
+        if ($tanggal_kegiatan <= $today) {
+            $eror = "Tanggal tidak boleh mundur dari tanggal sekarang.";
+        } elseif (strlen($judul_kegiatan) < $judulMinLength || strlen($judul_kegiatan) > $judulMaxLength) {
+            $eror = "Judul harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
+        } elseif (strlen($deskripsi) < $deskripsiMinLength || strlen($deskripsi) > $deskripsiMaxLength) {
+            $eror = "Deskripsi harus memiliki panjang antara $deskripsiMinLength dan $deskripsiMaxLength karakter.";
         } else {
-            $eror = "Gagal menambahkan data.";
+            // Proses unggah gambar
+            $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
+            $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
+    
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
+                // Gambar berhasil diunggah
+                $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
+    
+                // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
+                $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
+                        VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
+    
+                if (mysqli_query($conn, $sql)) {
+                    $pesan = "Data kegiatan berhasil ditambahkan.";
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
+            } else {
+                $eror = "Gagal menambahkan data.";
+            }
         }
     
         // Menutup koneksi database
@@ -66,6 +70,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
 
 
     <style>
@@ -132,9 +138,9 @@
           
           padding: 10px;
           position: fixed;
-          top: 15%; /* Menengahkan vertikal */
-          left: 50%; /* Menengahkan horizontal */
-          transform: translate(-50%, -50%); /* Mencentralkan elemen */
+          top: 15%; 
+          left: 50%; 
+          transform: translate(-50%, -50%); 
           border-radius: 5px;
         }
 
@@ -144,9 +150,9 @@
           text-align: center;
           padding: 10px;
           position: fixed;
-          top: 15%; /* Menengahkan vertikal */
-          left: 50%; /* Menengahkan horizontal */
-          transform: translate(-50%, -50%); /* Mencentralkan elemen */
+          top: 15%; 
+          left: 50%; 
+          transform: translate(-50%, -50%); 
           border-radius: 5px;
         }
   
@@ -250,7 +256,7 @@
 
         <div class="container ml-5">
             <div class="d-flex justify-content-end " >
-                <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId">
+                <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId" >
                     <i class='bx bx-plus' style='color:#fafafa'></i> Tambah
                 </button>
                 <button class="btn btn-warning mt-1" style="margin-right: 5px; height: 40px" onclick="window.location.href='admin-tabel-warkopUmi.php'" >
@@ -266,32 +272,7 @@
         
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var deskripsiInput = document.getElementById('deskripsi');
-        var pesanDeskripsi = document.getElementById('pesanDeskripsi');
 
-        deskripsiInput.addEventListener('input', function () {
-            var deskripsiValue = deskripsiInput.value;
-            var karakterCount = deskripsiValue.length;
-
-            var minimumLength = 100;
-            var maximumLength = 500;
-
-            if (karakterCount < minimumLength) {
-                pesanDeskripsi.innerHTML = 'Deskripsi harus memiliki setidaknya 100 karakter.';
-            } else if (karakterCount > maximumLength) {
-                pesanDeskripsi.innerHTML = 'Deskripsi tidak boleh lebih dari 500 karakter.';
-                deskripsiInput.value = deskripsiValue.substring(0, maximumLength);
-            } else {
-                pesanDeskripsi.innerHTML = ''; // Menghapus pesan jika panjang karakter sesuai
-            }
-        });
-    });
-
-
-   
-</script>
 
     </main>
   </div>
@@ -314,21 +295,7 @@
           if (notifikasi) {
               notifikasi.style.display = 'none';
           }
-      }, 2000); // 5000 m
-
-      // document.getElementById("tambahButton").addEventListener("click", function() {
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "block";
-      //   });
-
-      //   document.getElementById("konfirmasiYa").addEventListener("click", function() {
-      //       // Tambahkan logika untuk menambahkan data ke database di sini
-      //       alert("Data berhasil ditambahkan");
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
-      //   });
-
-      //   document.getElementById("konfirmasiBatal").addEventListener("click", function() {
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
-      //   });
+      }, 2000);
 
     </script>
 
