@@ -1,57 +1,89 @@
 <?php
     include "koneksi.php";
 
-    $id_kegiatan = $_GET['id'];
+      $id_kegiatan = $_GET['id'];
 
-    $query = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
-    $result = mysqli_query($conn, $query);
+      $query = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
+      $result = mysqli_query($conn, $query);
 
-    if (!$result) {
-        die("Query error: " . mysqli_error($conn));
-    }
+      if (!$result) {
+          die("Query error: " . mysqli_error($conn));
+      }
 
-    if (mysqli_num_rows($result) > 0) {
-        $data = mysqli_fetch_assoc($result);
-        $judul = $data['judul'];
-        $tgl = $data['tgl'];
-        $jam = $data['jam'];
-        $deskripsi = $data['deskripsi'];
-        $gambar = $data['foto']; // Sesuaikan dengan kolom di tabel Anda
-    } else {
-        echo "Data tidak ditemukan.";
-    }
+      if (mysqli_num_rows($result) > 0) {
+          $data = mysqli_fetch_assoc($result);
+          $judul = $data['judul'];
+          $tgl = $data['tgl'];
+          $jam = $data['jam'];
+          $deskripsi = $data['deskripsi'];
+          $gambar = $data['foto']; 
+      } else {
+          echo "Data tidak ditemukan.";
+      }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $judul_baru = $_POST['judul'];
-        $tgl_baru = $_POST['tgl'];
-        $jam_baru = $_POST['jam'];
-        $deskripsi_baru = $_POST['deskripsi'];
+      $judulMinLength = 10; 
+      $judulMaxLength = 50;
+      $deskripsiMinLength = 20;
+      $deskripsiMaxLength = 500;
 
-        $file_foto = '';
-        if ($_FILES['file']['name'] !== '') {
-            $file_foto = 'assets1/' . $_FILES['file']['name'];
-            move_uploaded_file($_FILES['file']['tmp_name'], $file_foto);
-        } else {
-            $file_foto = $gambar;
-        }
+      // Proses form saat POST
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          // Ambil data dari form
+          $judul_baru = $_POST['judul'];
+          $tgl_baru = $_POST['tgl'];
+          $jam_baru = $_POST['jam'];
+          $deskripsi_baru = $_POST['deskripsi'];
 
-        $update_query = "UPDATE kegiatan SET
-                            judul = '$judul_baru',
-                            tgl = '$tgl_baru',
-                            jam = '$jam_baru',
-                            deskripsi = '$deskripsi_baru',
-                            foto = '$file_foto'
-                            WHERE id_kegiatan = $id_kegiatan";
+          // Validasi karakter
+          $errors = [];
 
-        $update_result = mysqli_query($conn, $update_query);
+          if (strlen($judul_baru) < $judulMinLength || strlen($judul_baru) > $judulMaxLength) {
+              $errors[] = "Judul kegiatan harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
+          }
 
-        if ($update_result) {
-            header("Location: admin-tabel-warkopUmi.php");
-            exit();
-        } else {
-            echo "Gagal menyunting data: " . mysqli_error($conn);
-        }
-    }
+          if (strlen($deskripsi_baru) < $deskripsiMinLength || strlen($deskripsi_baru) > $deskripsiMaxLength) {
+              $errors[] = "Deskripsi kegiatan harus memiliki panjang antara $deskripsiMinLength dan $deskripsiMaxLength karakter.";
+          }
+
+          $today = date("Y-m-d");
+
+          if ($tgl_baru <= $today) {
+              $errors[] = "Tanggal kegiatan harus lebih dari tanggal sekarang.";
+          }
+
+          // Jika tidak ada error, lanjutkan proses update
+          if (empty($errors)) {
+              $file_foto = '';
+              if ($_FILES['file']['name'] !== '') {
+                  $file_foto = 'assets1/' . $_FILES['file']['name'];
+                  move_uploaded_file($_FILES['file']['tmp_name'], $file_foto);
+              } else {
+                  $file_foto = $gambar;
+              }
+
+              $update_query = "UPDATE kegiatan SET
+                                  judul = '$judul_baru',
+                                  tgl = '$tgl_baru',
+                                  jam = '$jam_baru',
+                                  deskripsi = '$deskripsi_baru',
+                                  foto = '$file_foto'
+                                  WHERE id_kegiatan = $id_kegiatan";
+
+              $update_result = mysqli_query($conn, $update_query);
+
+              if ($update_result) {
+                  header("Location: admin-tabel-warkopUmi.php");
+                  exit();
+              } else {
+                  echo "Gagal menyunting data: " . mysqli_error($conn);
+              }
+          } else {
+              // Tampilkan error
+              foreach ($errors as $eror) {
+                  // echo $eror . "<br>";
+              }
+          }
+      }
 ?>
 
 <!doctype html>
@@ -214,6 +246,17 @@
         </h6>
         <div class="group mt-5">
             <form method="POST" action="" enctype="multipart/form-data">
+                  <?php if (!empty($pesan)) { ?>
+                          <div class="notifikasi">
+                              <?php echo $pesan; ?>
+                          </div>
+                      <?php } ?>
+
+                      <?php if (!empty($eror)) { ?>
+                          <div class="eror">
+                              <?php echo $eror; ?>
+                          </div>
+                      <?php } ?>
                 <div class="form-group">
                     <label for="judul">Judul:</label>
                     <input type="text" id="judul" name="judul" value="<?php echo $judul; ?>" placeholder="Masukkan judul">

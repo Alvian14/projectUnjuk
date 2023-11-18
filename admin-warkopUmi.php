@@ -1,6 +1,11 @@
 <?php
     require_once("koneksi.php");
 
+    $judulMinLength = 10; 
+    $judulMaxLength = 50;
+    $deskripsiMinLength = 20;
+    $deskripsiMaxLength = 500;
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mengambil data dari formulir
         $judul_kegiatan = $_POST["judul"];
