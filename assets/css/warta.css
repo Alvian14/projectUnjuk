@@ -1,60 +1,61 @@
+/* Add this CSS to your existing stylesheet or create a new one */
+
 .container-kotak {
-    display: flex;
-    flex-direction: column;
-    background-color: #f0f0f0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin: 10px auto;
-    padding: 15px;
-    max-width: 1000px;
-    height: auto;
-  }
-  
-  .image-container {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 10px auto;
+  padding: 15px;
+  max-width: 1000px;
+  height: auto;
+}
+
+.image-container {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  max-width: 50%; /* Adjust for smaller screens */
+  height: auto;
+  border-radius: 8px;
+}
+
+.content {
+  flex: 2;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.description {
+  font-size: 16px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* Number of lines to show before adding ellipsis */
+  -webkit-line-clamp: 5;
+}
+
+.datetime {
+  font-size: 14px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
   .image {
-    max-width: 50%; /* Gambar tidak melebihi lebar kontainer */
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .content {
-    flex: 2;
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .description {
-    font-size: 16px;
-    margin-bottom: 10px;
-    max-height: 100px;
-    overflow: hidden;
-    white-space: pre-line;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5; /* Number of lines to show before adding ellipsis */
-  }
-  
-  /* Add more responsive styles as needed */
-  @media (max-width: 768px) {
-    .description {
-      max-height: 60px; /* Adjust the max-height for smaller screens */
-      -webkit-line-clamp: 3; /* Adjust the number of lines for smaller screens */
-    }
-  }
-  
-  .datetime {
-    font-size: 14px;
+    max-height: 200px; /* Adjust for smaller screens */
+    max-width: 100%;
   }
 
+  
+}
