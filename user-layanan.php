@@ -29,21 +29,33 @@
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
+
   <style>
    .kotak1 {
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out; /* Animasi saat hovered */
-  }
+    animation: fadeInUp 0.9s ease-out;
+    }
 
-  .kotak1:hover {
-    transform: scale(1.05); /* Membesar saat hovered */
-  }
+    .kotak1:hover {
+      transform: scale(1.05); /* Membesar saat hovered */
+    }
 
-  .card-body {
-    padding: 20px;
+    .card-body {
+      padding: 20px;
+    }
+
+    @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
   }
-  
   </style>
 
 </head>
