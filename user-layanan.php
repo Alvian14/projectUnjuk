@@ -30,13 +30,13 @@
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 
   <style>
-   .kotak {
+   .kotak1 {
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out; /* Animasi saat hovered */
   }
 
-  .kotak:hover {
+  .kotak1:hover {
     transform: scale(1.05); /* Membesar saat hovered */
   }
 
@@ -91,7 +91,7 @@
                 <div class="container mt-5">
                     <div class="row g-4">
                         <div class="col-md-6 col-lg-4">
-                            <div class="kotak text-center" style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                            <div class="kotak1 text-center" style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
                                 <i class='bx bxs-clinic bx-tada bx-lg' style='color:#47b2e4' ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Klinik UMKM Go Digital</h5>
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <div class="kotak text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                            <div class="kotak1 text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
                                 <i class='bx bxs-file-doc bx-tada bx-lg' style='color:#47b2e4'  ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Fasilitas Perizinan</h5>
@@ -111,7 +111,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <div class="kotak text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                            <div class="kotak1 text-center" style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
                                 <i class='bx bxs-magic-wand bx-tada bx-lg' style='color:#47b2e4' ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Design Kemasan</h5>
@@ -125,7 +125,7 @@
                 <div class="container mt-5 ">
                     <div class="row g-4 justify-content-center align-items-center">
                         <div class="col-md-6 col-lg-4">
-                            <div class="kotak text-center " style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                            <div class="kotak1 text-center " style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
                                 <i class='bx bxs-store bx-tada bx-lg' style='color:#47b2e4' ></i>
                                 <div class="card-body">
                                     <h5 class="card-title">Market Hub</h5>
@@ -135,7 +135,7 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4">
-                            <div class="kotak text-center " style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                            <div class="kotak1 text-center " style="box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
                                   <i class='bx bx-trending-up bx-tada bx-lg' style='color:#47b2e4' ></i>
                                   <div class="card-body">
                                     <h5 class="card-title">Affiliate Program</h5>
