@@ -67,7 +67,7 @@
 
 
   <!-- makanan -->
-  <section id="user-kerajinan.php">
+  <section id="user-makanan.php">
     <div id="wrapper">
         <div class="kotak">
             <h1 style="font-family: 'Jost', sans-serif; color: white; font-size: 27px; margin-left: 10px;">
@@ -75,7 +75,7 @@
             </h1>
             <form action="user-makanan.php" method="get">
                 <div class="search-container">
-                    <input class="search-input" type="search" id="searchInput" name="search" placeholder="Cari Kerajinan...">
+                    <input class="search-input" type="search" id="searchInput" name="search" placeholder="Cari Makanan...">
                     <input class="search-button"  type="submit" value="Cari" style="width: 5%;">
                 </div>
             </form>
@@ -214,48 +214,13 @@
 
 
         <!-- untuk refresh saat selesai pencarian produk -->
-  <script>
+
+   <script>
     if (window.location.search.includes('?search=')) {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
+  </script> 
 
-    <script>
-    $(document).ready(function () {
-        // Fungsi untuk menampilkan card dengan efek fade-in
-        function fadeInCard(card) {
-            card.animate({ opacity: 1 }, 1000);
-        }
-
-        // Animasi fade-in pada card saat halaman dimuat
-        $(".card").each(function () {
-            fadeInCard($(this));
-        });
-
-        // Animasi fade-in pada card saat kursor berada di atasnya
-        $(".card").hover(
-            function () {
-                $(this).css({ opacity: 1 });
-            },
-            function () {
-                $(this).css({ opacity: 0 });
-            }
-        );
-
-        // Fungsi untuk menambahkan card baru dan menampilkannya dengan animasi
-        function addNewCard() {
-            var newCard = $("<div class='col-6 col-md-4 col-lg-3 mb-4 card'>Card Baru</div>");
-            newCard.css({ opacity: 0 });
-            $(".row").append(newCard);
-            fadeInCard(newCard);
-        }
-
-        // Menambahkan card baru saat menu diklik
-        $(".menu-item").click(function () {
-            addNewCard();
-        });
-    });
-</script>   
-  </script>
 
 </body>
 
