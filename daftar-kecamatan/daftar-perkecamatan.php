@@ -42,6 +42,11 @@
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
    
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -134,33 +139,36 @@
               </thead>
               <tbody>
                   <?php
-                  if ($result->num_rows > 0) {
-                    $no = 1;
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $no . "</td>";
-                        echo "<td>" . $row['nama_umkm'] . "</td>";
-                        echo "<td>" . $row['Jenis_usahaumkm'] . "</td>";
-                        echo "<td>" . $row['Nib_umkm'] . "</td>";
-                        echo "<td>" . $row['notelp_umkm'] . "</td>";
-                        echo "<td>" . $row['alamat_umkm'] . "</td>";
-                        echo "<td>" . $row['id_akun'] . "</td>";
-                        echo '<td><img src="../public/img/umkm-photo/' . $row['umkm_foto'] . '" class="card-img-top" alt="Gambar Produk" style="max-width: 100px; max-height: 100px;"></td>';
-                        echo "<td>";
-                        echo '<a class="btn btn-danger" role="button" href="../hapus-data.php?id=' . htmlentities($row['id_umkm']) . '"
-                        onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
-                        <i class="bx bx-trash"></i>
-                        </a>';
-                        echo "</td>";
-                        echo "</tr>";
-                        $no++;
-                    }
-                } else {
-                    echo "Tidak ada data UMKM yang ditemukan.";
-                }
+                      if ($result->num_rows > 0) {
+                          $no = 1;
+                          while ($row = $result->fetch_assoc()) {
+                              echo "<tr>";
+                              echo "<td>" . $no . "</td>";
+                              echo "<td>" . $row['nama_umkm'] . "</td>";
+                              echo "<td>" . $row['Jenis_usahaumkm'] . "</td>";
+                              echo "<td>" . $row['Nib_umkm'] . "</td>";
+                              echo "<td>" . $row['notelp_umkm'] . "</td>";
+                              echo "<td>" . $row['alamat_umkm'] . "</td>";
+                              echo "<td>" . $row['id_akun'] . "</td>";
+                              echo '<td><img src="../public/img/umkm-photo/' . $row['umkm_foto'] . '" class="card-img-top" alt="Gambar Produk" style="max-width: 100px; max-height: 100px;"></td>';
+                              echo "<td>";
+                              echo '<a class="btn btn-danger" role="button" href="../hapus-data.php?id=' . htmlentities($row['id_umkm']) . '"
+                              onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
+                              <i class="bx bx-trash"></i>
+                              </a>';
+                              echo "</td>";
+                              // echo '<td><button class="btn btn-info" data-toggle="modal" data-target="#detailModal' . $row['id_umkm'] . '">Detail</button></td>';
+                              echo "</tr>";
+                              $no++;
+                          }
+                      } else {
+                          echo "Tidak ada data UMKM yang ditemukan.";
+                      }
                   ?>
               </tbody>
           </table>
+
+          <a href="cetak-laporan.php?kecamatan=<?php echo $kecamatan; ?>" class="btn btn-info">Cetak Laporan</a>
         </div>
 
        
