@@ -28,7 +28,7 @@
   <!-- Template Main CSS File -->
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 
  
@@ -86,31 +86,33 @@
 
     <!-- menampilkan card produk -->
     <div class="container mt-5">
-    <div class="row">
-        <?php
-        include "koneksi.php";
+        <div class="row">
+            <?php
+            include "koneksi.php";
 
-        if (isset($_GET['search'])) {
-            $search = $_GET['search'];
-            $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                      FROM produk AS pd
-                      INNER JOIN umkm AS um
-                      ON pd.id_umkm = um.id_umkm
-                      WHERE pd.kategori_produk = 'Kerajinan' AND pd.nama_produk LIKE '%$search%'
-                      LIMIT 20";
-        } else {
-            $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                      FROM produk AS pd
-                      INNER JOIN umkm AS um
-                      ON pd.id_umkm = um.id_umkm
-                      WHERE pd.kategori_produk = 'Kerajinan'
-                      LIMIT 20";
-        }
-        $result = mysqli_query($conn, $query);
+            if (isset($_GET['search'])) {
+                $search = $_GET['search'];
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                          FROM produk AS pd
+                          INNER JOIN umkm AS um
+                          ON pd.id_umkm = um.id_umkm
+                          WHERE pd.kategori_produk = 'Kerajinan' AND pd.nama_produk LIKE '%$search%'
+                          ORDER BY pd.id_produk DESC
+                          LIMIT 20";
+            } else {
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                          FROM produk AS pd
+                          INNER JOIN umkm AS um
+                          ON pd.id_umkm = um.id_umkm
+                          WHERE pd.kategori_produk = 'Kerajinan'
+                          ORDER BY pd.id_produk DESC
+                          LIMIT 20";
+            }
+            $result = mysqli_query($conn, $query);
 
-        while ($row = mysqli_fetch_assoc($result)) {
-        ?>
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
+            while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <div class="card">
                         <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
                             <?php if (!empty($row['gambar_produk1'])) : ?>
@@ -123,14 +125,14 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
                             <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
-                            <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p>
+                            <!-- <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p> -->
                             <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
                         </div>
                     </div>
                 </div>
-        <?php } ?>
+            <?php } ?>
+        </div>
     </div>
-</div>
     <!-- selesai menampilkan card produk -->
 </section>
 
@@ -214,11 +216,13 @@
 
 
         <!-- untuk refresh saat selesai pencarian produk -->
-  <script>
+
+   <script>
     if (window.location.search.includes('?search=')) {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
-  </script>
+  </script> 
+
 
 </body>
 

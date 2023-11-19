@@ -28,7 +28,10 @@
   <!-- Template Main CSS File -->
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
+
+ 
 </head>
 
 <body>
@@ -45,12 +48,12 @@
         <ul>
           <li><a class="nav-link scrollto" href="index.php">Warkop Umi</a></li>
           <li><a class="nav-link scrollto" href="user-layanan.php">Layanan</a></li>
-          <li class="dropdown"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown active"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="user-makanan.php">Makanan</a></li>
               <li><a href="user-minuman.php">Minuman</a></li>
               <li><a href="user-jasa.php">Jasa</a></li>
-              <li><a href="user-Kerajinan.php">Kerajinan</a></li>
+              <li><a href="user-kerajinan.php">Kerajinan</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#footer">Tentang Kami</a></li>
@@ -89,38 +92,40 @@
 
             if (isset($_GET['search'])) {
                 $search = $_GET['search'];
-                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Minuman' AND pd.nama_produk LIKE '%$search%'
+                          ORDER BY pd.id_produk DESC
                           LIMIT 20";
             } else {
-                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Minuman'
+                          ORDER BY pd.id_produk DESC
                           LIMIT 20";
             }
-
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_assoc($result)) {
             ?>
                 <div class="col-6 col-md-4 col-lg-3 mb-4">
                     <div class="card">
-                      <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
-                              <?php if (!empty($row['gambar_produk1'])) : ?>
-                                  <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
-                              <?php else : ?>
-                                  <!-- Gambar default jika tidak ada gambar produk -->
-                                  <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
-                              <?php endif; ?>
-                          </a>
+                        <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
+                            <?php if (!empty($row['gambar_produk1'])) : ?>
+                                <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
+                            <?php else : ?>
+                                <!-- Gambar default jika tidak ada gambar produk -->
+                                <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
+                            <?php endif; ?>
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
                             <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
+                            <!-- <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p> -->
                             <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
                         </div>
                     </div>
@@ -131,7 +136,7 @@
     <!-- selesai menampilkan card produk -->
 </section>
 
- 
+
 
 
 
@@ -207,11 +212,17 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
+  <script src="assets/js/klik-menu.js"></script>
+
+
+        <!-- untuk refresh saat selesai pencarian produk -->
+
+   <script>
     if (window.location.search.includes('?search=')) {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
-  </script>
+  </script> 
+
 
 </body>
 

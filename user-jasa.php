@@ -28,14 +28,10 @@
   <!-- Template Main CSS File -->
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-  <!-- =======================================================
-  * Template Name: Arsha
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
+ 
 </head>
 
 <body>
@@ -52,7 +48,7 @@
         <ul>
           <li><a class="nav-link scrollto" href="index.php">Warkop Umi</a></li>
           <li><a class="nav-link scrollto" href="user-layanan.php">Layanan</a></li>
-          <li class="dropdown"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown active"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="user-makanan.php">Makanan</a></li>
               <li><a href="user-minuman.php">Minuman</a></li>
@@ -96,21 +92,22 @@
 
             if (isset($_GET['search'])) {
                 $search = $_GET['search'];
-                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Jasa' AND pd.nama_produk LIKE '%$search%'
+                          ORDER BY pd.id_produk DESC
                           LIMIT 20";
             } else {
-                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Jasa'
+                          ORDER BY pd.id_produk DESC
                           LIMIT 20";
             }
-
             $result = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_assoc($result)) {
@@ -128,7 +125,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
                             <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
-                            <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p>
+                            <!-- <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p> -->
                             <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
                         </div>
                     </div>
@@ -139,7 +136,9 @@
     <!-- selesai menampilkan card produk -->
 </section>
 
- 
+
+
+
 
   <br>
   <br>
@@ -213,11 +212,16 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script>
+  <script src="assets/js/klik-menu.js"></script>
+
+
+        <!-- untuk refresh saat selesai pencarian produk -->
+
+   <script>
     if (window.location.search.includes('?search=')) {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
-  </script>
+  </script> 
 
 
 </body>

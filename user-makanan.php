@@ -97,6 +97,7 @@
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Makanan' AND pd.nama_produk LIKE '%$search%'
+                          ORDER BY pd.id_produk DESC
                           LIMIT 20";
             } else {
                 $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
@@ -104,6 +105,7 @@
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
                           WHERE pd.kategori_produk = 'Makanan'
+                          ORDER BY pd.id_produk DESC
                           LIMIT 20";
             }
             $result = mysqli_query($conn, $query);
