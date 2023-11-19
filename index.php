@@ -101,11 +101,10 @@
         </div>
       </div>
     </div>
-
   </section><!-- End Hero -->
 
 
- <section id="warkop">
+ <section id="warkop" style="margin-top: -2%">
     <div id="wrapper" >
       <div class="kotak">
           <h1 >

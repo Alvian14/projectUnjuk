@@ -328,7 +328,6 @@
                 <!-- <p style=" position:relative; top: -29px; left: 40px; ">@diskopum_kab.nganjuk</p> -->
               </div>
             </div>
-
           </div>
         </div>
       </div>
