@@ -24,7 +24,7 @@
       $judulMinLength = 10; 
       $judulMaxLength = 50;
       $deskripsiMinLength = 20;
-      $deskripsiMaxLength = 500;
+      $deskripsiMaxLength = 1000;
 
       // Proses form saat POST
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
