@@ -130,30 +130,36 @@
     </nav>
     <!-- ##################### pendataan kotak  ####################-->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h2>Dashboard</h2>
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <section id="dasbord" class="d-flex flex-column align-items-center">
-          <div class="hero-container mt-5  justify-content-center"> 
-          <div class="row">
-              <div class="col" style="width: 20rem;">
-                  <h5 class="card-title" style="color: black; font-weight: bold;">UMKM</h5><br>
-                  <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;"><?php echo $total_umkm; ?></span>
-                  <hr style="border-top: 1px solid black; margin-top: 10px;">
-                  <p class="card-text" style="color: black; font-size: 15px;">Total UMKM Terdaftar</p>
-              </div>
-          </div>
-            
-            <div class="row">
-              <div class="col" style="width: 20rem;">
-                <h5 class="card-title" style="color: black; font-weight: bold;">PRODUK</h5><br>
-                <span class="umkm-count"  style="color: black; font-weight: bold; font-size: 18px;"><?php echo $total_produk?></span>
-                <hr style="border-top: 1px solid black; margin-top: 10px;">
-                <p class="card-text" style="color: black; font-size: 15px;">Total Produk Terdaftar</p>
-              </div>
+      <h2 class="mt-4 mb-4">Dashboard</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card bg-light">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title" style="color: black; font-weight: bold;">UMKM</h5>
+                        <p class="card-text" style="color: black; font-size: 18px;"><?php echo $total_umkm; ?></p>
+                        <hr style="border-top: 1px solid black; margin-top: 10px;">
+                        <p class="card-text" style="color: black; font-size: 15px;">Total UMKM Terdaftar</p>
+                    </div>
+                    <i class='bx bxs-store bx-lg'></i> 
+                </div>
             </div>
-          </div>
-        </section>
-      </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card bg-light">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title" style="color: black; font-weight: bold;">PRODUK</h5>
+                        <p class="card-text" style="color: black; font-size: 18px;"><?php echo $total_produk?></p>
+                        <hr style="border-top: 1px solid black; margin-top: 10px;">
+                        <p class="card-text" style="color: black; font-size: 15px;">Total Produk Terdaftar</p>
+                    </div>
+                    <i class='bx bxs-box bx-lg'></i> <!-- Ganti dengan ikon Boxicons sesuai kebutuhan -->
+                </div>
+            </div>
+        </div>
+    </div>
       <br>
       <br>
       <!-- ############# selesai pendataan kotak ################## -->
