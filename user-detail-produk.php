@@ -244,7 +244,7 @@
                     <div class="garis"></div>
 
                     <p class="label">Deskripsi Produk:</p>
-                    <p><?php echo $row['deskripsi_produk']; ?></p>
+                    <p class="deskripsi"><?php echo nl2br($row['deskripsi_produk']); ?></p>
 
                     <div class="garis"></div>
 
