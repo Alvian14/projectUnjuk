@@ -123,7 +123,7 @@
         echo '<div class="title">' . $row['judul'] . '</div>';
         echo 'Tanggal: ' . $row['tgl'] . '<br>';
         echo 'Jam: ' . $row['jam'];
-        echo '<div class="description mt-4">' . $row['deskripsi'] . '</div>';
+        echo '<div class="description mt-4">' . nl2br($row['deskripsi']) . '</div>';
         echo '<div class="datetime">';
         echo '</div>';
         echo '</div>';
