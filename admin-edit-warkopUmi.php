@@ -23,8 +23,8 @@
 
       $judulMinLength = 10; 
       $judulMaxLength = 50;
-      $deskripsiMinLength = 20;
-      $deskripsiMaxLength = 1000;
+      $deskripsiMinWordCount = 20;
+      $deskripsiMaxWordCount = 500;
 
       // Proses form saat POST
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -37,12 +37,14 @@
           // Validasi karakter
           $errors = [];
 
-          if (strlen($judul_baru) < $judulMinLength || strlen($judul_baru) > $judulMaxLength) {
-              $errors[] = "Judul kegiatan harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
+          $wordCountDeskripsi = str_word_count($deskripsi_baru);
+
+          if ($wordCountDeskripsi < $deskripsiMinWordCount) {
+              $errors[] = "Deskripsi kegiatan minimal $deskripsiMinWordCount kata.";
           }
 
-          if (strlen($deskripsi_baru) < $deskripsiMinLength || strlen($deskripsi_baru) > $deskripsiMaxLength) {
-              $errors[] = "Deskripsi kegiatan harus memiliki panjang antara $deskripsiMinLength dan $deskripsiMaxLength karakter.";
+          if ($wordCountDeskripsi > $deskripsiMaxWordCount) {
+              $errors[] = "Deskripsi kegiatan maksimal $deskripsiMaxWordCount kata.";
           }
 
           $today = date("Y-m-d");

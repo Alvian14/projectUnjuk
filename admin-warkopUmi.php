@@ -5,7 +5,7 @@
     $judulMaxLength = 50;
     $deskripsiMinLength = 20;
     $deskripsiMaxLength = 500;
-
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mengambil data dari formulir
         $judul_kegiatan = $_POST["judul"];
@@ -20,8 +20,10 @@
             $eror = "Tanggal tidak boleh mundur dari tanggal sekarang.";
         } elseif (strlen($judul_kegiatan) < $judulMinLength || strlen($judul_kegiatan) > $judulMaxLength) {
             $eror = "Judul harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
-        } elseif (strlen($deskripsi) < $deskripsiMinLength || strlen($deskripsi) > $deskripsiMaxLength) {
-            $eror = "Deskripsi harus memiliki panjang antara $deskripsiMinLength dan $deskripsiMaxLength karakter.";
+        } elseif (str_word_count($deskripsi) <20) {
+            $eror = "Deskripsi harus memiliki panjang antara 20 kata sampai 500 kata.";
+        } elseif (str_word_count($deskripsi) > 500) {
+            $eror = "Deskripsi tidak boleh melebihi 500 kata.";
         } else {
             // Proses unggah gambar
             $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
@@ -48,7 +50,6 @@
         // Menutup koneksi database
         mysqli_close($conn);
     }
-
 
 
  
