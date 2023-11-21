@@ -38,6 +38,10 @@
           $errors = [];
 
           $wordCountDeskripsi = str_word_count($deskripsi_baru);
+          
+          if (strlen($judul_baru) < $judulMinLength || strlen($judul_baru) > $judulMaxLength) {
+            $errors[] = "Judul kegiatan harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
+          }
 
           if ($wordCountDeskripsi < $deskripsiMinWordCount) {
               $errors[] = "Deskripsi kegiatan minimal $deskripsiMinWordCount kata.";
