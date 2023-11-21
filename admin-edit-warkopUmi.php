@@ -268,11 +268,11 @@
                     <input type="text" id="judul" name="judul" value="<?php echo $judul; ?>" placeholder="Masukkan judul">
                 </div>
                 <div class="form-group">
-                    <label for="tgl">Tanggal:</label>
+                    <label for="tgl">Tanggal Kegiatan:</label>
                     <input type="date" id="tgl" name="tgl" value="<?php echo $tgl; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="jam">Jam:</label>
+                    <label for="jam">Jam Kegiatan:</label>
                     <input type="time" id="jam" name="jam" value="<?php echo isset($_POST['jam']) ? $_POST['jam'] : date('H:i', strtotime($jam)); ?>">
                 </div>
                 <div class="form-group">

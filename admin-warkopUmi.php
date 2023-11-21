@@ -232,12 +232,12 @@
           </div>
           
           <div class="form-group">
-              <label for="tgl">Tanggal:</label>
+              <label for="tgl">Tanggal Kegiatan:</label>
               <input type="date" id="tgl" name="tgl">
           </div>
           
           <div class="form-group">
-              <label for="jam">Jam:</label>
+              <label for="jam">Jam kegiatan:</label>
               <input type="time" id="jam" name="jam">
           </div>
           
