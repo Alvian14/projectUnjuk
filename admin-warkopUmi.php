@@ -8,10 +8,10 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mengambil data dari formulir
-        $judul_kegiatan = $_POST["judul"];
+        $judul_kegiatan = trim($_POST["judul"]); // Menggunakan trim untuk menghapus spasi di awal dan akhir
         $tanggal_kegiatan = $_POST["tgl"];
         $jam_kegiatan = $_POST["jam"];
-        $deskripsi = $_POST["deskripsi"];
+        $deskripsi = trim($_POST["deskripsi"]); // Menggunakan trim untuk menghapus spasi di awal dan akhir
     
         // Validasi tanggal
         $today = date("Y-m-d");
@@ -20,10 +20,12 @@
             $eror = "Tanggal tidak boleh mundur dari tanggal sekarang.";
         } elseif (strlen($judul_kegiatan) < $judulMinLength || strlen($judul_kegiatan) > $judulMaxLength) {
             $eror = "Judul harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
-        } elseif (str_word_count($deskripsi) <20) {
+        } elseif (str_word_count($deskripsi) < 20) {
             $eror = "Deskripsi harus memiliki panjang antara 20 kata sampai 500 kata.";
         } elseif (str_word_count($deskripsi) > 500) {
             $eror = "Deskripsi tidak boleh melebihi 500 kata.";
+        } elseif (empty($judul_kegiatan) || empty($deskripsi)) {
+            $eror = "Judul dan deskripsi tidak boleh kosong atau hanya berisi spasi.";
         } else {
             // Proses unggah gambar
             $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
@@ -50,8 +52,6 @@
         // Menutup koneksi database
         mysqli_close($conn);
     }
-
-
  
 ?>
 
