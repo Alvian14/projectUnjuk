@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($resultUsername) == 0 && mysqli_num_rows($resultPassword) == 0) {
             $pesan = "Username dan password salah. Silakan coba lagi.";
         } elseif (mysqli_num_rows($resultUsername) == 0) {
-            $pesan = "Username salah. Silakan coba lagi.";
+            $pesan2 = "Username salah. Silakan coba lagi.";
         } elseif (mysqli_num_rows($resultPassword) == 0) {
-            $pesan = "Password salah. Silakan coba lagi.";
+            $pesan2 = "Password salah. Silakan coba lagi.";
         }
     }
 }

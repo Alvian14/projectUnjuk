@@ -12,12 +12,18 @@ body{
     top: 1%; /* Mengatur jarak dari atas ke 0 */
     right: 38%; /* Mengatur jarak dari kanan ke 0 */
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     }
 
     .notifikasi-2 {
         background-color: #ff0000; /* Warna merah */
         color: white;
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 10px;
         position: absolute;
         top: 1%; /* Mengatur jarak dari atas ke 0 */
