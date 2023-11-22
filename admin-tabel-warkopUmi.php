@@ -184,7 +184,7 @@
                 
                 include "koneksi.php";
                 // Buat kueri SQL untuk mengambil data dari tabel kegiatan
-                $sql = "SELECT * FROM kegiatan";
+                $sql = "SELECT * FROM kegiatan ORDER BY id_kegiatan DESC";
                 $result = $conn->query($sql);
 
                 // Tampilkan data dalam tabel HTML

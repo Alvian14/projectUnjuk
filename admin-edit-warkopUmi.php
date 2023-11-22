@@ -1,99 +1,100 @@
 <?php
     include "koneksi.php";
 
-      $id_kegiatan = $_GET['id'];
-
-      $query = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
-      $result = mysqli_query($conn, $query);
-
-      if (!$result) {
-          die("Query error: " . mysqli_error($conn));
-      }
-
-      if (mysqli_num_rows($result) > 0) {
-          $data = mysqli_fetch_assoc($result);
-          $judul = $data['judul'];
-          $tgl = $data['tgl'];
-          $jam = $data['jam'];
-          $deskripsi = $data['deskripsi'];
-          $gambar = $data['foto']; 
-      } else {
-          echo "Data tidak ditemukan.";
-      }
-
-      $judulMinLength = 10; 
-      $judulMaxLength = 50;
-      $deskripsiMinWordCount = 20;
-      $deskripsiMaxWordCount = 500;
-
-      // Proses form saat POST
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          // Ambil data dari form
-          $judul_baru = $_POST['judul'];
-          $tgl_baru = $_POST['tgl'];
-          $jam_baru = $_POST['jam'];
-          $deskripsi_baru = $_POST['deskripsi'];
-
-          // Validasi karakter
-          $errors = [];
-          $pattern = '/^[^\s#:\p{P}]+$/u';
-          if (!preg_match($pattern, $judul_baru)) {
-              $errors[] = "Judul kegiatan tidak boleh mengandung spasi saja, karakter aneh, hashtag, emotikon, titik dua, dan sejenisnya.";
-          }
-
-          $wordCountDeskripsi = str_word_count($deskripsi_baru);
-          
-          if (strlen($judul_baru) < $judulMinLength || strlen($judul_baru) > $judulMaxLength) {
+    $id_kegiatan = $_GET['id'];
+    
+    $query = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
+    $result = mysqli_query($conn, $query);
+    
+    if (!$result) {
+        die("Query error: " . mysqli_error($conn));
+    }
+    
+    if (mysqli_num_rows($result) > 0) {
+        $data = mysqli_fetch_assoc($result);
+        $judul = $data['judul'];
+        $tgl = $data['tgl'];
+        $jam = $data['jam'];
+        $deskripsi = $data['deskripsi'];
+        $gambar = $data['foto'];
+    } else {
+        echo "Data tidak ditemukan.";
+    }
+    
+    $judulMinLength = 10; 
+    $judulMaxLength = 100;
+    $deskripsiMinWordCount = 20;
+    $deskripsiMaxWordCount = 500;
+    
+    // Proses form saat POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Ambil data dari form
+        $judul_baru = $_POST['judul'];
+        $tgl_baru = $_POST['tgl'];
+        $jam_baru = $_POST['jam'];
+        $deskripsi_baru = $_POST['deskripsi'];
+    
+        // Validasi karakter
+        $errors = [];
+    
+        $wordCountDeskripsi = str_word_count($deskripsi_baru);
+    
+        if (strlen($judul_baru) < $judulMinLength || strlen($judul_baru) > $judulMaxLength) {
             $errors[] = "Judul kegiatan harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
-          }
-
-          if ($wordCountDeskripsi < $deskripsiMinWordCount) {
-              $errors[] = "Deskripsi kegiatan minimal $deskripsiMinWordCount kata .";
-          }
-
-          if ($wordCountDeskripsi > $deskripsiMaxWordCount) {
-              $errors[] = "Deskripsi kegiatan maksimal $deskripsiMaxWordCount kata.";
-          }
-
-          $today = date("Y-m-d");
-
-          if ($tgl_baru <= $today) {
-              $errors[] = "Tanggal kegiatan harus lebih dari tanggal sekarang.";
-          }
-
-          // Jika tidak ada error, lanjutkan proses update
-          if (empty($errors)) {
-              $file_foto = '';
-              if ($_FILES['file']['name'] !== '') {
-                  $file_foto = 'assets1/' . $_FILES['file']['name'];
-                  move_uploaded_file($_FILES['file']['tmp_name'], $file_foto);
-              } else {
-                  $file_foto = $gambar;
-              }
-
-              $update_query = "UPDATE kegiatan SET
-                                  judul = '$judul_baru',
-                                  tgl = '$tgl_baru',
-                                  jam = '$jam_baru',
-                                  deskripsi = '$deskripsi_baru',
-                                  foto = '$file_foto'
-                                  WHERE id_kegiatan = $id_kegiatan";
-
-              $update_result = mysqli_query($conn, $update_query);
-
-              if ($update_result) {
-                  header("Location: admin-tabel-warkopUmi.php");
-                  exit();
-              } else {
-                  echo "Gagal menyunting data: " . mysqli_error($conn);
-              }
-          } else {
-              // Tampilkan error
-              foreach ($errors as $eror) {
-                  // echo $eror . "<br>";
-              }
-          }
-      }
+        }
+    
+        if ($wordCountDeskripsi < $deskripsiMinWordCount) {
+            $errors[] = "Deskripsi kegiatan minimal $deskripsiMinWordCount kata.";
+        }
+    
+        if ($wordCountDeskripsi > $deskripsiMaxWordCount) {
+            $errors[] = "Deskripsi kegiatan maksimal $deskripsiMaxWordCount kata.";
+        }
+    
+        $today = date("Y-m-d");
+    
+        if ($tgl_baru <= $today) {
+            $errors[] = "Tanggal kegiatan harus lebih dari tanggal sekarang.";
+        }
+    
+        // Validasi judul tidak hanya terdiri dari spasi
+        if (strlen(trim($judul_baru)) === 0) {
+            $errors[] = "Judul kegiatan tidak boleh hanya terdiri dari spasi.";
+        }
+    
+        // Jika tidak ada error, lanjutkan proses update
+        if (empty($errors)) {
+            $file_foto = '';
+            if ($_FILES['file']['name'] !== '') {
+                $file_foto = 'assets1/' . $_FILES['file']['name'];
+                move_uploaded_file($_FILES['file']['tmp_name'], $file_foto);
+            } else {
+                $file_foto = $gambar;
+            }
+    
+            $update_query = "UPDATE kegiatan SET
+                                judul = '$judul_baru',
+                                tgl = '$tgl_baru',
+                                jam = '$jam_baru',
+                                deskripsi = '$deskripsi_baru',
+                                foto = '$file_foto'
+                                WHERE id_kegiatan = $id_kegiatan";
+    
+            $update_result = mysqli_query($conn, $update_query);
+    
+            if ($update_result) {
+                header("Location: admin-tabel-warkopUmi.php");
+                exit();
+            } else {
+                echo "Gagal menyunting data: " . mysqli_error($conn);
+            }
+        } else {
+            // Tampilkan error
+            foreach ($errors as $eror) {
+                // echo $eror . "<br>";
+            }
+        }
+    }
 ?>
 
 <!doctype html>
@@ -254,6 +255,7 @@
             / Ubah Warkop Umi
         </h6>
         <div class="group mt-5">
+
         <form method="POST" action="" enctype="multipart/form-data">
             <?php if (!empty($pesan)) { ?>
                 <div class="notifikasi">

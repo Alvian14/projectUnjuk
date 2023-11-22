@@ -2,7 +2,7 @@
     require_once("koneksi.php");
 
     $judulMinLength = 10;
-    $judulMaxLength = 50;
+    $judulMaxLength = 100;
     $deskripsiMinLength = 20;
     $deskripsiMaxLength = 500;
     
@@ -22,10 +22,11 @@
         // Validasi tanggal
         $today = date("Y-m-d");
     
-        if ($tanggal_kegiatan <= $today) {
-            $eror = "Tanggal tidak boleh mundur dari tanggal sekarang.";
-        } elseif (strlen($judul_kegiatan) < $judulMinLength || strlen($judul_kegiatan) > $judulMaxLength) {
-            $eror = "Judul harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
+       
+        if (strlen($judul_kegiatan) < $judulMinLength || strlen($judul_kegiatan) > $judulMaxLength) {
+            $eror = "Judul harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter dan tidak boleh mengandung karakter aneh.";
+         } elseif ($tanggal_kegiatan <= $today) {
+              $eror = "Tanggal tidak boleh mundur dari tanggal sekarang.";
         } elseif (str_word_count($deskripsi) < 20) {
             $eror = "Deskripsi harus memiliki panjang antara 20 kata sampai 500 kata.";
         } elseif (str_word_count($deskripsi) > 500) {
@@ -177,7 +178,7 @@
     </style>
   
 
-    
+  
     
       
     <!-- <link href="assets/dashboard.css" rel="stylesheet"> -->
@@ -260,7 +261,7 @@
 
                     <div class="form-group">
                         <label for="file">Unggah Gambar:</label>
-                        <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto" value="<?php echo isset($_POST['foto']) ? htmlspecialchars($_POST['foto']) : ''; ?>">
+                        <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto" >
                     </div>
 
                     <div class="form-group">
@@ -278,11 +279,7 @@
                         </button>
                     </div>
                 </div>
-        <!-- <div class="notifikasi" id="konfirmasiNotifikasi">
-            <div>Apakah Anda yakin ingin menambahkan data?</div>
-            <button id="konfirmasiYa" style="background-color: green; color: white;">Ya</button>
-            <button id="konfirmasiBatal" style="background-color: red; color: white;">Batal</button>
-        </div> -->
+                
         
 </div>
 
