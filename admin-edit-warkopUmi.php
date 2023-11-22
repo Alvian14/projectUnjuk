@@ -44,7 +44,7 @@
           }
 
           if ($wordCountDeskripsi < $deskripsiMinWordCount) {
-              $errors[] = "Deskripsi kegiatan minimal $deskripsiMinWordCount kata.";
+              $errors[] = "Deskripsi kegiatan minimal $deskripsiMinWordCount kata .";
           }
 
           if ($wordCountDeskripsi > $deskripsiMaxWordCount) {
@@ -176,7 +176,6 @@
           background-color: green;
           color: white;
           text-align: center;
-          
           padding: 10px;
           position: fixed;
           top: 15%; /* Menengahkan vertikal */
