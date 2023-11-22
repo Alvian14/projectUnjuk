@@ -110,20 +110,28 @@
 
     <!-- pembuatan kegiatan -->
     <?php
-    while ($row = mysqli_fetch_assoc($result)) {
-      echo '<div class="container-kotak">';
-      echo '<div class="image-container">';
-      echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
-      echo '</div>';
-      echo '<div class="content">';
-      echo '<div class="title">' . $row['judul'] . '</div>';
-      echo 'Tanggal: ' . $row['tgl'] . '<br>';
-      echo 'Jam: ' . $row['jam'];
-      echo '<div class="description mt-4" style="max-height: 150px; overflow-y: auto;">' . $row['deskripsi'] . '</div>';
-      echo '<div class="datetime"></div>';
-      echo '</div>';
-      echo '</div>';
-  }
+      while ($row = mysqli_fetch_assoc($result)) {
+        echo '<div class="container-kotak">';
+        echo '<div class="image-container">';
+        echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
+        echo '</div>';
+        echo '<div class="content">';
+        echo '<div class="title">' . $row['judul'] . '</div>';
+        
+        // Ubah format tanggal
+        $tanggal = date('j F Y', strtotime($row['tgl']));
+      
+        // ubah format jam
+        $jam = date('H:i', strtotime($row['jam']));
+
+        echo '<div class="datetime">';
+        echo '<i class="bx bx-calendar"></i> Tanggal: ' . $tanggal . '<br>';
+        echo '<i class="bx bx-time"></i> Jam: ' . $jam. '<br>';
+        echo '</div>';
+        echo '<div class="description mt-4" >' . nl2br($row['deskripsi']) . '</div>';
+        echo '</div>';
+        echo '</div>';
+      }
     ?>
  </section>
  

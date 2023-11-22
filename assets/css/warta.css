@@ -7,7 +7,7 @@
   margin: 10px auto;
   padding: 15px;
   max-width: 1000px;
-  height: auto;
+  height: 100%; /* Menyesuaikan tinggi container dengan kontennya */
 }
 
 .image-container {
