@@ -36,6 +36,10 @@
 
           // Validasi karakter
           $errors = [];
+          $pattern = '/^[^\s#:\p{P}]+$/u';
+          if (!preg_match($pattern, $judul_baru)) {
+              $errors[] = "Judul kegiatan tidak boleh mengandung spasi saja, karakter aneh, hashtag, emotikon, titik dua, dan sejenisnya.";
+          }
 
           $wordCountDeskripsi = str_word_count($deskripsi_baru);
           
@@ -250,43 +254,43 @@
             / Ubah Warkop Umi
         </h6>
         <div class="group mt-5">
-            <form method="POST" action="" enctype="multipart/form-data">
-                  <?php if (!empty($pesan)) { ?>
-                          <div class="notifikasi">
-                              <?php echo $pesan; ?>
-                          </div>
-                      <?php } ?>
+        <form method="POST" action="" enctype="multipart/form-data">
+    <?php if (!empty($pesan)) { ?>
+        <div class="notifikasi">
+            <?php echo $pesan; ?>
+        </div>
+    <?php } ?>
 
-                      <?php if (!empty($eror)) { ?>
-                          <div class="eror">
-                              <?php echo $eror; ?>
-                          </div>
-                      <?php } ?>
-                <div class="form-group">
-                    <label for="judul">Judul:</label>
-                    <input type="text" id="judul" name="judul" value="<?php echo $judul; ?>" placeholder="Masukkan judul">
-                </div>
-                <div class="form-group">
-                    <label for="tgl">Tanggal Kegiatan:</label>
-                    <input type="date" id="tgl" name="tgl" value="<?php echo $tgl; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="jam">Jam Kegiatan:</label>
-                    <input type="time" id="jam" name="jam" value="<?php echo isset($_POST['jam']) ? $_POST['jam'] : date('H:i', strtotime($jam)); ?>">
-                </div>
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi</label>
-                    <textarea id="deskripsi" name="deskripsi" rows="4" style="width: 100%"
-                        placeholder="Masukkan deskripsi"><?php echo $deskripsi; ?></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="file">Unggah Gambar:</label>
-                    <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto">
-                </div>
-                <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit">
-                <i class="bx bx-edit"></i> Ubah perubahan
-                </button>
-            </form>
+    <?php if (!empty($eror)) { ?>
+        <div class="eror">
+            <?php echo $eror; ?>
+        </div>
+    <?php } ?>
+
+    <div class="form-group">
+        <label for="judul">Judul:</label>
+        <input type="text" id="judul" name="judul" value="<?php echo isset($_POST['judul']) ? $_POST['judul'] : $judul; ?>" placeholder="Masukkan judul">
+    </div>
+    <div class="form-group">
+        <label for="tgl">Tanggal Kegiatan:</label>
+        <input type="date" id="tgl" name="tgl" value="<?php echo isset($_POST['tgl']) ? $_POST['tgl'] : $tgl; ?>">
+    </div>
+    <div class="form-group">
+        <label for="jam">Jam Kegiatan:</label>
+        <input type="time" id="jam" name="jam" value="<?php echo isset($_POST['jam']) ? $_POST['jam'] : date('H:i', strtotime($jam)); ?>">
+    </div>
+    <div class="form-group">
+        <label for="deskripsi">Deskripsi</label>
+        <textarea id="deskripsi" name="deskripsi" rows="4" style="width: 100%" placeholder="Masukkan deskripsi"><?php echo isset($_POST['deskripsi']) ? $_POST['deskripsi'] : $deskripsi; ?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="file">Unggah Gambar:</label>
+        <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto">
+    </div>
+    <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit">
+        <i class="bx bx-edit"></i> Ubah perubahan
+    </button>
+</form>
         </div>
     </main>
   </div>

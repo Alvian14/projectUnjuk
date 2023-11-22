@@ -1,17 +1,23 @@
 <?php
     require_once("koneksi.php");
 
-    $judulMinLength = 10; 
+    $judulMinLength = 10;
     $judulMaxLength = 50;
     $deskripsiMinLength = 20;
     $deskripsiMaxLength = 500;
     
+    // Inisialisasi variabel input default
+    $judul_kegiatan_default = '';
+    $tanggal_kegiatan_default = '';
+    $jam_kegiatan_default = '';
+    $deskripsi_default = '';
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mengambil data dari formulir
-        $judul_kegiatan = trim($_POST["judul"]); // Menggunakan trim untuk menghapus spasi di awal dan akhir
+        $judul_kegiatan = trim($_POST["judul"]);
         $tanggal_kegiatan = $_POST["tgl"];
         $jam_kegiatan = $_POST["jam"];
-        $deskripsi = trim($_POST["deskripsi"]); // Menggunakan trim untuk menghapus spasi di awal dan akhir
+        $deskripsi = trim($_POST["deskripsi"]);
     
         // Validasi tanggal
         $today = date("Y-m-d");
@@ -41,6 +47,12 @@
     
                 if (mysqli_query($conn, $sql)) {
                     $pesan = "Data kegiatan berhasil ditambahkan.";
+    
+                    // Mengosongkan variabel input setelah berhasil input
+                    $judul_kegiatan_default = '';
+                    $tanggal_kegiatan_default = '';
+                    $jam_kegiatan_default = '';
+                    $deskripsi_default = '';
                 } else {
                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                 }
@@ -213,63 +225,59 @@
       <div class="group mt-5">
         
         
-      <form  method="POST" action="admin-warkopUmi.php" id="yourFormId" enctype="multipart/form-data">
-                <?php if (!empty($pesan)) { ?>
-                    <div class="notifikasi">
-                        <?php echo $pesan; ?>
+                <form method="POST" action="admin-warkopUmi.php" id="yourFormId" enctype="multipart/form-data">
+                    <?php if (!empty($pesan)) { ?>
+                        <div class="notifikasi">
+                            <?php echo $pesan; ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if (!empty($eror)) { ?>
+                        <div class="eror">
+                            <?php echo $eror; ?>
+                        </div>
+                    <?php } ?>
+
+                    <div class="form-group">
+                        <label for="judul">Judul:</label>
+                        <input type="text" id="judul" name="judul" placeholder="Masukkan judul" value="<?php echo isset($_POST['judul']) ? htmlspecialchars($_POST['judul']) : ''; ?>">
                     </div>
-                <?php } ?>
 
-                <?php if (!empty($eror)) { ?>
-                    <div class="eror">
-                        <?php echo $eror; ?>
+                    <div class="form-group">
+                        <label for="tgl">Tanggal Kegiatan:</label>
+                        <input type="date" id="tgl" name="tgl" value="<?php echo isset($_POST['tgl']) ? $_POST['tgl'] : ''; ?>">
                     </div>
-                <?php } ?>
-        
-          <div class="form-group">
-              <label for="judul">Judul:</label>
-              <input type="text" id="judul" name="judul" placeholder="Masukkan judul">
-          </div>
-          
-          <div class="form-group">
-              <label for="tgl">Tanggal Kegiatan:</label>
-              <input type="date" id="tgl" name="tgl">
-          </div>
-          
-          <div class="form-group">
-              <label for="jam">Jam kegiatan:</label>
-              <input type="time" id="jam" name="jam">
-          </div>
-          
-          <div class="form-group">
-              <label for="deskripsi">Deskripsi</label>
-              <textarea id="deskripsi" name="deskripsi" rows="4" style="width: 100%";
-              placeholder="Masukkan deskripsi"></textarea>
-          </div>
-          
-          <div class="form-group">
-              <label for="file">Unggah Gambar:</label>
-              <input type="file" id="file" name="file" accept="image/*"
-              placeholder="Pastikan anda memasukkan foto">
-          </div>
-          
-          <div class="form-group">
-              <img src="" alt="" class="responsive-image" >
-               <!-- id="image-preview"> -->
-          </div>
-      </form>
 
+                    <div class="form-group">
+                        <label for="jam">Jam kegiatan:</label>
+                        <input type="time" id="jam" name="jam" value="<?php echo isset($_POST['jam']) ? $_POST['jam'] : ''; ?>">
+                    </div>
 
-        <div class="container ml-5">
-            <div class="d-flex justify-content-end " >
-                <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId" >
-                    <i class='bx bx-plus' style='color:#fafafa'></i> Tambah
-                </button>
-                <button class="btn btn-warning mt-1" style="margin-right: 5px; height: 40px" onclick="window.location.href='admin-tabel-warkopUmi.php'" >
-                <i class='bx bx-calendar-check' style='color:#282727'  ></i> Lihat
-                </button>
-            </div>
-        </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <textarea id="deskripsi" name="deskripsi" rows="4" style="width: 100%" placeholder="Masukkan deskripsi"><?php echo isset($_POST['deskripsi']) ? htmlspecialchars($_POST['deskripsi']) : ''; ?></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file">Unggah Gambar:</label>
+                        <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto" value="<?php echo isset($_POST['foto']) ? htmlspecialchars($_POST['foto']) : ''; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <img src="" alt="" class="responsive-image">
+                    </div>
+                </form>
+
+                <div class="container ml-5">
+                    <div class="d-flex justify-content-end ">
+                        <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId">
+                            <i class='bx bx-plus' style='color:#fafafa'></i> Tambah
+                        </button>
+                        <button class="btn btn-warning mt-1" style="margin-right: 5px; height: 40px" onclick="window.location.href='admin-tabel-warkopUmi.php'">
+                            <i class='bx bx-calendar-check' style='color:#282727'  ></i> Lihat
+                        </button>
+                    </div>
+                </div>
         <!-- <div class="notifikasi" id="konfirmasiNotifikasi">
             <div>Apakah Anda yakin ingin menambahkan data?</div>
             <button id="konfirmasiYa" style="background-color: green; color: white;">Ya</button>
