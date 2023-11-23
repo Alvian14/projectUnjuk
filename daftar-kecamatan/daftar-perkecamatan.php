@@ -116,6 +116,7 @@
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <h3 class="title mt-3">Daftar</h3>
+      <h6 style="font-wieght: none;">Kecamatan <?php echo $kecamatan?></h6>
       <h6 class="title ">
         <a  style="text-decoration: none;" href="../admin-beranda.php">Dashboard</a>
         / Daftar
