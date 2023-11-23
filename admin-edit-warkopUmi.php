@@ -292,11 +292,17 @@
             <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit">
                 <i class="bx bx-edit"></i> Ubah perubahan
             </button>
+            <button class="btn btn-danger mt-1" style="margin-right: 5px; height: 40px" >
+                <a style="text-decoration: none; color: white;" href="admin-tabel-warkopUmi.php"><i class='bx bx-x'></i> Batal</a>
+            </button>
         </form>
         </div>
     </main>
   </div>
 </div>
+
+
+
 
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
