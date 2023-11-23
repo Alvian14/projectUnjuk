@@ -7,7 +7,7 @@
     // Pastikan id_produk bukan string kosong atau null
     if (!empty($id_produk)) {
         // Query untuk mengambil detail produk berdasarkan id_produk
-        $query = "SELECT pd.*, um.nama_umkm , um.notelp_umkm
+        $query = "SELECT pd.*, um.nama_umkm , um.notelp_umkm,um.alamat_umkm
               FROM produk AS pd
               INNER JOIN umkm AS um ON pd.id_umkm = um.id_umkm
               WHERE pd.id_produk = $id_produk";
@@ -250,6 +250,11 @@
 
                     <p class="label">Nama UMKM:</p>
                     <p><?php echo $row['nama_umkm']; ?></p>
+
+                    <div class="garis"></div>
+
+                    <p class="label">Alamat UMKM:</p>
+                    <P><?php echo $row['alamat_umkm'];?></P>
 
                     <div class="garis"></div>
 

@@ -100,7 +100,7 @@
                           ORDER BY pd.id_produk DESC
                           LIMIT 20";
             } else {
-                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk,um.nama_umkm, um.notelp_umkm, pd.harga_produk
                           FROM produk AS pd
                           INNER JOIN umkm AS um
                           ON pd.id_umkm = um.id_umkm
