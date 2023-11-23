@@ -46,6 +46,12 @@
       padding: 20px;
     }
 
+    @media (max-width: 768px) {
+      .kotak1{}
+
+    } 
+
+
     @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -134,7 +140,7 @@
                     </div>
                 </div>
 
-                <div class="container mt-5 ">
+                <div class="container mt-4 ">
                     <div class="row g-4 justify-content-center align-items-center">
                         <div class="col-md-6 col-lg-4">
                             <div class="kotak1 text-center " style=" box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.1);">
