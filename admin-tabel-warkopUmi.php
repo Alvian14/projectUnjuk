@@ -213,7 +213,7 @@
                         $no++;
                     }
                 } else {
-                    echo "Tidak ada data UMKM yang ditemukan.";
+                    echo "Tidak ada data Kegiatan yang ditemukan.";
                 }
 
                 // Tutup koneksi
