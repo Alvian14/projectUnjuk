@@ -4,11 +4,11 @@ use PHPMailer\PHPMailer\Exception;
 
 class EmailSender {
     private $smtpHost = 'smtp.gmail.com';
-    private $smtpUsername = 'arenafinder.app@gmail.com';
-    private $smtpPassword = 'hftf uheb ztey nokf';
+    private $smtpUsername = 'mobileunjuk@gmail.com';
+    private $smtpPassword = 'ittd mdhm oscd hlbq';
     private $smtpPort = 587;
-    private $fromEmail = 'arenafinder.app@gmail.com';
-    private $fromName = 'ArenaFinder Dev';
+    private $fromEmail = 'mobileunjuk@gmail.com';
+    private $fromName = 'Unjuk Development';
 
     public function generateOTP($length = 6) {
         $otp = '';
@@ -46,6 +46,7 @@ class EmailSender {
 
             return true;
         } catch (Exception $e) {
+            error_log($e->getMessage(), 0);
             return false;
         }
     }

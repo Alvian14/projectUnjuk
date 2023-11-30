@@ -3,42 +3,47 @@
  * Digunakan untuk mengirimkan kode otp ke email user
  */
 
-require '../../../vendor/autoload.php'; 
+require '../../vendor/autoload.php';
 require "../../koneksi.php";
 require 'EmailSender.php';
 
-    // random kode otp
-    function generateOTP($length = 6)
-    {
-        $otp = '';
-        $characters = '0123456789';
-        $charactersLength = strlen($characters);
-        for ($i = 0; $i < $length; $i++) {
-            $otp .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $otp;
+// random kode otp
+function generateOTP($length = 6)
+{
+    $otp = '';
+    $characters = '0123456789';
+    $charactersLength = strlen($characters);
+    for ($i = 0; $i < $length; $i++) {
+        $otp .= $characters[rand(0, $charactersLength - 1)];
     }
-    
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-        $email = $_POST['email'];
-        $type = $_POST['type'];
-        $action = $_POST['action'];
-        $otp = generateOTP();
+    return $otp;
+}
 
-        // mendapatkan data millis
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $email = $_POST['email'];
+    $type = $_POST['type'];
+    $action = $_POST['action'];
+    $otp = generateOTP();
+
+    // Tambahkan query SQL untuk memeriksa keberadaan email
+    $checkEmailQuery = "SELECT * FROM akun WHERE email = '$email'";
+    $checkEmailResult = $conn->query($checkEmailQuery);
+
+    if ($checkEmailResult->num_rows == 0) {
+        // Email tidak ditemukan di database
+        $response = array("status" => "error", "message" => "Alamat email tidak ditemukan");
+    } else {
+        // Email ditemukan di database
         $startMillis = round(microtime(true) * 1000);
         $endMillis = $startMillis + 900000;
 
-        // kirim otp baru
         if ($action === "new") {
             // Buat query SQL untuk memasukkan data baru
             $sql = "INSERT INTO verification (`email`, `otp`, `type`, `start_millis`, `end_millis`, `device`, `resend`) 
                     VALUES ('$email', '$otp', '$type', $startMillis, $endMillis, 'Mobile', 0)";
             $result = $conn->query($sql);
-        }
-        // update kode otp
-        else if ($action === "update") {
+        } else if ($action === "update") {
             // Ambil data OTP sebelumnya
             $sql = "SELECT * FROM verification WHERE email = '$email' ORDER BY created_at DESC LIMIT 1";
             $result = $conn->query($sql);
@@ -76,10 +81,11 @@ require 'EmailSender.php';
         } else {
             $response = array("status" => "error", "message" => "Kode OTP gagal dikirimkan");
         }
-        
-    } else {
-        $response = array("status" => "error", "message" => "method bukan post");
     }
-    
-    echo json_encode($response);
+
+} else {
+    $response = array("status" => "error", "message" => "Method bukan POST");
+}
+
+echo json_encode($response);
 ?>

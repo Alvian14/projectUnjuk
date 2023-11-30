@@ -19,16 +19,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kodeotp = $_POST['Kode_OTP'];
     $level = $_POST['Level'];
     
-    // Validasi nama (hanya huruf)
-    if (!preg_match("/^[a-zA-Z ]+$/", $namauser)) {
-        $response = array("status" => "error", "message" => "Nama hanya boleh mengandung huruf dan spasi");
+    // Validasi nama (hanya huruf, 3-50 karakter) tidak boleh hanya spasi dan tidak mengandung karakter tidak diinginkan
+    if (
+        trim($namauser) === '' ||
+        !preg_match('/^[A-Za-z\'()., ]+$/', $namauser) ||
+        preg_match('/[0-9!@#$%^&*():{}|<>]/', $namauser) ||
+        strlen($namauser) > 50 ||
+        strlen($namauser) < 3
+    ) {
+        $response = array("status" => "error", "message" => "Nama hanya boleh mengandung huruf, minimal 3 karakter, maksimal 50 karakter");
         echo json_encode($response);
         exit;
     }
 
-    // Validasi nomor handphone (minimal 11 digit, maksimal 13 digit angka)
-    if (!preg_match("/^\d{11,13}$/", $notelpuser)) {
-        $response = array("status" => "error", "message" => "Nomor handphone harus terdiri dari 11 hingga 13 digit angka");
+    // Validasi nama user agar tidak sama dengan yang sudah ada di database
+    $checkQuery = "SELECT * FROM akun WHERE nama_user = ?";
+    $checkStmt = $conn->prepare($checkQuery);
+    $checkStmt->bind_param("s", $namauser);
+    $checkStmt->execute();
+    $checkResult = $checkStmt->get_result();
+
+  
+
+    // Validasi nomor handphone (minimal 11 digit, maksimal 13 digit angka) tidak boleh hanya spasi dan tidak mengandung karakter tidak diinginkan
+    if (!preg_match("/^08\d{9,11}$/", $notelpuser) || preg_match('/[}{~$^<!*#;%>]/', $notelpuser)) {
+        $response = array("status" => "error", "message" => "Nomor handphone harus  terdiri dari 11 hingga 13 digit angka");
+        echo json_encode($response);
+        exit;
+    }
+
+    // Validasi alamat (maksimal 90 karakter) tidak boleh hanya spasi dan tidak mengandung karakter tidak diinginkan
+    if (strlen(trim($alamatuser)) == 0 || strlen($alamatuser) > 90 || trim($alamatuser) === '' || preg_match('/[}{~$^<!*#;%>]/', $alamatuser)) {
+        $response = array("status" => "error", "message" => "Alamat tidak boleh kosong, maksimal 90 karakter");
         echo json_encode($response);
         exit;
     }
@@ -43,8 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $conn->query($sql);
         $data = $result->fetch_assoc();
 
-
-        $response = array("status" => "success", "message" => "Data Profil Berhasil diubah", "data"=>$data);
+        $response = array("status" => "success", "message" => "Data Profil Berhasil diubah", "data" => $data);
     } else {
         $response = array("status" => "error", "message" => "Data Profil Gagal diubah -> $sql", "error_details" => $conn->error);
     }

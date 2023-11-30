@@ -31,7 +31,7 @@ header("Content-Type: application/json");
 
                 if($result->num_rows === 1){
                     $idUmkm = $result->fetch_assoc()['id_umkm'];
-                    $response = array('status' => 'success', 'message' => 'Login berhasil', 'data' => $user, 'id_umkm' => $idUmkm);
+                    $response = array('status' => 'success', 'message' => 'Berhasil Masuk', 'data' => $user, 'id_umkm' => $idUmkm);
                 }else{
                     $response = array('status' => 'success', 'message' => 'Login berhasil', 'data' => $user);
                 }

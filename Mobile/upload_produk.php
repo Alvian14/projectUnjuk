@@ -22,6 +22,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gambarproduk3 = $_POST['gambar_produk3'];
     $idumkm = $_POST['id_umkm'];
 
+    // Validasi nama produk (5-100 karakter) tidak boleh hanya spasi dan tidak mengandung karakter tidak diinginkan
+    if (strlen(trim($namaproduk)) < 5 || strlen(trim($namaproduk)) > 50 || preg_match('/[}{~$^<!*#;%>]/', $namaproduk)) {
+        $response = array("status" => "error", "message" => "Nama produk harus terdiri dari 5-50 karakter");
+        echo json_encode($response);
+        exit;
+    }
+
+        // Validasi Harga produk (tidak boleh kosong)
+        if (empty($hargaproduk)) {
+            $response = array("status" => "error", "message" => "Harga produk tidak boleh kosong");
+            echo json_encode($response);
+            exit;
+        }
+
+    // validasi kategori produk
+    if (empty($kategoriproduk) || $kategoriproduk === "Pilih Kategori") {
+        $response = array("status" => "error", "message" => "Silakan pilih kategori produk");
+        echo json_encode($response);
+        exit;
+    }
+
+    // Validasi deskripsi produk (tidak boleh kosong)
+    if (empty($deskripsiproduk)) {
+        $response = array("status" => "error", "message" => "Deskripsi produk tidak boleh kosong");
+        echo json_encode($response);
+        exit;
+    }
+
+    // Validasi PIRT tidak boleh hanya spasi
+    if (trim($pirtproduk) !== '-' && !preg_match('/^[\d-]{16}$/', $pirtproduk)) {
+        $response = array("status" => "error", "message" => "Format PIRT tidak valid");
+        echo json_encode($response);
+        exit;
+    }
+
+    // Validasi BPOM tidak boleh hanya spasi
+    if (trim($bpomproduk) !== '-' && !preg_match('/^[a-zA-Z\d-]{15}$/', $bpomproduk)) {
+        $response = array("status" => "error", "message" => "Format BPOM tidak valid");
+        echo json_encode($response);
+        exit;
+    }
+
+
+    // Validasi ID Halal tidak boleh hanya spasi
+    if (trim($idhalalproduk) !== '-' && !preg_match('/^\d{5,25}$/', $idhalalproduk)) {
+        $response = array("status" => "error", "message" => "Format ID Halal tidak valid");
+        echo json_encode($response);
+        exit;
+    }
+
+
+
     // Menambahkan kode untuk meng-handle upload gambar
 
     $filename1 = $filename2 = $filename3 = "";
@@ -59,11 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file3 = '../public/img/produk-photo/' . $filename3;
         file_put_contents($file3, $data3);
     }
-
-    // Menambahkan jalur /public/img/produk-photo/ pada nama file gambar sebelum menyimpannya ke dalam database
-    $filename1 = '/public/img/produk-photo/' . $filename1;
-    $filename2 = '/public/img/produk-photo/' . $filename2;
-    $filename3 = '/public/img/produk-photo/' . $filename3;
 
     // Simpan nama file gambar ke dalam database
     $sql = "INSERT INTO produk (nama_produk, harga_produk, kategori_produk, deskripsi_produk, pirt_produk, bpom_produk, idhalal_produk, gambar_produk1, gambar_produk2, gambar_produk3, id_umkm) VALUES ('$namaproduk', '$hargaproduk', '$kategoriproduk', '$deskripsiproduk', '$pirtproduk', '$bpomproduk', '$idhalalproduk', '$filename1', '$filename2', '$filename3', '$idumkm')";

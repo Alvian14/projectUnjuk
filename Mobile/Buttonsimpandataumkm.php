@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $umkmfoto = $_POST['umkm_foto'];
     $idakun = $_POST['id_akun'];
 
-    // Validasi nama UMKM (hanya huruf)
-    if (!preg_match("/^[a-zA-Z ]+$/", $namaumkm)) {
-        $response = array("status" => "error", "message" => "Nama UMKM hanya boleh mengandung huruf dan spasi");
+      // Validasi nama UMKM (hanya huruf, 5-30 karakter, tidak mengandung emotikon dan karakter khusus)
+      if (!preg_match("/^[a-zA-Z0-9 ]{5,50}$/", $namaumkm) || ctype_digit($namaumkm) || trim($namaumkm) === '' || preg_match("/[^\w\s]/", $namaumkm)) {
+        $response = array("status" => "error", "message" => "Nama UMKM harus terdiri dari 5-50 karakter");
         echo json_encode($response);
         exit;
     }
@@ -33,9 +33,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Validasi nomor telepon (minimal 11 digit, maksimal 13 digit angka)
-    if (!preg_match("/^\d{11,13}$/", $notelpumkm)) {
-        $response = array("status" => "error", "message" => "Nomor telepon harus terdiri dari 11 hingga 13 digit angka");
+    // Validasi nomor telepon (minimal 11 digit, maksimal 13 digit angka, harus diawali dengan "08")
+    if (!preg_match("/^08\d{9,11}$/", $notelpumkm)) {
+        // Cek jumlah digit
+        $digitCount = strlen($notelpumkm);
+        if ($digitCount < 11 || $digitCount > 13) {
+            $response = array("status" => "error", "message" => "Nomor telepon harus terdiri dari 11 hingga 13 digit angka");
+        } else {
+            $response = array("status" => "error", "message" => "Nomor telepon harus diawali dengan '08'");
+        }
+
+        echo json_encode($response);
+        exit;
+    }
+
+        // Validasi Jenis Usaha
+    if (empty($jenisusahaumkm) || $jenisusahaumkm === "Pilih Jenis Usaha") {
+        $response = array("status" => "error", "message" => "Silakan pilih jenis usaha");
+        echo json_encode($response);
+        exit;
+    }
+
+    // Validasi alamat (maksimal 90 karakter) tidak boleh kosong dan tidak boleh hanya spasi
+    if (strlen(trim($alamatumkm)) == 0 || strlen(trim($alamatumkm)) > 90) {
+        $response = array("status" => "error", "message" => "Alamat tidak boleh kosong, maksimal 90 karakter");
         echo json_encode($response);
         exit;
     }
