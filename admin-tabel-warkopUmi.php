@@ -163,6 +163,8 @@
         <a  style="text-decoration: none;" href="admin-warkopUmi.php">Update Warkop Umi</a>
         / Detail Warkop Umi
       </h6>
+
+      
         
         <div class="table-responsive mt-5">
             <table id="example" class="table table-striped" style="width:100%">
@@ -203,10 +205,9 @@
                         echo '<a class="btn btn-success" role="button" href="admin-edit-warkopUmi.php?id=' . htmlentities($row['id_kegiatan']) . '">
                             <i class="bx bx-edit"></i>
                             </a>';
-                        echo '<a class="btn btn-danger mt-1" role="button" href="hapus-kegiatan.php?id=' . htmlentities($row['id_kegiatan']) . '"
-                            onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
+                            echo '<button class="btn btn-danger mt-1" type="button" onclick="hapusData(' . htmlentities($row['id_kegiatan']) . ')">
                             <i class="bx bx-trash"></i>
-                            </a>';
+                          </button>';
                         echo "</td>";
                         echo "</tr>";
                         
@@ -219,6 +220,24 @@
                 // Tutup koneksi
                 $conn->close();
             ?>
+            <script>
+                function hapusData(id) {
+                  if (confirm('Apakah Anda yakin ingin menghapus data?')) {
+                    // Kirim permintaan penghapusan menggunakan AJAX
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'hapus-kegiatan.php?id=' + id, true);
+                    xhr.onreadystatechange = function() {
+                      if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Handle hasil respons dari server di sini
+                        console.log(xhr.responseText);
+                        // Refresh tabel atau lakukan tindakan lain jika diperlukan
+                        location.reload();
+                      }
+                    };
+                    xhr.send();
+                  }
+                }
+              </script>
                 </tbody>
             </table>
             </div>

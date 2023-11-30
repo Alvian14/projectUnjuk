@@ -1,6 +1,8 @@
 <?php
 include("../koneksi.php");
 
+$pesan = ''; // Inisialisasi pesan
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -26,16 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($resultUsername) == 0 && mysqli_num_rows($resultPassword) == 0) {
             $pesan = "Username dan password salah. Silakan coba lagi.";
         } elseif (mysqli_num_rows($resultUsername) == 0) {
-            $pesan2 = "Username salah. Silakan coba lagi.";
+            $pesan = "Username salah. Silakan coba lagi.";
         } elseif (mysqli_num_rows($resultPassword) == 0) {
-            $pesan2 = "Password salah. Silakan coba lagi.";
+            $pesan = "Password salah. Silakan coba lagi.";
         }
     }
 }
-
-
-
-
 ?>
 
 <!doctype html>
@@ -53,11 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/login.css">
-	
-
 	</head>
+
 	<body>
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"> 
+	<form action=" ../admin-beranda.php" method="POST">
 	<section class="ftco-section">
 		<div class="container">
 			
@@ -67,13 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                			 <?php echo $pesan; ?>
             		</div>
         		<?php } ?>
-
-				<?php if (!empty($pesan2)) { ?>
-            		<div class="notifikasi notifikasi-2">
-               			 <?php echo $pesan2; ?>
-            		</div>
-        		<?php } ?>
-
 
 				<div class="col-md-7 col-lg-5">
 					<div class="login-wrap p-4 p-md-5">
@@ -91,7 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	            <div class="form-group" >
 	            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Masuk</button>
 	            </div>
-	           
 	        </form>
 				<div class="form-group  text-center">
 					<p><a href="../index.php">Keluar</a></p>
@@ -107,26 +96,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	<script src="js/bootstrap.min.js"></script>
   	<script src="js/main.js"></script>
 	<script src="../assets/js/login.js"></script>
-	<!-- <script src="../assets/js/stop.js"></script> -->
-
-	<!-- <script>
-		if (window.history && window.history.pushState) {
-			$(window).on('popstate', function (event) {
-				window.history.pushState('forward', null, './');
-			});
-		}
-
-		$(document).keydown(function (e) {
-			if (e.key === "Backspace" || e.key === "Back") {
-				e.preventDefault();
-			}
-		});
-
-		$(document).on("keydown", function (e) {
-			if (e.which === 8) {
-				e.preventDefault();
-			}
-		});
-	</script> -->
 	</body>
 </html>
