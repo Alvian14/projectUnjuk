@@ -205,9 +205,9 @@
                         echo '<a class="btn btn-success" role="button" href="admin-edit-warkopUmi.php?id=' . htmlentities($row['id_kegiatan']) . '">
                             <i class="bx bx-edit"></i>
                             </a>';
-                            echo '<button class="btn btn-danger mt-1" type="button" onclick="hapusData(' . htmlentities($row['id_kegiatan']) . ')">
+                        echo '<button class="btn btn-danger mt-1" type="button" onclick="hapusData(' . htmlentities($row['id_kegiatan']) . ')">
                             <i class="bx bx-trash"></i>
-                          </button>';
+                            </button>';
                         echo "</td>";
                         echo "</tr>";
                         
@@ -222,21 +222,21 @@
             ?>
             <script>
                 function hapusData(id) {
-                  if (confirm('Apakah Anda yakin ingin menghapus data?')) {
-                    // Kirim permintaan penghapusan menggunakan AJAX
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('GET', 'hapus-kegiatan.php?id=' + id, true);
-                    xhr.onreadystatechange = function() {
-                      if (xhr.readyState == 4 && xhr.status == 200) {
-                        // Handle hasil respons dari server di sini
-                        console.log(xhr.responseText);
-                        // Refresh tabel atau lakukan tindakan lain jika diperlukan
-                        location.reload();
-                      }
-                    };
-                    xhr.send();
+                    if (confirm('Apakah Anda yakin ingin menghapus data?')) {
+                      // Kirim permintaan penghapusan menggunakan AJAX
+                      var xhr = new XMLHttpRequest();
+                      xhr.open('GET', 'hapus-kegiatan.php?id=' + id, true);
+                      xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                          // Handle hasil respons dari server di sini
+                          console.log(xhr.responseText);
+                          // Refresh tabel atau lakukan tindakan lain jika diperlukan
+                          location.reload();
+                        }
+                      };
+                      xhr.send();
+                    }
                   }
-                }
               </script>
                 </tbody>
             </table>

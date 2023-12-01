@@ -1,54 +1,68 @@
 <?php
     require_once("koneksi.php");
+    // function containsSpecialChars($str) {
+    //   // Karakter yang diizinkan pada judul
+    //   $allowedChars = '/[^\w\s\-\.,!?]/';
 
+    //   // Mengecek apakah string memenuhi kriteria karakter yang diizinkan
+    //   return preg_match($allowedChars, $str) !== 1;
+    // }
+  
     $judulMinLength = 10;
     $judulMaxLength = 100;
     $deskripsiMinLength = 20;
     $deskripsiMaxLength = 500;
-    
+
     // Inisialisasi variabel input default
     $judul_kegiatan_default = '';
     $tanggal_kegiatan_default = '';
     $jam_kegiatan_default = '';
     $deskripsi_default = '';
-    
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Mengambil data dari formulir
-        $judul_kegiatan = trim($_POST["judul"]);
+        $judul_kegiatan = $_POST["judul"];
         $tanggal_kegiatan = $_POST["tgl"];
         $jam_kegiatan = $_POST["jam"];
-        $deskripsi = trim($_POST["deskripsi"]);
-    
+        $deskripsi = $_POST["deskripsi"];
+
         // Validasi tanggal
         $today = date("Y-m-d");
     
-       
+
         if (strlen($judul_kegiatan) < $judulMinLength || strlen($judul_kegiatan) > $judulMaxLength) {
-            $eror = "Judul harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter dan tidak boleh mengandung karakter aneh.";
-         } elseif ($tanggal_kegiatan <= $today) {
-              $eror = "Tanggal tidak boleh mundur dari tanggal sekarang.";
+            $eror = "Judul harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
+        } elseif ($tanggal_kegiatan <= $today) {
+            $eror = "Tanggal tidak boleh mundur dari tanggal sekarang.";
         } elseif (str_word_count($deskripsi) < 20) {
             $eror = "Deskripsi harus memiliki panjang antara 20 kata sampai 500 kata.";
         } elseif (str_word_count($deskripsi) > 500) {
             $eror = "Deskripsi tidak boleh melebihi 500 kata.";
-        } elseif (empty($judul_kegiatan) || empty($deskripsi)) {
-            $eror = "Judul dan deskripsi tidak boleh kosong atau hanya berisi spasi.";
-        } else {
+        // } elseif (containsSpecialChars($judul_kegiatan)) {
+        //     $eror = "Judul tidak boleh mengandung karakter aneh.";
+        // } elseif (containsSpecialChars($deskripsi)) {
+        //     $eror = "Deskripsi tidak boleh mengandung karakter aneh.";
+        } elseif (strlen(trim($judul_kegiatan)) === 0) {
+            $eror = "Judul tidak boleh hanya terdiri dari spasi.";
+        }elseif (strlen(trim($deskripsi)) === 0){
+            $eror = "Deskripsi tidak boleh hanya terdiri dari spasi.";
+        }else{
+        
             // Proses unggah gambar
             $uploadDir = "assets1/"; // Direktori tempat menyimpan gambar di server
             $uploadedFile = $uploadDir . basename($_FILES["file"]["name"]);
-    
+
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadedFile)) {
                 // Gambar berhasil diunggah
                 $alamat_gambar = "assets1/" . $_FILES["file"]["name"];
-    
+
                 // Menyimpan data ke database (pastikan nama tabel dan kolom sesuai dengan struktur database Anda)
                 $sql = "INSERT INTO kegiatan (judul, tgl, jam, deskripsi, foto) 
                         VALUES ('$judul_kegiatan', '$tanggal_kegiatan', '$jam_kegiatan', '$deskripsi', '$alamat_gambar')";
-    
+
                 if (mysqli_query($conn, $sql)) {
                     $pesan = "Data kegiatan berhasil ditambahkan.";
-    
+
                     // Mengosongkan variabel input setelah berhasil input
                     $judul_kegiatan_default = '';
                     $tanggal_kegiatan_default = '';
@@ -61,12 +75,12 @@
                 $eror = "Gagal menambahkan data.";
             }
         }
-    
+
         // Menutup koneksi database
         mysqli_close($conn);
     }
- 
 ?>
+
 
 <!doctype html>
 <html lang="en">

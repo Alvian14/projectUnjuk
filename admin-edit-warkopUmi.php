@@ -1,15 +1,16 @@
 <?php
-    include "koneksi.php";
+include "koneksi.php";
 
+if (isset($_GET['id'])) {
     $id_kegiatan = $_GET['id'];
-    
+
     $query = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
     $result = mysqli_query($conn, $query);
-    
+
     if (!$result) {
         die("Query error: " . mysqli_error($conn));
     }
-    
+
     if (mysqli_num_rows($result) > 0) {
         $data = mysqli_fetch_assoc($result);
         $judul = $data['judul'];
@@ -20,12 +21,12 @@
     } else {
         echo "Data tidak ditemukan.";
     }
-    
-    $judulMinLength = 10; 
+
+    $judulMinLength = 10;
     $judulMaxLength = 100;
     $deskripsiMinWordCount = 20;
     $deskripsiMaxWordCount = 500;
-    
+
     // Proses form saat POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Ambil data dari form
@@ -33,68 +34,59 @@
         $tgl_baru = $_POST['tgl'];
         $jam_baru = $_POST['jam'];
         $deskripsi_baru = $_POST['deskripsi'];
-    
+
         // Validasi karakter
         $errors = [];
-    
         $wordCountDeskripsi = str_word_count($deskripsi_baru);
-    
+
+        // Function karakter aneh
+        function containsSpecialChars($str) {
+            $disallowedChars = '/[^\w\s\-\.,!?]/';
+            return preg_match($disallowedChars, $str) === 1;
+        }
+
         if (strlen($judul_baru) < $judulMinLength || strlen($judul_baru) > $judulMaxLength) {
             $errors[] = "Judul kegiatan harus memiliki panjang antara $judulMinLength dan $judulMaxLength karakter.";
-        }
-    
-        if ($wordCountDeskripsi < $deskripsiMinWordCount) {
+        } elseif ($wordCountDeskripsi < $deskripsiMinWordCount) {
             $errors[] = "Deskripsi kegiatan minimal $deskripsiMinWordCount kata.";
-        }
-    
-        if ($wordCountDeskripsi > $deskripsiMaxWordCount) {
+        } elseif ($wordCountDeskripsi > $deskripsiMaxWordCount) {
             $errors[] = "Deskripsi kegiatan maksimal $deskripsiMaxWordCount kata.";
-        }
-    
-        $today = date("Y-m-d");
-    
-        if ($tgl_baru <= $today) {
+        } elseif ($tgl_baru <= date("Y-m-d")) {
             $errors[] = "Tanggal kegiatan harus lebih dari tanggal sekarang.";
-        }
-    
-        // Validasi judul tidak hanya terdiri dari spasi
-        if (strlen(trim($judul_baru)) === 0) {
+        } elseif (trim($judul_baru) === '') {
             $errors[] = "Judul kegiatan tidak boleh hanya terdiri dari spasi.";
+        } elseif (containsSpecialChars($judul_baru)) {
+            $errors[] = "Judul tidak boleh menggunakan karakter aneh.";
+        } elseif (containsSpecialChars($deskripsi_baru)) {
+            $errors[] = "Deskripsi tidak boleh menggunakan karakter aneh.";
         }
-    
+
         // Jika tidak ada error, lanjutkan proses update
         if (empty($errors)) {
             $file_foto = '';
-            if ($_FILES['file']['name'] !== '') {
+            if (!empty($_FILES['file']['name'])) {
                 $file_foto = 'assets1/' . $_FILES['file']['name'];
                 move_uploaded_file($_FILES['file']['tmp_name'], $file_foto);
             } else {
                 $file_foto = $gambar;
             }
-    
-            $update_query = "UPDATE kegiatan SET
-                                judul = '$judul_baru',
-                                tgl = '$tgl_baru',
-                                jam = '$jam_baru',
-                                deskripsi = '$deskripsi_baru',
-                                foto = '$file_foto'
-                                WHERE id_kegiatan = $id_kegiatan";
-    
-            $update_result = mysqli_query($conn, $update_query);
-    
-            if ($update_result) {
-                header("Location: admin-tabel-warkopUmi.php");
-                exit();
+
+            $sql = "UPDATE kegiatan SET judul = '$judul_baru', tgl = '$tgl_baru', jam = '$jam_baru', deskripsi = '$deskripsi_baru', foto = '$file_foto' WHERE id_kegiatan = $id_kegiatan";
+
+            if (mysqli_query($conn, $sql)) {
+                $pesan = "Data kegiatan berhasil diupdate.";
+
+                // Mengosongkan variabel input setelah berhasil update
+                $judul_kegiatan_default = '';
+                $tanggal_kegiatan_default = '';
+                $jam_kegiatan_default = '';
+                $deskripsi_default = '';
             } else {
-                echo "Gagal menyunting data: " . mysqli_error($conn);
-            }
-        } else {
-            // Tampilkan error
-            foreach ($errors as $eror) {
-                // echo $eror . "<br>";
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
         }
     }
+}
 ?>
 
 <!doctype html>
@@ -256,7 +248,7 @@
         </h6>
         <div class="group mt-5">
 
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="admin-edit-warkopUmi.php?id=<?php echo $id_kegiatan; ?>" id="yourFormId" enctype="multipart/form-data">
             <?php if (!empty($pesan)) { ?>
                 <div class="notifikasi">
                     <?php echo $pesan; ?>
@@ -269,9 +261,17 @@
                 </div>
             <?php } ?>
 
+            <?php
+            if (!empty($errors)) {
+                foreach ($errors as $error) {
+                    echo "<div class='eror'>$error</div>";
+                }
+            }
+            ?>
+
             <div class="form-group">
                 <label for="judul">Judul:</label>
-                <input type="text" id="judul" name="judul" value="<?php echo isset($_POST['judul']) ? $_POST['judul'] : $judul; ?>" placeholder="Masukkan judul">
+                <input type="text" id="judul" name="judul" value="<?php echo isset($_POST['judul']) ? $_POST['judul'] : $judul; ?>">
             </div>
             <div class="form-group">
                 <label for="tgl">Tanggal Kegiatan:</label>
@@ -289,12 +289,14 @@
                 <label for="file">Unggah Gambar:</label>
                 <input type="file" id="file" name="file" accept="image/*" placeholder="Pastikan anda memasukkan foto">
             </div>
-            <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit">
+            <button class="btn btn-primary mt-1" style="margin-right: 5px; height: 40px" type="submit" form="yourFormId">
                 <i class="bx bx-edit"></i> Ubah perubahan
             </button>
-            <button class="btn btn-danger mt-1" style="margin-right: 5px; height: 40px" >
-                <a style="text-decoration: none; color: white;" href="admin-tabel-warkopUmi.php"><i class='bx bx-x'></i> Batal</a>
-            </button>
+            <!-- <button class="btn btn-danger mt-1" style="margin-right: 5px; height: 40px">
+                <a style="text-decoration: none; color: white;" href="https://unjuk.tifnganjuk.com/admin-tabel-warkopUmi.php">
+                    <i class='bx bx-arrow-back' style='color:#f2eeee'></i> Kembali
+                </a>
+            </button> -->
         </form>
         </div>
     </main>

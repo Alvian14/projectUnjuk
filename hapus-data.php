@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
     // Check if the query was successful
     if ($eksekusi) {
         // Redirect back to the previous page
-        header("Location: ".$_SERVER['HTTP_REFERER']);
+        header("Location: daftar-kecamatan/ daftar-perkecamatan.php ");
         exit();
     } else {
         // If the query fails, display an error message

@@ -9,7 +9,9 @@
    $kecamatan = $_GET['kecamatan']; // Mengambil parameter kecamatan dari URL
    
    // Buat query SQL untuk mengambil data dari tabel UMKM berdasarkan kecamatan yang dipilih
-   $query = "SELECT * FROM umkm WHERE kecamatan_umkm = '$kecamatan'";
+   $query = "SELECT umkm.*, akun.nama_user FROM umkm
+          JOIN akun ON umkm.id_akun = akun.id_akun
+          WHERE umkm.kecamatan_umkm = '$kecamatan'";
    
    $result = $conn->query($query);
 
@@ -133,7 +135,7 @@
                       <th>NIB</th>
                       <th>Nomor Telepon</th>
                       <th>Alamat</th>
-                      <th>ID Akun</th>
+                      <th>Nama User</th>
                       <th>Foto UMKM</th>
                       <th>Aksi</th>
                   </tr>
@@ -150,13 +152,12 @@
                               echo "<td>" . $row['Nib_umkm'] . "</td>";
                               echo "<td>" . $row['notelp_umkm'] . "</td>";
                               echo "<td>" . $row['alamat_umkm'] . "</td>";
-                              echo "<td>" . $row['id_akun'] . "</td>";
+                              echo "<td>" . $row['nama_user'] . "</td>";
                               echo '<td><img src="../public/img/umkm-photo/' . $row['umkm_foto'] . '" class="card-img-top" alt="Gambar Produk" style="max-width: 100px; max-height: 100px;"></td>';
                               echo "<td>";
-                              echo '<a class="btn btn-danger" role="button" href="../hapus-data.php?id=' . htmlentities($row['id_umkm']) . '"
-                              onclick="return confirm(\'Apakah anda ingin menghapus data?\')">
-                              <i class="bx bx-trash"></i>
-                              </a>';
+                              echo '<a class="btn btn-danger" role="button" onclick="hapusUMKM(' . htmlentities($row['id_umkm']) . ')">
+                                  <i class="bx bx-trash"></i>
+                                </a>';
                               echo "</td>";
                               // echo '<td><button class="btn btn-info" data-toggle="modal" data-target="#detailModal' . $row['id_umkm'] . '">Detail</button></td>';
                               echo "</tr>";
@@ -166,6 +167,28 @@
                           echo "Tidak ada data UMKM yang ditemukan.";
                       }
                   ?>
+                   <script>
+                      function hapusUMKM(id) {
+                          if (confirm('Apakah Anda yakin ingin menghapus data?')) {
+                            // Kirim permintaan penghapusan menggunakan AJAX
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('GET', '../hapus-data.php?id=' + id, true);
+                            xhr.onreadystatechange = function() {
+                              if (xhr.readyState == 4 && xhr.status == 200) {
+                                // Handle hasil respons dari server di sini
+                                console.log(xhr.responseText);
+                                // Hapus baris tabel setelah penghapusan berhasil
+                                var row = document.getElementById('umkm-row-' + id);
+                                if (row) {
+                                  row.parentNode.removeChild(row);
+                                }
+                              }
+                            };
+                            xhr.send();
+                          }
+                        }
+                
+              </script>
               </tbody>
           </table>
 
