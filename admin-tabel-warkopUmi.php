@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://boxicons.com/css/boxicons.min.css">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="website icon" href="tem-login/images/logoUnjuk.png">
 
     <!-- Bootstrap core CSS -->
@@ -205,9 +205,9 @@
                         echo '<a class="btn btn-success" role="button" href="admin-edit-warkopUmi.php?id=' . htmlentities($row['id_kegiatan']) . '">
                             <i class="bx bx-edit"></i>
                             </a>';
-                        echo '<button class="btn btn-danger mt-1" type="button" onclick="hapusData(' . htmlentities($row['id_kegiatan']) . ')">
+                        echo '<button class="btn btn-danger mt-1" type="button" data-bs-toggle="modal" data-bs-target="#hapusModal" onclick="setHapusId(' . htmlentities($row['id_kegiatan']) . ')">
                             <i class="bx bx-trash"></i>
-                            </button>';
+                              </button>';
                         echo "</td>";
                         echo "</tr>";
                         
@@ -220,24 +220,68 @@
                 // Tutup koneksi
                 $conn->close();
             ?>
-            <script>
-                function hapusData(id) {
-                    if (confirm('Apakah Anda yakin ingin menghapus data?')) {
-                      // Kirim permintaan penghapusan menggunakan AJAX
-                      var xhr = new XMLHttpRequest();
-                      xhr.open('GET', 'hapus-kegiatan.php?id=' + id, true);
-                      xhr.onreadystatechange = function() {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                          // Handle hasil respons dari server di sini
-                          console.log(xhr.responseText);
-                          // Refresh tabel atau lakukan tindakan lain jika diperlukan
-                          location.reload();
-                        }
-                      };
-                      xhr.send();
-                    }
-                  }
-              </script>
+
+            
+                <!-- script untuk menghapus data -->
+                <script>
+                     var hapusId;
+
+                      function setHapusId(id) {
+                          hapusId = id;
+                      }
+
+                      function hapusData() {
+                          var xhr = new XMLHttpRequest();
+                          xhr.open('GET', 'hapus-kegiatan.php?id=' + hapusId, true);
+                          xhr.onreadystatechange = function() {
+                              if (xhr.readyState == 4) {
+                                  if (xhr.status == 200) {
+                                      // Operasi penghapusan berhasil
+                                      Swal.fire({
+                                          icon: 'success',
+                                          title: 'Berhasil!',
+                                          text: 'Data berhasil dihapus.',
+                                      }).then((result) => {
+                                          if (result.isConfirmed || result.isDismissed) {
+                                              // Tutup modal
+                                              $('#hapusModal').modal('hide');
+                                              // Refresh tabel atau lakukan tindakan lain jika diperlukan
+                                              location.reload();
+                                          }
+                                      });
+                                  } else {
+                                      // Operasi penghapusan gagal
+                                      Swal.fire({
+                                          icon: 'error',
+                                          title: 'Gagal!',
+                                          text: 'Terjadi kesalahan saat menghapus data.',
+                                      });
+                                  }
+                              }
+                          };
+                          xhr.send();
+                      }
+                </script>
+
+                <!-- modal untuk konfirmasi -->
+                <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Apakah Anda yakin ingin menghapus data?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-danger" onclick="hapusData()">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 </tbody>
             </table>
             </div>
@@ -294,33 +338,21 @@
 
     <script >
       function konfirmasiKeluar() {
-        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
-        if (konfirmasi) {
-          window.location.href = "tem-login/tem-login-admin.php";
-        }
-      };
-
-      setTimeout(function() {
-          var notifikasi = document.querySelector('.eror');
-          if (notifikasi) {
-              notifikasi.style.display = 'none';
+        Swal.fire({
+          title: 'Konfirmasi Keluar',
+          text: 'Apakah Anda yakin ingin keluar?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Keluar!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "tem-login/tem-login-admin.php";
           }
-      }, 2000); // 5000 m
-
-      // document.getElementById("tambahButton").addEventListener("click", function() {
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "block";
-      //   });
-
-      //   document.getElementById("konfirmasiYa").addEventListener("click", function() {
-      //       // Tambahkan logika untuk menambahkan data ke database di sini
-      //       alert("Data berhasil ditambahkan");
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
-      //   });
-
-      //   document.getElementById("konfirmasiBatal").addEventListener("click", function() {
-      //       document.getElementById("konfirmasiNotifikasi").style.display = "none";
-      //   });
-
+        });
+      }
     </script>
 
     <script src="assets/js/login.js"></script>
