@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="https://boxicons.com/css/boxicons.min.css">
     <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="website icon" href="../tem-login/images/logoUnjuk.png">
 
     <!-- Bootstrap core CSS -->
@@ -155,9 +155,9 @@
                               echo "<td>" . $row['nama_user'] . "</td>";
                               echo '<td><img src="../public/img/umkm-photo/' . $row['umkm_foto'] . '" class="card-img-top" alt="Gambar Produk" style="max-width: 100px; max-height: 100px;"></td>';
                               echo "<td>";
-                              echo '<a class="btn btn-danger" role="button" onclick="hapusUMKM(' . htmlentities($row['id_umkm']) . ')">
-                                  <i class="bx bx-trash"></i>
-                                </a>';
+                              echo '<button class="btn btn-danger mt-1" type="button" data-bs-toggle="modal" data-bs-target="#hapusModal" onclick="setHapusId(' . htmlentities($row['id_umkm']) . ')">
+                                    <i class="bx bx-trash"></i>
+                                      </button>';
                               echo "</td>";
                               // echo '<td><button class="btn btn-info" data-toggle="modal" data-target="#detailModal' . $row['id_umkm'] . '">Detail</button></td>';
                               echo "</tr>";
@@ -168,27 +168,64 @@
                       }
                   ?>
                    <script>
-                      function hapusUMKM(id) {
-                          if (confirm('Apakah Anda yakin ingin menghapus data?')) {
-                            // Kirim permintaan penghapusan menggunakan AJAX
-                            var xhr = new XMLHttpRequest();
-                            xhr.open('GET', '../hapus-data.php?id=' + id, true);
-                            xhr.onreadystatechange = function() {
-                              if (xhr.readyState == 4 && xhr.status == 200) {
-                                // Handle hasil respons dari server di sini
-                                console.log(xhr.responseText);
-                                // Hapus baris tabel setelah penghapusan berhasil
-                                var row = document.getElementById('umkm-row-' + id);
-                                if (row) {
-                                  row.parentNode.removeChild(row);
-                                }
-                              }
-                            };
-                            xhr.send();
+                        var hapusId;
+
+                          function setHapusId(id) {
+                              hapusId = id;
                           }
-                        }
-                
-              </script>
+
+                          function hapusData() {
+                              var xhr = new XMLHttpRequest();
+                              xhr.open('GET', ' ../hapus-data.php?id=' + hapusId, true);
+                              xhr.onreadystatechange = function() {
+                                  if (xhr.readyState == 4) {
+                                      if (xhr.status == 200) {
+                                          // Operasi penghapusan berhasil
+                                          Swal.fire({
+                                              icon: 'success',
+                                              title: 'Berhasil!',
+                                              text: 'Data berhasil dihapus.',
+                                          }).then((result) => {
+                                              if (result.isConfirmed || result.isDismissed) {
+                                                  // Tutup modal
+                                                  $('#hapusModal').modal('hide');
+                                                  // Refresh tabel atau lakukan tindakan lain jika diperlukan
+                                                  location.reload();
+                                              }
+                                          });
+                                      } else {
+                                          // Operasi penghapusan gagal
+                                          Swal.fire({
+                                              icon: 'error',
+                                              title: 'Gagal!',
+                                              text: 'Terjadi kesalahan saat menghapus data.',
+                                          });
+                                      }
+                                  }
+                              };
+                              xhr.send();
+                          }
+                    </script>
+
+                    <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Data UMKM</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Apakah Anda yakin ingin menghapus data UMKM?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" class="btn btn-danger" onclick="hapusData()">Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
               </tbody>
           </table>
 
@@ -211,10 +248,19 @@
     <!-- script yang digunakan untuk konfirmasi keluar -->
     <script >
       function konfirmasiKeluar() {
-        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
-        if (konfirmasi) {
-          window.location.href = "../tem-login/tem-login-admin.php";
-        }
+        Swal.fire({
+          title: 'Konfirmasi Keluar',
+          text: 'Apakah Anda yakin ingin keluar?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Keluar!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "../tem-login/tem-login-admin.php";
+          }
+        });
       }
     </script>
 
