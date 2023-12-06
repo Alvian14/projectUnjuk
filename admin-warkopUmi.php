@@ -1,12 +1,6 @@
 <?php
     require_once("koneksi.php");
-    // function containsSpecialChars($str) {
-    //   // Karakter yang diizinkan pada judul
-    //   $allowedChars = '/[^\w\s\-\.,!?]/';
-
-    //   // Mengecek apakah string memenuhi kriteria karakter yang diizinkan
-    //   return preg_match($allowedChars, $str) !== 1;
-    // }
+    
   
     $judulMinLength = 10;
     $judulMaxLength = 100;
@@ -98,7 +92,7 @@
     <link rel="stylesheet" href="https://boxicons.com/css/boxicons.min.css">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="website icon" href="tem-login/images/logoUnjuk.png">
 
     <!-- Bootstrap core CSS -->
@@ -309,18 +303,21 @@
 
     <script >
       function konfirmasiKeluar() {
-        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
-        if (konfirmasi) {
-          window.location.href = "tem-login/tem-login-admin.php";
-        }
-      };
-
-      setTimeout(function() {
-          var notifikasi = document.querySelector('.eror');
-          if (notifikasi) {
-              notifikasi.style.display = 'none';
+        Swal.fire({
+          title: 'Konfirmasi Keluar',
+          text: 'Apakah Anda yakin ingin keluar?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Keluar!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = " tem-login/tem-login-admin.php";
           }
-      }, 2000);
+        });
+      }
 
     </script>
 

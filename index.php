@@ -175,7 +175,7 @@
                 </a></li>
                 <li><i class='bx bxs-envelope' style='color:#47b2e4' ></i> <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzDQzBpZKMkfcCQnLhscHZwHbMLVLBrMJpTctQqCCBscGhTQRmqkQTLZLsRDQWstRGbMJNr" target="_blank">
                   diskopumnganjuk@gmail.com</a></li>
-                <li><i class='bx bxs-phone' style='color:#47b2e4' ></i> <a href=""> Toll Free: 0-832-1-512-555</a></li>
+                <!-- <li><i class='bx bxs-phone' style='color:#47b2e4' ></i> <a href=""> Toll Free: 0-832-1-512-555</a></li> -->
               </ul>
             </div>
 
@@ -200,11 +200,6 @@
         Copyright &copy; 2023 <strong><span>M-fast</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
-          <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
         </div>
       </div>
     </footer><!-- End Footer -->

@@ -55,10 +55,10 @@ if (isset($_GET['id'])) {
             $errors[] = "Tanggal kegiatan harus lebih dari tanggal sekarang.";
         } elseif (trim($judul_baru) === '') {
             $errors[] = "Judul kegiatan tidak boleh hanya terdiri dari spasi.";
-        } elseif (containsSpecialChars($judul_baru)) {
-            $errors[] = "Judul tidak boleh menggunakan karakter aneh.";
-        } elseif (containsSpecialChars($deskripsi_baru)) {
-            $errors[] = "Deskripsi tidak boleh menggunakan karakter aneh.";
+        // } elseif (containsSpecialChars($judul_baru)) {
+        //     $errors[] = "Judul tidak boleh menggunakan karakter aneh.";
+        // } elseif (containsSpecialChars($deskripsi_baru)) {
+        //     $errors[] = "Deskripsi tidak boleh menggunakan karakter aneh.";
         }
 
         // Jika tidak ada error, lanjutkan proses update
@@ -100,7 +100,7 @@ if (isset($_GET['id'])) {
     <title>Umkm Mikro</title>
 
   
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
     <link rel="stylesheet" href="https://boxicons.com/css/boxicons.min.css">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -312,18 +312,21 @@ if (isset($_GET['id'])) {
 
     <script >
       function konfirmasiKeluar() {
-        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
-        if (konfirmasi) {
-          window.location.href = "tem-login/tem-login-admin.php";
-        }
-      };
-
-      setTimeout(function() {
-          var notifikasi = document.querySelector('.eror');
-          if (notifikasi) {
-              notifikasi.style.display = 'none';
+        Swal.fire({
+          title: 'Konfirmasi Keluar',
+          text: 'Apakah Anda yakin ingin keluar?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Keluar!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "tem-login/tem-login-admin.php";
           }
-      }, 2000); 
+        });
+      }
 
     </script>
 

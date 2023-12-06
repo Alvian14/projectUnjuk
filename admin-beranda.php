@@ -31,8 +31,6 @@
   // Tutup koneksi database
   mysqli_close($conn);
 
-
-
   ?>
 
 
@@ -52,7 +50,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
     <link rel="stylesheet" href="https://boxicons.com/css/boxicons.min.css">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
     <link rel="website icon" href="tem-login/images/logoUnjuk.png">
 
@@ -619,10 +617,20 @@
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
     <script >
       function konfirmasiKeluar() {
-        var konfirmasi = confirm("Apakah Anda yakin ingin keluar?");
-        if (konfirmasi) {
-          window.location.href = "tem-login/tem-login-admin.php";
-        }
+        Swal.fire({
+          title: 'Konfirmasi Keluar',
+          text: 'Apakah Anda yakin ingin keluar?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Keluar!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "tem-login/tem-login-admin.php";
+          }
+        });
       }
     </script>
 

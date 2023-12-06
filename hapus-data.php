@@ -16,15 +16,15 @@ if (isset($_GET['id'])) {
     // Check if the query was successful
     if ($eksekusi) {
         // Redirect back to the previous page
-        header("Location: daftar-kecamatan/ daftar-perkecamatan.php ");
+        header("Location: daftar-kecamatan/daftar-perkecamatan.php");
         exit();
     } else {
         // If the query fails, display an error message
-        echo "Error: " . $sql . "<br>" . mysqli_error($konek);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 
     // Close the database connection
-    mysqli_close($konek);
+    mysqli_close($conn);
 } else {
     // If 'id' parameter is not set, display an error message
     echo "Invalid request. 'id' parameter is missing.";

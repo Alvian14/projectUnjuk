@@ -86,53 +86,59 @@
 
     <!-- menampilkan card produk -->
     <div class="container mt-5">
-        <div class="row">
-            <?php
-            include "koneksi.php";
+          <div class="row">
+              <?php
+              include "koneksi.php";
 
-            if (isset($_GET['search'])) {
-                $search = $_GET['search'];
-                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                          FROM produk AS pd
-                          INNER JOIN umkm AS um
-                          ON pd.id_umkm = um.id_umkm
-                          WHERE pd.kategori_produk = 'Jasa' AND pd.nama_produk LIKE '%$search%'
-                          ORDER BY pd.id_produk DESC
-                          LIMIT 20";
-            } else {
-                $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                          FROM produk AS pd
-                          INNER JOIN umkm AS um
-                          ON pd.id_umkm = um.id_umkm
-                          WHERE pd.kategori_produk = 'Jasa'
-                          ORDER BY pd.id_produk DESC
-                          LIMIT 20";
-            }
-            $result = mysqli_query($conn, $query);
+              if (isset($_GET['search'])) {
+                  $search = $_GET['search'];
+                  $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                            FROM produk AS pd
+                            INNER JOIN umkm AS um
+                            ON pd.id_umkm = um.id_umkm
+                            WHERE pd.kategori_produk = 'Jasa' AND pd.nama_produk LIKE '%$search%'
+                            ORDER BY pd.id_produk DESC
+                            LIMIT 20";
+              } else {
+                  $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk,um.nama_umkm, um.notelp_umkm, pd.harga_produk
+                            FROM produk AS pd
+                            INNER JOIN umkm AS um
+                            ON pd.id_umkm = um.id_umkm
+                            WHERE pd.kategori_produk = 'Jasa'
+                            ORDER BY pd.id_produk DESC
+                            LIMIT 20";
+              }
+              $result = mysqli_query($conn, $query);
 
-            while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-                <div class="col-6 col-md-4 col-lg-3 mb-4">
-                    <div class="card">
-                        <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
-                            <?php if (!empty($row['gambar_produk1'])) : ?>
-                                <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
-                            <?php else : ?>
-                                <!-- Gambar default jika tidak ada gambar produk -->
-                                <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
-                            <?php endif; ?>
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
-                            <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
-                            <!-- <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p> -->
-                            <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
+              if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+              ?>
+                      <div class="col-6 col-md-4 col-lg-3 mb-4">
+                          <div class="card">
+                              <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
+                                  <?php if (!empty($row['gambar_produk1'])) : ?>
+                                      <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
+                                  <?php else : ?>
+                                      <!-- Gambar default jika tidak ada gambar produk -->
+                                      <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
+                                  <?php endif; ?>
+                              </a>
+                              <div class="card-body">
+                                  <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
+                                  <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
+                                  <!-- <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p> -->
+                                  <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
+                              </div>
+                          </div>
+                      </div>
+                  <?php
+                  }
+              } else {
+                  echo '<div class="col-12 text-center">Tidak ada hasil ditemukan.</div>';
+              }
+              ?>
+          </div>
+      </div>
     <!-- selesai menampilkan card produk -->
 </section>
 
@@ -170,7 +176,7 @@
                 </a></li>
                 <li><i class='bx bxs-envelope' style='color:#47b2e4' ></i> <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzDQzBpZKMkfcCQnLhscHZwHbMLVLBrMJpTctQqCCBscGhTQRmqkQTLZLsRDQWstRGbMJNr" target="_blank">
                   diskopumnganjuk@gmail.com</a></li>
-                <li><i class='bx bxs-phone' style='color:#47b2e4' ></i> <a href=""> Toll Free: 0-832-1-512-555</a></li>
+                <!-- <li><i class='bx bxs-phone' style='color:#47b2e4' ></i> <a href=""> Toll Free: 0-832-1-512-555</a></li> -->
               </ul>
             </div>
 

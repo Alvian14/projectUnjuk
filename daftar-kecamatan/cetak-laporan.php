@@ -14,9 +14,12 @@
     $kecamatan = $conn->real_escape_string($kecamatan);
  
     // Buat query SQL untuk mengambil data UMKM berdasarkan kecamatan
-    $query = "SELECT * FROM umkm WHERE kecamatan_umkm = '$kecamatan'";
- 
-    $result = $conn->query($query);
+    $query = "SELECT umkm.*, akun.nama_user
+          FROM umkm
+          INNER JOIN akun ON umkm.id_akun = akun.id_akun
+          WHERE umkm.kecamatan_umkm = '$kecamatan'";
+
+$result = $conn->query($query);
 ?>
 <html>
 <head>
@@ -44,47 +47,47 @@
 </head>
 
 <body>
-<div class="container">
+        <div class="container">
                 <h2>Laporan UMKM - Kecamatan <?php echo $kecamatan; ?></h2>
-				<div class="data-tables datatable-dark">
-					
-                <table id="mauexport" class="table table-striped" style="width:100%">
-              <thead>
-                  <tr>
-                      <th>No.</th>
-                      <th>Nama UMKM</th>
-                      <th>Jenis Usaha</th>
-                      <th>NIB</th>
-                      <th>Nomor Telepon</th>
-                      <th>Alamat</th>
-                      <th>ID Akun</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <?php
-                      if ($result->num_rows > 0) {
-                          $no = 1;
-                          while ($row = $result->fetch_assoc()) {
-                              echo "<tr>";
-                              echo "<td>" . $no . "</td>";
-                              echo "<td>" . $row['nama_umkm'] . "</td>";
-                              echo "<td>" . $row['Jenis_usahaumkm'] . "</td>";
-                              echo "<td>" . $row['Nib_umkm'] . "</td>";
-                              echo "<td>" . $row['notelp_umkm'] . "</td>";
-                              echo "<td>" . $row['alamat_umkm'] . "</td>";
-                              echo "<td>" . $row['id_akun'] . "</td>";
-                              echo "</tr>";
-                              $no++;
-                          }
-                      } else {
-                          echo "Tidak ada data UMKM yang ditemukan.";
-                      }
-                  ?>
-              </tbody>
-          </table>
+                <div class="data-tables datatable-dark">
+                                
+                    <table id="mauexport" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama UMKM</th>
+                                <th>Jenis Usaha</th>
+                                <th>NIB</th>
+                                <th>Nomor Telepon</th>
+                                <th>Alamat</th>
+                                <th>Nama User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                if ($result->num_rows > 0) {
+                                    $no = 1;
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $no . "</td>";
+                                        echo "<td>" . $row['nama_umkm'] . "</td>";
+                                        echo "<td>" . $row['Jenis_usahaumkm'] . "</td>";
+                                        echo "<td>" . $row['Nib_umkm'] . "</td>";
+                                        echo "<td>" . $row['notelp_umkm'] . "</td>";
+                                        echo "<td>" . $row['alamat_umkm'] . "</td>";
+                                        echo "<td>" . $row['nama_user'] . "</td>";
+                                        echo "</tr>";
+                                        $no++;
+                                    }
+                                } else {
+                                    echo "Tidak ada data UMKM yang ditemukan.";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
 					
 				</div>
-</div>
+        </div>
 	
 <script>
 $(document).ready(function() {
