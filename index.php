@@ -116,7 +116,7 @@
         echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
         echo '</div>';
         echo '<div class="content">';
-        echo '<div class="title">' . $row['judul'] . '</div>';
+        echo '<div class="title">' . nl2br($row['judul']) . '</div>';
         
         // Ubah format tanggal
         $tanggal = date('j F Y', strtotime($row['tgl']));

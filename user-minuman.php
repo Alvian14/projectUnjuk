@@ -124,9 +124,8 @@
                             <?php endif; ?>
                         </a>
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['nama_produk']; ?></h5>
-                            <p class="card-text" style="margin: 10px 0;"><?php echo $row['nama_umkm']; ?></p>
-                            <!-- <p class="card-text" style="margin: 7px 0;"><?php echo $row['notelp_umkm']; ?></p> -->
+                            <h5 class="card-title"><?php echo substr($row['nama_produk'], 0, 21); ?></h5>
+                            <p class="card-text" style="margin: 10px 0;"><?php echo substr($row['nama_umkm'], 0, 25); ?></p>
                             <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
                         </div>
                     </div>

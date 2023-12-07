@@ -266,11 +266,10 @@
                         $nomor_telepon = preg_replace('/[^0-9]/', '', $nomor_telepon);
 
                         // Buat URL WhatsApp
-                        $wa_url = "https://api.whatsapp.com/send?phone=+{$nomor_telepon}";
-
+                        $wa_url = "https://wa.me/{$nomor_telepon}";
                         // Tampilkan tautan jika nomor telepon tidak kosong
                         if (!empty($nomor_telepon)) {
-                            echo "<a href='{$wa_url}' target='_blank'>{$row['notelp_umkm']}</a>";
+                            echo "<p><a href='{$wa_url}' target='_blank'>{$row['notelp_umkm']}</a></p>";
                         } else {
                             echo "Nomor telepon tidak tersedia";
                         }

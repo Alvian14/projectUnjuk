@@ -179,7 +179,7 @@
                             <li>Affiliate Program</li>
                         </ol>
                         <p>Info lebih lanjut bisa via WhatsApp (WA)</p>
-                        <p><a href="https://api.whatsapp.com/send?phone=+62 856-4892-0999" target="_blank">Hubungi Kami di WhatsApp</a></p>
+                        <p><a href="https://wa.me/6285648920999" target="_blank">Hubungi Kami di WhatsApp</a></p>
                         
                 </div> 
   
