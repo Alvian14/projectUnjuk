@@ -259,7 +259,7 @@
           cancelButtonText: 'Batal'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = "tem-login/tem-login-admin.php";
+            window.location.href = "../tem-login/tem-login-admin.php";
           }
         });
       }
