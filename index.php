@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
   <link rel="stylesheet" href="assets/css/warta.css?v=<?php echo time(); ?>">
 
+  <!-- <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65a896911d58d50012137351&product=inline-share-buttons&source=platform" async="async"></script> -->
 
   <!-- bootstrap css -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
@@ -85,6 +86,7 @@
     </div>
   </header><!-- End Header -->
 
+
   <section id="hero" class="d-flex align-items-center" style="background-color: #235088; height: 1000%;" >
     <div class="container">
       <div class="row">
@@ -100,40 +102,49 @@
   </section><!-- End Hero -->
 
 
+
  <section id="warkop" style="margin-top: -2%">
     <div id="wrapper" >
       <div class="kotak">
           <h1 >
-          Warta Koperasi Usaha Mikro</h1>
+          Warta Koperasi Dan Usaha Mikro</h1>
       </div>
     </div>
 
+  
+
     <!-- pembuatan kegiatan -->
     <?php
-      while ($row = mysqli_fetch_assoc($result)) {
-        echo '<div class="container-kotak">';
-        echo '<div class="image-container">';
-        echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
-        echo '</div>';
-        echo '<div class="content">';
-        echo '<div class="title">' . nl2br($row['judul']) . '</div>';
-        
-        // Ubah format tanggal
-        $tanggal = date('j F Y', strtotime($row['tgl']));
-      
-        // ubah format jam
-        $jam = date('H:i', strtotime($row['jam']));
+      if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+              $detailLink = 'user-detail-kegiatan.php?id_kegiatan=' . $row['id_kegiatan']; // Gantilah dengan URL yang sesuai
 
-        echo '<div class="datetime">';
-        echo '<i class="bx bx-calendar"></i> Tanggal: ' . $tanggal . '<br>';
-        echo '<i class="bx bx-time"></i> Jam: ' . $jam. '<br>';
-        echo '</div>';
-        echo '<div class="description mt-4" >' . nl2br($row['deskripsi']) . '</div>';
-        echo '</div>';
-        echo '</div>';
+              echo '<a href="' . $detailLink . '" style="text-decoration: none; color: inherit;">'; // Tautan menuju detail
+              echo '<div class="container-kotak mt-5">';
+              echo '<div class="title" style="text-align: left;">' . nl2br($row['judul']) . '</div>';
+              $tanggal = date('j F Y', strtotime($row['tgl']));
+              $jam = date('H:i', strtotime($row['jam']));
+              echo '<div class="datetime">';
+              echo '<i class="bx bx-calendar"></i> ' . $tanggal . ' | <i class="bx bx-time"></i> ' . $jam . '<br>';
+              echo '</div>';
+              echo '<div class="image-container mt-2">';
+              echo '<img class="image" src="' . $row['foto'] . '" alt="Gambar">';
+              echo '</div>';
+              echo '<div class="content">';
+              echo '<div class="description mt-4" style="word-wrap: break-word;">' . nl2br($row['deskripsi']) . '</div>';
+              echo '</div>';
+              echo '</div>';
+              echo '</a>'; // Penutup tautan
+          }
+      } else {
+          echo '<p class="paragraf text-center mt-5">Tidak ada kegiatan yang ditampilkan saat ini.</p>';
       }
     ?>
+
+
+
  </section>
+ 
  
 
  

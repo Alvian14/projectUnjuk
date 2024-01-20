@@ -90,14 +90,14 @@
   </head>
   <body>
     
-<header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow" style="background-color: #235088;">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 text-center" style="background-color: #235088; font-size: 27px;"
-  href="#">UNJUK <br> </a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-</header>
+      <header class="navbar navbar-dark sticky-top  flex-md-nowrap p-0 shadow" style="background-color: #235088;">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 text-center" style="background-color: #235088; font-size: 27px;"
+        href="#">UNJUK <br> </a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+      </header>
 
 <div class="container-fluid">
   <div class="row">
@@ -615,6 +615,8 @@
 
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- digunakan untuk animasi keluar -->
     <script >
       function konfirmasiKeluar() {
         Swal.fire({
@@ -636,6 +638,8 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- untuk mengambil data umkm -->
     <script>
             function updateTotalUMKM() {
           // Lakukan pengambilan data dengan AJAX
@@ -650,7 +654,7 @@
           xhttp.send();
         }
 
-        // Perbarui total UMKM secara berkala (contoh setiap 30 detik)
+        // Perbarui total UMKM 
         setInterval(updateTotalUMKM, 30000); // 30000 milidetik = 30 detik
     </script>
 

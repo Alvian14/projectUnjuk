@@ -1,3 +1,24 @@
+<?php
+  include "koneksi.php";
+
+  // Cek apakah parameter 'id' ada dalam URL dan merupakan angka
+  if (isset($_GET['id_kegiatan']) && is_numeric($_GET['id_kegiatan'])) {
+      // Hindari SQL Injection dengan menggunakan mysqli_real_escape_string
+      $id_kegiatan = mysqli_real_escape_string($conn, $_GET['id_kegiatan']);
+
+      // Ambil data kegiatan berdasarkan ID
+      $sqlDetail = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
+      $resultDetail = mysqli_query($conn, $sqlDetail);
+
+      // Periksa kesalahan saat menjalankan query
+      if (!$resultDetail) {
+          echo "Gagal mengambil detail kegiatan: " . mysqli_error($conn);
+          echo "Query: " . $sqlDetail;
+          exit; // Keluar dari skrip jika terjadi kesalahan
+      }
+    }
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +47,13 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="assets/css/warta.css?v=<?php echo time(); ?>">
 
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65a896911d58d50012137351&product=inline-share-buttons&source=platform" async="async"></script>
 
- 
+  <!-- bootstrap css -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
 </head>
 
 <body>
@@ -39,16 +61,16 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top  " style="background-color: #235088;">
     <div class="container d-flex align-items-center">
-
-      <h1 class="logo me-auto"><a href="index.php">UNjuk</a></h1>
+      <!-- <img src="assets/img/logoUnjuk.png" width="80px"> -->
+      <h1 class="logo me-auto "><a href="#hero">UNjuk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="index.php">Warkop Umi</a></li>
+          <li><a class="nav-link scrollto" href="#warkop">Warkop Umi</a></li>
           <li><a class="nav-link scrollto" href="user-layanan.php">Layanan</a></li>
-          <li class="dropdown active"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="user-makanan.php">Makanan</a></li>
               <li><a href="user-minuman.php">Minuman</a></li>
@@ -61,101 +83,79 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
 
 
-  <!-- makanan -->
-  <section id="user-kerajinan.php">
-    <div id="wrapper">
-        <div class="kotak">
-            <h1 style="font-family: 'Jost', sans-serif; color: white; font-size: 27px; margin-left: 10px;">
-                Kerajinan
-            </h1>
-            <form action="user-kerajinan.php" method="get">
-                <div class="search-container">
-                    <input class="search-input" type="search" id="searchInput" name="search" placeholder="Cari Kerajinan...">
-                    <input class="search-button"  type="submit" value="Cari" style="width: 5%;">
-                </div>
-            </form>
-        </div>
+
+ <section id="warkop" style="margin-top: -2%">
+    <div id="wrapper" >
+      <div class="kotak">
+          <h1 >
+          Warta Koperasi Dan Usaha Mikro</h1>
+      </div>
     </div>
 
+    <!-- pembuatan kegiatan -->
+    <?php
+      
+
+          // Periksa apakah ada data kegiatan yang sesuai
+          if (mysqli_num_rows($resultDetail) > 0) {
+              // Tampilkan data kegiatan
+              $row = mysqli_fetch_assoc($resultDetail);
+              $judul = nl2br($row['judul']);
+              $tanggal = date('j F Y', strtotime($row['tgl']));
+              $jam = date('H:i', strtotime($row['jam']));
+              $foto = $row['foto'];
+              $deskripsi = nl2br($row['deskripsi']);
+
+              // Tampilkan detail kegiatan
+              echo '<div class="container-kotak mt-5">';
+              echo '<div class="title" style="text-align: left;">' . $judul . '</div>';
+              echo '<div class="sharethis-inline-share-buttons"></div>';
+              echo '<div class="datetime">';
+              echo '<i class="bx bx-calendar"></i> ' . $tanggal . ' | <i class="bx bx-time"></i> ' . $jam . '<br>';
+              echo '</div>';
+              echo '<div class="image-container mt-2">';
+              echo '<img class="image" src="' . $foto . '" alt="Gambar">';
+              echo '</div>';
+              echo '<div class="content">';
+              echo '<div class="description mt-4" style="word-wrap: break-word;">' . $deskripsi . '</div>';
+              echo '</div>';
+              echo '</div>';
+          } else {
+              echo '<p class="paragraf text-center mt-5">Kegiatan tidak ditemukan.</p>';
+          } 
+    ?>
+
+  
+
+
+ </section>
+ 
+ 
+
+ 
+
+
+
+  
+
     
-
-    <!-- menampilkan card produk -->
-    <div class="container mt-5">
-          <div class="row">
-              <?php
-              include "koneksi.php";
-
-              if (isset($_GET['search'])) {
-                  $search = $_GET['search'];
-                  $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk, um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                            FROM produk AS pd
-                            INNER JOIN umkm AS um
-                            ON pd.id_umkm = um.id_umkm
-                            WHERE pd.kategori_produk = 'Kerajinan' AND pd.nama_produk LIKE '%$search%'
-                            ORDER BY pd.id_produk DESC
-                            LIMIT 20";
-              } else {
-                  $query = "SELECT pd.id_produk, pd.gambar_produk1, pd.gambar_produk2 ,pd.gambar_produk3, pd.nama_produk,um.nama_umkm, um.notelp_umkm, pd.harga_produk
-                            FROM produk AS pd
-                            INNER JOIN umkm AS um
-                            ON pd.id_umkm = um.id_umkm
-                            WHERE pd.kategori_produk = 'Kerajinan'
-                            ORDER BY pd.id_produk DESC
-                            LIMIT 20";
-              }
-              $result = mysqli_query($conn, $query);
-
-              if (mysqli_num_rows($result) > 0) {
-                  while ($row = mysqli_fetch_assoc($result)) {
-              ?>
-                      <div class="col-6 col-md-4 col-lg-3 mb-4">
-                          <div class="card">
-                              <a href="user-detail-produk.php?id_produk=<?php echo $row['id_produk']; ?>">
-                                  <?php if (!empty($row['gambar_produk1'])) : ?>
-                                      <img src="public/img/produk-photo/<?php echo $row['gambar_produk1']; ?>" class="card-img-top" alt="Gambar Produk" style="height: 200px;">
-                                  <?php else : ?>
-                                      <!-- Gambar default jika tidak ada gambar produk -->
-                                      <img src="assets/img/logoUnjuk.png" class="card-img-top" alt="Gambar Default" style="height: 200px;">
-                                  <?php endif; ?>
-                              </a>
-                              <div class="card-body">
-                                  <h5 class="card-title"><?php echo substr($row['nama_produk'], 0, 21); ?></h5>
-                                  <p class="card-text" style="margin: 10px 0;"><?php echo substr($row['nama_umkm'], 0, 25); ?></p>  
-                                  <p class="card-text" style="color: #47B2E4; font-weight:bold;">Rp <?php echo $row['harga_produk']; ?></p>
-                              </div>
-                          </div>
-                      </div>
-                  <?php
-                  }
-              } else {
-                  echo '<div class="col-12 text-center">Tidak ada hasil ditemukan.</div>';
-              }
-              ?>
-          </div>
-      </div>
-    <!-- selesai menampilkan card produk -->
-</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
-
-
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <!-- <section id="tentang-kami"> -->
+<!-- <section id="tentang-kami"> -->
   <footer id="footer">
-      <div class="footer-top" >
+      <div class="footer-top">
         <div class="container">
           <div class="row">
             <div class="col-lg-3 col-md-6 footer-contact mx-auto ml-auto">
@@ -199,9 +199,11 @@
         <div class="copyright" id="copyright">
         Copyright &copy; 2023 <strong><span>M-fast</span></strong>. All Rights Reserved
         </div>
+        <div class="credits">
+        </div>
       </div>
     </footer><!-- End Footer -->
-
+  <!-- </section> -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -215,20 +217,14 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
+
+  <!-- js bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/klik-menu.js"></script>
-
-
-        <!-- untuk refresh saat selesai pencarian produk -->
-
-   <script>
-    if (window.location.search.includes('?search=')) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  </script> 
-
-
+  <script src="assets/js/klik-menu.js"></script>        
 </body>
 
 </html>
+
