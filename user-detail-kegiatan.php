@@ -1,22 +1,32 @@
 <?php
   include "koneksi.php";
 
-  // Cek apakah parameter 'id' ada dalam URL dan merupakan angka
+  // Cek apakah parameter 'id_kegiatan' ada dalam URL dan merupakan angka
   if (isset($_GET['id_kegiatan']) && is_numeric($_GET['id_kegiatan'])) {
       // Hindari SQL Injection dengan menggunakan mysqli_real_escape_string
       $id_kegiatan = mysqli_real_escape_string($conn, $_GET['id_kegiatan']);
-
+  
       // Ambil data kegiatan berdasarkan ID
       $sqlDetail = "SELECT * FROM kegiatan WHERE id_kegiatan = $id_kegiatan";
       $resultDetail = mysqli_query($conn, $sqlDetail);
-
+  
       // Periksa kesalahan saat menjalankan query
       if (!$resultDetail) {
           echo "Gagal mengambil detail kegiatan: " . mysqli_error($conn);
           echo "Query: " . $sqlDetail;
           exit; // Keluar dari skrip jika terjadi kesalahan
       }
-    }
+  
+      // Ambil nama dari query string jika ada
+      $nama = isset($_GET['nama']) ? $_GET['nama'] : '';
+  
+      // ... (kode lainnya)
+  
+  } else {
+      // Jika 'id_kegiatan' bukan angka atau tidak ada, tampilkan pesan kesalahan
+      echo "Invalid request. 'id_kegiatan' parameter is missing or invalid.";
+  }
+  
 ?>
 
 
@@ -50,8 +60,8 @@
   <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
   <link rel="stylesheet" href="assets/css/warta.css?v=<?php echo time(); ?>">
 
-  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65a896911d58d50012137351&product=inline-share-buttons&source=platform" async="async"></script>
-
+  <!-- <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65a896911d58d50012137351&product=inline-share-buttons&source=platform" async="async"></script> -->
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65be30d72bb34700194aa4d0&product=sticky-share-buttons&source=platform" async="async"></script>
   <!-- bootstrap css -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
 </head>
@@ -59,10 +69,10 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top  " style="background-color: #235088;">
+  <header id="header" class="fixed-top" style="background-color: #235088;">
     <div class="container d-flex align-items-center">
       <!-- <img src="assets/img/logoUnjuk.png" width="80px"> -->
-      <h1 class="logo me-auto "><a href="#hero">UNjuk</a></h1>
+      <h1 class="logo me-auto "><a href="index.php">UNjuk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -88,13 +98,13 @@
 
 
 
- <section id="warkop" style="margin-top: -2%">
-    <div id="wrapper" >
+ <section id="warkop" style="margin-top: 5%">
+    <!-- <div id="wrapper">
       <div class="kotak">
           <h1 >
           Warta Koperasi Dan Usaha Mikro</h1>
       </div>
-    </div>
+    </div> -->
 
     <!-- pembuatan kegiatan -->
     <?php
@@ -110,26 +120,35 @@
               $foto = $row['foto'];
               $deskripsi = nl2br($row['deskripsi']);
 
-              // Tampilkan detail kegiatan
-              echo '<div class="container-kotak mt-5">';
+              function makeClickableLinks($text) {
+                // Temukan semua tautan dalam teks
+                $pattern = '/(http[s]?:\/\/[^\s]+)/';
+                $replacement = '<a href="$1" target="_blank">$1</a>';
+                $text = preg_replace($pattern, $replacement, $text);
+            
+                return $text;
+            }
+
+                // Tampilkan detail kegiatan
+              echo '<div class="container-kotak mb-5">';
               echo '<div class="title" style="text-align: left;">' . $judul . '</div>';
-              echo '<div class="sharethis-inline-share-buttons"></div>';
+              echo'<div class="sharethis-sticky-share-buttons mt-4"></div>';
               echo '<div class="datetime">';
               echo '<i class="bx bx-calendar"></i> ' . $tanggal . ' | <i class="bx bx-time"></i> ' . $jam . '<br>';
               echo '</div>';
               echo '<div class="image-container mt-2">';
               echo '<img class="image" src="' . $foto . '" alt="Gambar">';
               echo '</div>';
-              echo '<div class="content">';
-              echo '<div class="description mt-4" style="word-wrap: break-word;">' . $deskripsi . '</div>';
+              echo '<div class="content shift-content">'; /* Tambahkan class shift-content di sini */
+              echo '<div class="description mt-4" style="word-wrap: break-word;">' . makeClickableLinks($deskripsi) . '</div>';
               echo '</div>';
               echo '</div>';
-          } else {
-              echo '<p class="paragraf text-center mt-5">Kegiatan tidak ditemukan.</p>';
-          } 
-    ?>
+                  } else {
+                      echo '<p class="paragraf text-center mt-5">Kegiatan tidak ditemukan.</p>';
+                  } 
+            ?>
 
-  
+
 
 
  </section>
@@ -223,7 +242,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/klik-menu.js"></script>        
+  <script src="assets/js/klik-menu.js"></script> 
+       
 </body>
 
 </html>

@@ -3,12 +3,14 @@
   flex-direction: column;
   background-color: #f0f0f0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: 8px; 
   margin: 10px auto;
   padding: 15px;
   max-width: 1000px;
   height: 100%; /* Menyesuaikan tinggi container dengan kontennya */
+ 
 }
+
 
 .image-container {
   margin-bottom: 10px;
@@ -32,7 +34,8 @@
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
-  word-wrap: break-word; /*digunakan untuk text dapat kebawah */
+  word-wrap: break-word; /*digunakan untuk text dapat kebawah*/
+  white-space: normal;
 }
 
 .description {
@@ -52,4 +55,10 @@
   }
 }
 
+
+
+
+
+
+  
 
